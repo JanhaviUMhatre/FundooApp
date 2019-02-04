@@ -1,0 +1,52 @@
+<mat-card class="example-card">
+    <mat-card-header class="example-header">
+    
+        <mat-card-title class="example-name-main">FUNDOO NOTES APP</mat-card-title>
+         <mat-card-subtitle class="example-name">REGISTRATION</mat-card-subtitle>
+         <mat-card-subtitle class="example-name">to Fundoo Notes App</mat-card-subtitle>
+       </mat-card-header>
+
+        <div class="example-container">
+        
+          <div class="example-align">
+      <mat-form-field appearance="outline">
+        <mat-label>Firstname</mat-label>
+        <input matInput placeholder="Firstname">
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+          <mat-label>Lastname</mat-label>
+          <input matInput placeholder="Lastname">
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline">
+          <mat-label>Phonenumber</mat-label>
+          <input matInput placeholder="Phonenumber">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="email">
+          </mat-form-field>
+
+          <div class="example-align">
+      <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+        
+        <mat-card-actions class="example-button">
+            <a mat-raised-button color="primary" routerLink="/login" class="example-name-bottom">SIGN UP</a>
+            <a mat-flat-button routerLink="/login"><a class="example-color">Login Here</a></a>
+            
+          </mat-card-actions>
+        </div>
+    </mat-card>
