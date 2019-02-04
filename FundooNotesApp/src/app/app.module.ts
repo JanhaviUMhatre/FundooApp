@@ -9,20 +9,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-//import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { AppRoutingModule } from './app-routing.module';
 import { from } from 'rxjs';
 import { MatCardModule } from '@angular/material';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    RegistrationComponent
+   
+    RegistrationComponent,
+   
+    ResetPasswordComponent,
+   
+    
   ],
-  imports: [
+  imports: [AppRoutingModule,
     BrowserModule,
+   
+    HttpClientModule,
     MatFormFieldModule,
     FormsModule, ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -44,10 +56,14 @@ import { MatCardModule } from '@angular/material';
       {
         path : 'dashboard',
         component : DashboardComponent
+      },
+      {
+        path : 'resetpassword',
+        component : ResetPasswordComponent
       }
     ])
   ],
-  providers: [],
+  providers: [HttpClientModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,6 @@
+<html>
+  <body>
+      <div fxLayout="column" fxLayoutAlign="space-around center" >
 <mat-card class="example-card">
     <mat-card-header class="example-header">
     
@@ -17,7 +20,7 @@
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         <mat-card-footer>
-        <mat-card-subtitle class="example-name-link">forgot password?</mat-card-subtitle></mat-card-footer>
+        <mat-card-subtitle class="example-name-link" routerLink="/resetpassword">forgot password?</mat-card-subtitle></mat-card-footer>
         <mat-card-actions class="example-button">
             <a mat-raised-button color="primary" routerLink="/dashboard" class="example-name-bottom">SIGN IN</a>
             <a mat-flat-button routerLink="/registration"><a class="example-color">Register Here</a></a>
@@ -25,3 +28,6 @@
           </mat-card-actions>
         </div>
     </mat-card>
+    </div>
+  </body>
+    </html>

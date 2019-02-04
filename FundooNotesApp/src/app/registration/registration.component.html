@@ -1,4 +1,12 @@
+<html>
+  <body>
+    <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+    <main>
+        
+      <div fxLayout="column" fxLayoutAlign="space-around center" >
+        
 <mat-card class="example-card">
+  
     <mat-card-header class="example-header">
     
         <mat-card-title class="example-name-main">FUNDOO NOTES APP</mat-card-title>
@@ -11,22 +19,25 @@
           <div class="example-align">
       <mat-form-field appearance="outline">
         <mat-label>Firstname</mat-label>
-        <input matInput placeholder="Firstname">
+        <input matInput placeholder="Firstname" [(ngModel)]="user.firstName" formControlName="firstName"
+        [ngClass]="{ 'is-invalid': submitted && user.firstName.errors }" >
       </mat-form-field>
 
 
       <mat-form-field appearance="outline">
           <mat-label>Lastname</mat-label>
-          <input matInput placeholder="Lastname">
+          <input matInput placeholder="Lastname" [(ngModel)]="user.lastName" formControlName="lastName"
+          [ngClass]="{'is-invalid': submitted && user.lastName.error}">
         </mat-form-field>
       </div>
       <mat-form-field appearance="outline">
           <mat-label>Phonenumber</mat-label>
-          <input matInput placeholder="Phonenumber">
+          <input matInput placeholder="Phonenumber" [(ngModel)]="user.phoneNumber" formControlName="phoneNumber"
+          [ngClass]="{'is-invalid': submitted && user.password.error}">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="email">
+            <input matInput placeholder="email" [(ngModel)]="user.email" formControlName="email"  [ngClass]="{'is-invalid': submitted && user.email.error}">
           </mat-form-field>
 
           <div class="example-align">
@@ -42,11 +53,22 @@
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
         </div>
-        
+         <mat-radio-group class = "example-radio"> <a>Service Type : </a>
+          <mat-radio-button value="simple">Simple</mat-radio-button> 
+          <mat-radio-button value="advance">Advance</mat-radio-button>
+        </mat-radio-group>
         <mat-card-actions class="example-button">
             <a mat-raised-button color="primary" routerLink="/login" class="example-name-bottom">SIGN UP</a>
             <a mat-flat-button routerLink="/login"><a class="example-color">Login Here</a></a>
             
           </mat-card-actions>
         </div>
+      
     </mat-card>
+  
+    </div>
+  
+  </main>
+</form>
+  </body>
+    </html>

@@ -4,6 +4,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 //import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -44,7 +46,7 @@ import { from } from 'rxjs';
 
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule],
+  imports: [MatButtonModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule,FlexLayoutModule],
   
     exports: [MatButtonModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule,
       
