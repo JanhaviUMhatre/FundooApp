@@ -1,5 +1,6 @@
 <html>
   <body>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div fxLayout="column" fxLayoutAlign="space-around center" >
 <mat-card class="example-card">
     <mat-card-header class="example-header">
@@ -11,13 +12,17 @@
 
         <div class="example-container">
       <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="Username">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint>hint : required</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          <input [formControl]="password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-hint>hint : required</mat-hint>
         </mat-form-field>
         <mat-card-footer>
         <mat-card-subtitle class="example-name-link" routerLink="/resetpassword">forgot password?</mat-card-subtitle></mat-card-footer>
@@ -29,5 +34,6 @@
         </div>
     </mat-card>
     </div>
+  </form>
   </body>
     </html>

@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { from } from 'rxjs';
 import { MatCardModule } from '@angular/material';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -24,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-   
+    //FlexLayoutModule,
     RegistrationComponent,
    
     ResetPasswordComponent,
@@ -33,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [AppRoutingModule,
     BrowserModule,
-   
+    MatSnackBarModule,
     HttpClientModule,
     MatFormFieldModule,
     FormsModule, ReactiveFormsModule,
