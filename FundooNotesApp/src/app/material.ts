@@ -6,6 +6,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -46,12 +47,13 @@ import { from } from 'rxjs';
 
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule,FlexLayoutModule],
+  imports: [MatButtonModule,MatSidenavModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule,FlexLayoutModule],
   
     exports: [MatButtonModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule,
       
       MatAutocompleteModule,
       MatBadgeModule,
+      MatSidenavModule,
       MatBottomSheetModule,
       MatButtonModule,
       MatButtonToggleModule,
