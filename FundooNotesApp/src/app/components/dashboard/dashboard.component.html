@@ -1,57 +1,72 @@
+<!--  dashboard header -->
 <mat-toolbar class="toolbar">
+  <!-- navigation toggle button -->
   <button mat-icon-button class="material-icons" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
+  <!-- end of navigation toggle button -->
+  <!-- fundoo icon -->
     <img class="fundooIcon" src="../../../assets/fundoo.png">
+    <!-- end of fundoo icon -->
+    <!-- header name as per the side nav menu selection -->
     <div class="dashboardTitle">{{headerName}}</div>
-    <!-- search bar -->
-    
+    <!-- end of header name -->
+    <!-- search bar -->   
     <div class="searchToolBar">
-
+      <!-- search button -->
         <button mat-icon-button>
           <mat-icon class="mat-18">search</mat-icon>
         </button>
-        
+        <!-- end of search button -->
+        <!-- input search bar -->
         <input class="searchInputBar" type="search" placeholder="search">
-    
+        <!-- end of input serach bar -->
       </div>
-      <!-- other menu -->
+      <!-- end of search bar -->
+      <!-- other options -->
       <div class="endToolBar">
-
+        <!-- refresh button -->
           <button mat-icon-button>
             <mat-icon class="mat-18">refresh</mat-icon>
           </button>
-       
+       <!-- end of refresh button -->
+       <!-- list view button-->
           <button mat-icon-button>
               <mat-icon class="mat-18">list view</mat-icon>
             </button>
-             
+            <!-- end of list view button -->
+             <!-- settings button -->
           <button mat-icon-button>
             <mat-icon class="mat-18">settings</mat-icon>
           </button>
+          <!-- end of settings button -->
         </div>
         <div class="endToolBar">
+          <!-- apps button -->
           <button mat-icon-button>
             <mat-icon class="mat-18">apps</mat-icon>
           </button>
-      
-      
+          <!-- end of app button -->
+          <!-- notification button -->
           <button mat-icon-button>
             <mat-icon class="mat-18">notifications_none</mat-icon>
           </button>
-      
+      <!-- end of notification button -->
         </div>
         <!-- account button -->
         <button [matMenuTriggerFor]="menu" class="accountButton" >{{nameFirstLetter}}</button>
+        
         <mat-menu #menu="matMenu">
+          <!-- logout button -->
             <a mat-menu-item routerLink="\login">Logout</a>
             
           </mat-menu>
       </mat-toolbar><mat-divider></mat-divider>
-
-      <!-- sidenav menu -->
+  <!-- end of dashboard header -->
+      <!-- sidenav bar -->
       <mat-sidenav-container class="sidenavBar">
           <mat-sidenav #sidenav mode="side" opened="true" style="min-width:50px;" class="sideNav">
+            <!-- side nav menu -->
             <mat-nav-list class="sideNavList">       
               <div>
                 <button mat-button  (click)="headerName='Fundoo Notes'" [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
@@ -83,9 +98,10 @@
                 </button>
               </div>     
             </mat-nav-list>  
+            <!-- end of side nav menu -->
           </mat-sidenav> 
           <mat-sidenav-content class="sideNavContent">
         </mat-sidenav-content> 
         </mat-sidenav-container>
-
+<!-- end of sidenav bar -->
     

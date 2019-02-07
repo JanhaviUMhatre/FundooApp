@@ -1,11 +1,22 @@
+// ***********************************************************************************
+// * Purpose: login component.
+// *
+// * @author : Janhavi Mhatre
+// * @python version 3.7
+// * @platform : VS Code
+// * @since 1-2-2019
+// *
+// ***********************************************************************************
+
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { HttpserviceService } from '../httpservice/httpservice.service';
+
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { RegisterModel } from 'src/app/models/register.model';
 import { environment } from 'src/environments/environment';
+import { HttpService } from 'src/app/services/http/http.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,14 +27,16 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class LoginComponent implements OnInit {
 auth = []
-loginForm: FormGroup;
+loginForm: FormGroup;  //collecting values from class FormGroup in loginForm
   loading = false;
   submitted = false;
-  baseUrl = environment.baseUrl;
-  user: RegisterModel = new RegisterModel();
-  password= new FormControl('', [Validators.required])
-  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[test]+.[com]+$')]);
-constructor(private snackBar: MatSnackBar,private svc : HttpserviceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient){
+  baseUrl = environment.baseUrl;  // store base url from environment components
+  user: RegisterModel = new RegisterModel(); //object of registration model
+  //validations
+  password= new FormControl('', [Validators.required,Validators.minLength(6)]) //password validation
+  //email validation
+  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
+constructor(private snackBar: MatSnackBar,private svc : HttpService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient){
   //this.svc.printToConsole("got the login service");
 }
   ngOnInit() {
@@ -34,13 +47,17 @@ constructor(private snackBar: MatSnackBar,private svc : HttpserviceService,priva
       Validators.minLength(6)]]
     }); 
   }
+  // after submitting form html will call onSubmit method
   onSubmit() {
+    //json format data
     var userData:any = {
       email: this.user.email,
       password: this.user.password
     }
+    //calling api
     console.log(userData);
     this.http.post(userData, this.baseUrl+'user/user_login').subscribe(
+      //error handling
       (data) => {
         
         console.log("After apply for login response ", data);
@@ -52,18 +69,23 @@ constructor(private snackBar: MatSnackBar,private svc : HttpserviceService,priva
 
       }
     )
+    //success alert
     alert("success");
     //this.snackBar.open('Login Successful', 'Okay', { duration: 2000 });
   
   
     this.router.navigateByUrl('/dashboard');
   }
+  //validation errors
   getErrorMessage(){
-    // if (this.password ! = this.Cpassword){
-    //   var err:boolean = false;
-    // }
+    
     return this.email.hasError('required') ? 'You must enter a value' :
-    this.email.hasError('email') ? 'Not a valid ' :
-    this.password.hasError('required') ? 'enter value':'' ;
+    this.email.hasError('email') ? 'Not a valid email ' :
+    '' ;
+  
   }
+  getErrorMessagePassword(){
+    return this.password.hasError('required') ? 'password is required' : 
+    this.password.hasError('password') ? 'password should be of minimum 6 charatcters' :
+'';  }
 }

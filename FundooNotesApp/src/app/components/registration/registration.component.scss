@@ -1,3 +1,4 @@
+//css for registration page
 main{
   display: flex;
 }
@@ -5,8 +6,8 @@ main{
 body { 
   font-family: Roboto, Arial, sans-serif;
   width: 250px;
-  padding-left: 370px;
-  padding-right: 200px;
+  padding-left: 320px;
+  padding-right: 80px;
   padding-top: 50px;
 }
 
@@ -20,7 +21,7 @@ body {
     
   }
   .example-card{
-      width: 500px;
+      width: 600px;
     background-color: rgb(255, 255, 255);
     
     padding: 12px;
@@ -33,10 +34,11 @@ body {
   }
   .example-name {
   padding: 0px;
-  color:rgb(226, 7, 226);;
+  color:black;
     display: flex;
     justify-content: center;
     width: 300px;
+    font-size: 20px;
   }
   
   .example-button{
@@ -52,24 +54,26 @@ body {
     display: flex;
     justify-content: start;
     width: 200px;
+    
   }
   .example-header{
     display: flex;
     justify-content:center;
   }
   .example-name-main{
-    padding: 10px;
-  color:#673ab7;
+    padding-top : 30px;
+    color:#1a73e8;
     display: flex;
     justify-content: center;
     width: 300px;
+    font-size: 16px;
   }
   .example-color{
     color: rgb(226, 7, 226);
   }
   .example-align{
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     
   }
   .example-radio{
@@ -81,6 +85,16 @@ body {
   .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
   }
+  .button-colour{
+    background-color: #1a73e8;
+  }
+  .button-name{
+    color: white;
+  }
+  .name-link{
+    color: #1a73e8;
+  }
+  //media query for mobile view
   @media(max-width:540px){
   
     mat-card{
