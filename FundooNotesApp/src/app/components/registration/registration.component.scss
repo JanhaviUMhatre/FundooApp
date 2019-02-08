@@ -1,15 +1,8 @@
 //css for registration page
-main{
-  display: flex;
+.forMedia{
+  padding-top: 60px;
 }
 
-body { 
-  font-family: Roboto, Arial, sans-serif;
-  width: 250px;
-  padding-left: 320px;
-  padding-right: 80px;
-  padding-top: 50px;
-}
 
 .basic-container {
   padding: 150px;
@@ -21,7 +14,7 @@ body {
     
   }
   .example-card{
-      width: 600px;
+      width: 500px;
     background-color: rgb(255, 255, 255);
     
     padding: 12px;

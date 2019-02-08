@@ -49,6 +49,7 @@ constructor(private snackBar: MatSnackBar,private svc : HttpService,private rout
   }
   // after submitting form html will call onSubmit method
   onSubmit() {
+    alert("ge");
     //json format data
     var userData:any = {
       email: this.user.email,
