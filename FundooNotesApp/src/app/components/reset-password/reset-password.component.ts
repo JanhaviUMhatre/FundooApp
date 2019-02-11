@@ -73,4 +73,3 @@ export class ResetPasswordComponent implements OnInit {
     return this.password.hasError('required') ? 'enter value' :this.password.hasError('password') ? 'password should be of minimum 6 digits':'' ;
   }
 }
-

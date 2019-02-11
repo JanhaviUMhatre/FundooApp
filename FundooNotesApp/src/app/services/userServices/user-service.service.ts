@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
-import { RegisterModel } from 'src/app/models/register.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-@Injectable()
-// ({
-//   providedIn: 'root'
-// })
+import { HttpService } from '../http/http.service';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class UserServiceService {
-  baseUrl = environment.baseUrl;
-  constructor(private http: HttpClient) { }
 
-  register(user: RegisterModel) {
-    return this.http.post(this.baseUrl + 'user/userSignUp', user);
-}
+  constructor(private http : HttpClient,private user : HttpService) { }
+    registration(userData){
+          return this.http.post<any>('http://34.213.106.173/api/user/userSignUp',userData)
+    }
 
-testservice(){
- return this.http.get('http://34.213.106.173/api/user/service');
-
+    login(userData){
+      return this.http.get<any>('http://34.213.106.173/api/user/login',userData)
 }
 }

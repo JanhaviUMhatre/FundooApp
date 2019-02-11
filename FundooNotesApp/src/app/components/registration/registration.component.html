@@ -1,9 +1,10 @@
-
 <html>
+  {{registrationForm.value | json}}
  <div class="forMedia">
     <!-- registration form -->
-    <form [formGroup]="registerForm" >
-      <div fxLayout="column" fxLayoutAlign="space-around center" >
+    <div fxLayout="column" fxLayoutAlign="space-around center" >
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      
        <!-- material card  -->
 <mat-card class="example-card">
 <!-- card header -->
@@ -20,60 +21,58 @@
         
           <div class="example-align">
 <!-- firstname -->
-      <mat-form-field appearance="outline">
-        <mat-label>Firstname</mat-label>
-        <input matInput placeholder="Firstname" [formControl]="firstname" required>
-        <mat-error *ngIf="phoneNumber.invalid">{{getErrorMessageFirst()}}</mat-error>
-      </mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Firstname</mat-label>
+  <input formControlName="firstName" matInput placeholder="Firstname" required>
+  
+</mat-form-field>
 
 <!-- lastname -->
       <mat-form-field appearance="outline">
           <mat-label>Lastname</mat-label>
-          <input matInput placeholder="Lastname" [formControl]="lastname" required>
-          <mat-error *ngIf="phoneNumber.invalid">{{getErrorMessageLast()}}</mat-error>
+          <input formControlName="lastName" matInput placeholder="Lastname" required>
+          
         </mat-form-field>
       </div>
 <!-- phonenumber -->
       <mat-form-field appearance="outline">
           <mat-label>Phonenumber</mat-label>
-          <input type="text" matInput placeholder="Phonenumber" [formControl]="phoneNumber" required>
-          <mat-error *ngIf="phoneNumber.invalid">{{getErrorMessagePhonenumber()}}</mat-error>
+          <input formControlName="phoneNumber" type="text" matInput placeholder="Phonenumber" required>
+         
         </mat-form-field>
 
   
 <!-- email -->
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="email : username.test.com" [formControl]="email" required />
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            <input formControlName="email" type="email" matInput placeholder="email" required />
+            
           </mat-form-field>
 <!-- password -->
           <div class="example-align">
       <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input [formControl]="password"  matInput placeholder="Enter your password"  [type]="hide ? 'password' : 'text'" required />
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error *ngIf="password.invalid">{{getErrorMessagepassword()}}</mat-error>
+          <input formControlName="password" matInput placeholder="Enter your password"  [type]="hide ? 'password' : 'text'" required />
+                   
           
         </mat-form-field>
 <!-- confirm password -->
         <mat-form-field appearance="outline">
             <mat-label>Confirm Password</mat-label>
-            <input [formControl]="Cpassword"  matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            <mat-error *ngIf="Cpassword.invalid">{{getErrorMessagepassword()}}</mat-error>
+            <input formControlName="confirmPassword" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+                        
             
           </mat-form-field>
         </div>
 
 <!-- service type -->
-         <mat-radio-group class = "example-radio"> <a>Service Type : </a>
+         <mat-radio-group formControlName="service" class = "example-radio"> <a>Service Type : </a>
           <mat-radio-button value="basic">Basic</mat-radio-button> 
           <mat-radio-button value="advance">Advance</mat-radio-button>
         </mat-radio-group>
         <mat-card-actions class="example-button">
             <button mat-button routerLink="/login" class="name-link">sign in instead</button>
-            <button [disabled]="loading"  aria-label="Show an example snack-bar" mat-raised-button class="button-colour" (Click)="register()"><a class="button-name">SIGN UP</a></button>
+            <button   aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN UP</a></button>
             
             
           </mat-card-actions>
@@ -81,8 +80,9 @@
       
     </mat-card>
   <!-- end of material card -->
-    </div>
+    
 </form>
+</div>
 <!-- end of form -->
 </div>
     </html>

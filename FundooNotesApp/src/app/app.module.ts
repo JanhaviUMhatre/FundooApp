@@ -19,7 +19,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
-import { TestservComponent } from './testserv/testserv.component';
+
 
 
 
@@ -33,7 +33,7 @@ import { TestservComponent } from './testserv/testserv.component';
    
     ResetPasswordComponent,
    
-    TestservComponent,
+   
    
     
   ],
@@ -54,10 +54,6 @@ import { TestservComponent } from './testserv/testserv.component';
       {
         path : '',
         component : RegistrationComponent
-      },
-      {
-        path : 'test',
-        component : TestservComponent
       },
       {
         path : 'login',

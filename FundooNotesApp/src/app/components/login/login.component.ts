@@ -1,13 +1,3 @@
-// ***********************************************************************************
-// * Purpose: login component.
-// *
-// * @author : Janhavi Mhatre
-// * @python version 3.7
-// * @platform : VS Code
-// * @since 1-2-2019
-// *
-// ***********************************************************************************
-
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
