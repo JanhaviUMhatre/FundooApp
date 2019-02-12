@@ -19,27 +19,27 @@
           <!-- email/username -->
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <input type="email" formControlName="email" matInput placeholder="Email" required>
+        
         
       </mat-form-field>
       <!-- password -->
       <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input [formControl]="password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+          <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+         
          
         </mat-form-field>
         <!-- card footer -->
         <mat-card-footer>
           <!-- reset password link -->
-        <mat-card-subtitle class="example-name-link" routerLink="/resetpassword">forgot password?</mat-card-subtitle></mat-card-footer>
+        <mat-card-subtitle class="example-name-link" routerLink="/reset">forgot password?</mat-card-subtitle></mat-card-footer>
         <mat-card-actions class="example-button">
           <!-- registration button -->
           <button mat-button class="name-link" routerLink="/registration">Register Here</button>
           <!-- login button -->
-            <a mat-raised-button class="button-colour" ><a class="button-name">SIGN IN</a></a>
+          <button   aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN IN</a></button>
            
           </mat-card-actions>
           

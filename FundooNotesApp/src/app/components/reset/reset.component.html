@@ -3,7 +3,7 @@
   <div fxLayout="row" fxLayoutAlign="center center" >
     
        <!-- reset password form -->
-      <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
      
      
         <!-- material card -->
@@ -21,14 +21,10 @@
       </mat-card-header>
 <!-- end of card header -->
       <div class="example-container">
-    <mat-form-field appearance="outline">
-      <!-- reset password input field -->
-        <mat-label>Set New Password</mat-label>
-        <input formControlName="password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        
-        
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" type="email" matInput placeholder="email" required />
+        </mat-form-field>
       
       <mat-card-actions class="example-button">
         <!-- login button -->

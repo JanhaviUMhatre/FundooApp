@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { RegisterModel } from 'src/app/models/register.model';
+import { LoginModel } from 'src/app/models/login.model';
 import { environment } from 'src/environments/environment';
-import { HttpService } from 'src/app/services/http/http.service';
+import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,67 +16,31 @@ import { HttpService } from 'src/app/services/http/http.service';
 
 @Injectable()
 export class LoginComponent implements OnInit {
-auth = []
-loginForm: FormGroup;  //collecting values from class FormGroup in loginForm
-  loading = false;
-  submitted = false;
-  baseUrl = environment.baseUrl;  // store base url from environment components
-  user: RegisterModel = new RegisterModel(); //object of registration model
-  //validations
-  password= new FormControl('', [Validators.required,Validators.minLength(6)]) //password validation
-  //email validation
-  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
-constructor(private snackBar: MatSnackBar,private svc : HttpService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient){
-  //this.svc.printToConsole("got the login service");
+
+  user: LoginModel = new LoginModel(); //object of login model
+
+constructor(private snackBar: MatSnackBar,private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient){
 }
+loginForm = this.formBuilder.group({
+  //confirm password validation
+email : [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]],
+password : [this.user.password, [Validators.required, // password validation
+  Validators.minLength(6)]],
+
+});
   ngOnInit() {
     
-    this.loginForm = this.formBuilder.group({
-      email: [this.user.email, [Validators.required, Validators.email]],
-      password: [this.user.password, [Validators.required,
-      Validators.minLength(6)]]
-    }); 
   }
   // after submitting form html will call onSubmit method
   onSubmit() {
-    alert("ge");
-    //json format data
-    var userData:any = {
-      email: this.user.email,
-      password: this.user.password
-    }
-    //calling api
-    console.log(userData);
-    this.http.post(userData, this.baseUrl+'user/user_login').subscribe(
-      //error handling
-      (data) => {
-        
-        console.log("After apply for login response ", data);
-        this.router.navigateByUrl('/dashboard');
-        this.submitted = true;
-      },
-      (error) => {
-        console.log("After error in login", error);
-
+    console.log(this.loginForm.value);
+    this.svc.login(this.loginForm.value).subscribe(
+      (response) => {console.log("succsess",response);
+      this.router.navigate(['/dashboard']);},
+      (error) =>{ console.log("error",error);
       }
+      
     )
-    //success alert
-    alert("success");
-    //this.snackBar.open('Login Successful', 'Okay', { duration: 2000 });
-  
-  
-    this.router.navigateByUrl('/dashboard');
-  }
-  //validation errors
-  getErrorMessage(){
     
-    return this.email.hasError('required') ? 'You must enter a value' :
-    this.email.hasError('email') ? 'Not a valid email ' :
-    '' ;
-  
   }
-  getErrorMessagePassword(){
-    return this.password.hasError('required') ? 'password is required' : 
-    this.password.hasError('password') ? 'password should be of minimum 6 charatcters' :
-'';  }
 }
