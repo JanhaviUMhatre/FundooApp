@@ -24,13 +24,14 @@
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input formControlName="email" type="email" matInput placeholder="email" required />
+          <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
         </mat-form-field>
       
       <mat-card-actions class="example-button">
         <!-- login button -->
         <button mat-button class="name-link" routerLink="/login">Back</button>
         <!-- reset password button -->
-        <button aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">NEXT</a></button>
+        <button [disabled]="!resetForm.valid" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">NEXT</a></button>
           
           
         </mat-card-actions>

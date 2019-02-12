@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, Validators, FormControl} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material';
@@ -41,4 +41,8 @@ export class ResetPasswordComponent implements OnInit {
     )
     
   }
+  password = new FormControl('', [Validators.required,Validators.minLength(6)]);
+getErrorMessagePassword() {
+  return this.password.hasError('required') ? 'password should be of minimum 6 characters' : this.password.hasError('password') ? 'password should be of minimum 6 characters' :'';
+}
 }

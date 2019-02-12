@@ -32,4 +32,9 @@ export class ResetComponent implements OnInit {
     )
     
   }
+  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
+
+  getErrorMessageEmail() {
+    return this.email.hasError('required') ? 'Not a valid email' : this.email.hasError('email') ? 'Not a valid email' :'';
+  }
 }

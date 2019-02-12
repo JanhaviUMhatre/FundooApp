@@ -23,21 +23,21 @@
 <mat-form-field appearance="outline">
   <mat-label>Firstname</mat-label>
   <input formControlName="firstName" matInput placeholder="Firstname" required>
-  
+  <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
 </mat-form-field>
 
 <!-- lastname -->
       <mat-form-field appearance="outline">
           <mat-label>Lastname</mat-label>
           <input formControlName="lastName" matInput placeholder="Lastname" required>
-          
+          <mat-error *ngIf="lastName.invalid">{{getErrorMessageLast()}}</mat-error>
         </mat-form-field>
       </div>
 <!-- phonenumber -->
       <mat-form-field appearance="outline">
           <mat-label>Phonenumber</mat-label>
           <input formControlName="phoneNumber" type="text" matInput placeholder="Phonenumber" required>
-         
+          <mat-error *ngIf="phoneNumber.invalid">{{getErrorMessageNumber()}}</mat-error>
         </mat-form-field>
 
   
@@ -45,21 +45,21 @@
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input formControlName="email" type="email" matInput placeholder="email" required />
-            
+            <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
           </mat-form-field>
 <!-- password -->
           <div class="example-align">
       <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <input formControlName="password" matInput placeholder="Enter your password"  [type]="hide ? 'password' : 'text'" required />
-                   
+          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>   
           
         </mat-form-field>
 <!-- confirm password -->
         <mat-form-field appearance="outline">
             <mat-label>Confirm Password</mat-label>
             <input formControlName="confirmPassword" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
-                        
+            <mat-error *ngIf="confirmPassword.invalid">{{getErrorPasswordConfirm()}}</mat-error> 
             
           </mat-form-field>
         </div>
@@ -71,12 +71,9 @@
         </mat-radio-group>
         <mat-card-actions class="example-button">
             <button mat-button routerLink="/login" class="name-link">sign in instead</button>
-            <button aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN UP</a></button>
-            
-            
+            <button [disabled]="!registrationForm.valid" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN UP</a></button>
           </mat-card-actions>
         </div>
-      
     </mat-card>
   <!-- end of material card -->
     

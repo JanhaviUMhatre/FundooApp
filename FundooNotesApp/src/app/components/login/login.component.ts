@@ -17,7 +17,7 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 @Injectable()
 export class LoginComponent implements OnInit {
 
-  user: LoginModel = new LoginModel(); //object of login model
+user: LoginModel = new LoginModel(); //object of login model
 
 constructor(private snackBar: MatSnackBar,private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient){
 }
@@ -31,6 +31,12 @@ password : [this.user.password, [Validators.required, // password validation
   ngOnInit() {
     
   }
+  openSnackBar() {
+    this.snackBar.open("you are logged in!!!!!", 'OK', {
+      duration: 3000
+    });
+  
+  }
   // after submitting form html will call onSubmit method
   onSubmit() {
     console.log(this.loginForm.value);
@@ -43,4 +49,15 @@ password : [this.user.password, [Validators.required, // password validation
     )
     
   }
+
+
+email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
+getErrorMessageEmail() {
+  return this.email.hasError('required') ? 'Not a valid email' : this.email.hasError('email') ? 'Not a valid email' :'';
+}
+
+password = new FormControl('', [Validators.required,Validators.minLength(6)]);
+getErrorMessagePassword() {
+  return this.password.hasError('required') ? 'password should be of minimum 6 characters' : this.password.hasError('password') ? 'password should be of minimum 6 characters' :'';
+}
 }
