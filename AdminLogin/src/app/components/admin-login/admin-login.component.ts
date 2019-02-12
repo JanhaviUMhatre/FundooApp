@@ -26,11 +26,11 @@ user : LoginModel = new LoginModel();
     password : ['']
   });
   ngOnInit() { 
-    $(document).ready(function(){
-      $('button').click(function(){
-        alert("admin login successful")
-      })
-    });
+    // $(document).ready(function(){
+    //   $('button').click(function(){
+    //     alert("admin login successful")
+    //   })
+    // });
   }
 login(){
   console.log(this.loginForm.value)

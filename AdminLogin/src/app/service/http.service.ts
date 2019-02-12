@@ -19,12 +19,12 @@ export class HttpService {
     getUserData() : Observable<AdminDetails[]> {
       return this.http.get<AdminDetails[]>(
         'http://34.213.106.173/api/user/getAdminUserList'
-        //,{responseType:"json"}
+        ,{responseType:"json"}
       )
     }
 
     getData(){
       
-      return this.http.get('http://34.213.106.173/api/user/getAdminUserList' + '/data')
+      return this.http.get('http://34.213.106.173/api/user/getAdminUserList')
     }
 }
