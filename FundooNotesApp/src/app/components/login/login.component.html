@@ -1,7 +1,7 @@
 <html>
   <body>
     <!-- login form -->
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" >
       <div fxLayout="column" fxLayoutAlign="space-around center" >
         <!-- material card -->
 <mat-card class="example-card">
@@ -39,7 +39,7 @@
           <!-- registration button -->
           <button mat-button class="name-link" routerLink="/registration">Register Here</button>
           <!-- login button -->
-          <button [disabled]="!loginForm.valid"  (click)="openSnackBar()" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN IN</a></button>
+          <button [disabled]="!loginForm.valid"  (click)="onSubmit()" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN IN</a></button>
            
           </mat-card-actions>
           

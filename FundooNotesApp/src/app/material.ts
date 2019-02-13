@@ -43,7 +43,6 @@ import {
   MatTreeModule,
 } from '@angular/material';
 
-import { from } from 'rxjs';
 
 
 @NgModule({

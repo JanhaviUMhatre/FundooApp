@@ -37,13 +37,22 @@ password : [this.user.password, [Validators.required, // password validation
     });
   
   }
+
+  openSnackBarError() {
+    this.snackBar.open("invalid email or password!!!!!", 'OK', {
+      duration: 3000
+    });
+  
+  }
   // after submitting form html will call onSubmit method
   onSubmit() {
     console.log(this.loginForm.value);
     this.svc.login(this.loginForm.value).subscribe(
       (response) => {console.log("succsess",response);
+      this.openSnackBar()
       this.router.navigate(['/dashboard']);},
       (error) =>{ console.log("error",error);
+      this.openSnackBarError();
       }
       
     )
