@@ -13,6 +13,7 @@ import * as $ from 'jquery';
 })
 export class AdminLoginComponent implements OnInit {
 user : LoginModel = new LoginModel();
+errorMsg : '';
   constructor(private formBuilder : FormBuilder, private svc : HttpService,
     private router: Router
     ) { }
@@ -35,10 +36,12 @@ user : LoginModel = new LoginModel();
 login(){
   console.log(this.loginForm.value)
       this.svc.login(this.loginForm.value).subscribe(
-        (response)=> {console.log("success",response)
+        (response)=> {console.log("success",response);
+        
         this.router.navigate(['/admindashboard']);
       },
-        (error) => {console.log("error",error)}
+        (error) => {this.errorMsg = error.statusText
+      }
         )
       
 }

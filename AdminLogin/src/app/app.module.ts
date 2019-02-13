@@ -6,6 +6,8 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {DataTableModule} from "angular-6-datatable";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    DataTableModule,
     RouterModule.forRoot([
       {
       path : '',

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
-import { Observable } from 'rxjs';
-import { AdminDetails  } from 'src/app/models/details.model';
+
+declare var $;
 
 
 
@@ -11,21 +11,47 @@ import { AdminDetails  } from 'src/app/models/details.model';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
-private data: any[];
+  @ViewChild('dataTable') table;
+ data: any[];
+basic :number;
+advance :number;
 // userList=[];
+
   constructor(private svc : HttpService) { }
 
-  ngOnInit() : 
-    void{
-      this.svc.getUserData().subscribe(
-        (response)=> {this.data = response;
-          // this.mytest="ssgsg"
-          console.log("data :"+response);
-          var sample=JSON.stringify(response);
-          console.log(sample);
-        }
-     )
+  ngOnInit() {
+    this.getData()
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      $('.dataTables_length').addClass('bs-select');
+      });
     
   }
-}
+  getData() {
+    
+    this.svc.getUserData().subscribe((response) => {
+      
+      console.log(response['data'].data);
+      this.data = response['data'].data;
+      var service = 'basic';
+      var srvc = 'advance';
+      this.basic = this.data.filter((obj) => obj.service === service).length;
+      this.advance = this.data.filter((obj) => obj.service === srvc).length;
+      console.log(this.basic);
+      console.log(this.advance);
+      // for(let i=0;i<this.data.length;i++){
+      //   for(var j in this.data){
+      //   if(j['service']=='basic'){
+      //      this.count++;
+      //   }
+      //}
+      //}
+  
+    },
+    (error)=> {console.log("error",error)}  )
+  }
+
+  
+  }
+
 
