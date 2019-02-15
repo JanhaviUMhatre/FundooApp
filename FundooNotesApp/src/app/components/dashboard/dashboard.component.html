@@ -1,34 +1,48 @@
+
 <!--  dashboard header -->
 <mat-toolbar class="toolbar">
+  
+    <div class="iconAndTitle">
   <!-- navigation toggle button -->
   <button mat-icon-button class="material-icons" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <!-- end of navigation toggle button -->
   <!-- fundoo icon -->
+  
     <img class="fundooIcon" src="../../../assets/fundoo.png">
     <!-- end of fundoo icon -->
     <!-- header name as per the side nav menu selection -->
-    <div class="dashboardTitle">{{headerName}}</div>
+    <div class="example-title">
+        <!-- <div class="dashboardTitle">Fundoo Notes</div></div> -->
+   <div class="position-header">
+     <div class="dashboardTitle">{{headerName}}</div></div>
     <!-- end of header name -->
-    <!-- search bar -->   
-    <div class="searchToolBar">
-      <!-- search button -->
-        <button mat-icon-button>
-          <mat-icon class="mat-18">search</mat-icon>
-        </button>
-        <!-- end of search button -->
-        <!-- input search bar -->
-        <input class="searchInputBar" type="search" placeholder="search">
-        <!-- end of input serach bar -->
+    </div></div> 
+    <mat-divider [vertical]="true"></mat-divider>
+    <!-- search bar --> 
+    
+   
+      <div class="field-position">
+        <mat-form-field class="field" appearance="fill" [style.fontSize.px]=12>
+          
+          <input matInput class="searchInputBar" placeholder="search">
+          <button mat-icon-button matSuffix>
+       <mat-icon  class="mat-18">search</mat-icon>
+      </button>
+        </mat-form-field>
       </div>
+   
       <!-- end of search bar -->
       <!-- other options -->
+      
       <div class="endToolBar">
         <!-- refresh button -->
+        
           <button mat-icon-button>
             <mat-icon class="mat-18">refresh</mat-icon>
           </button>
+        
        <!-- end of refresh button -->
        <!-- list view button-->
           <button mat-icon-button>
@@ -41,6 +55,7 @@
           </button>
           <!-- end of settings button -->
         </div>
+     
         <div class="endToolBar">
           <!-- apps button -->
           <button mat-icon-button>
@@ -69,7 +84,7 @@
             <!-- side nav menu -->
             <mat-nav-list class="sideNavList">       
               <div>
-                <button mat-button  (click)="headerName='Fundoo Notes'" [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
+                <button mat-button  [routerLink]="['addNote']" (click)="headerName='Fundoo Notes'" [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
                   <mat-icon>lightbulb_outline</mat-icon> Notes
                 </button>
               </div>
@@ -81,6 +96,7 @@
               </div>
               <mat-divider></mat-divider>
               <div>
+                <mat-label class="label-example" [style.fontSize.px]=16>Labels</mat-label>
                 <button class="sideNavListItems" mat-button>
                   <mat-icon>edit</mat-icon>Edit Labels
                 </button>
@@ -101,7 +117,9 @@
             <!-- end of side nav menu -->
           </mat-sidenav> 
           <mat-sidenav-content class="sideNavContent">
+            <router-outlet></router-outlet>
         </mat-sidenav-content> 
         </mat-sidenav-container>
 <!-- end of sidenav bar -->
+
     

@@ -1,102 +1,153 @@
 //css for dashboard
-
+$for-position:fixed;
 .toolbar{
-    background-color: white;
-    display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  opacity: 0.75;
-}
-.sidenavBar {
-    position: absolute;
-    min-width: 300px;
-    top: 80px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: #ffffff;
-  }
-  .fundooIcon{
-   height: 35px;
-   width:35px;
-  padding-right: 70px;
-  padding-left: 15px;
-  
-  }
-  .dashboardTitle {
-    vertical-align: middle;
-    line-height: 49px;
-    padding-left: 15px;
-  }
-  
+  background-color: white;
+  //display: flex;
+justify-content: flex-start;
+flex-direction: row;
+opacity: 0.75;
 
-.searchToolBar {
-  
-  display: flex;
-  margin: auto;
-  width: 50%;
-  padding-right: 10px;
+}
+.for-position{
+  position: absolute;
   padding-left: 30px;
   
 }
+.field-position{
+  position: static;
+  padding-left: 100px;
+}
+.iconAndTitle {
+display: flex;
+padding-left: 2px;
 
-.searchInputBar {
-  background-color: #e9e9e9;
-  border-radius: 10px;
-  width: 500px;
-  border: 20px;
-  outline: 30px;
-  font-size: inherit;
-  justify-content: center;
+}
+.button-position{
+  padding-left:5px;
+}
+.material-icons{
+  position: relative;
+  padding-left: 1px;
+}
+.sidenavBar {
+  position: absolute;
+  min-width: 300px;
+  top: 80px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #ffffff;
+}
+.label-example{
+  padding-top: 10px;
+  padding-left: 10px;
+ color: #5f6368;
+}
+.fundooIcon{
+ height: 40px;
+ width:40px;
+padding-right: 40px;
+padding-left: 10px;
+// padding-left: 15px;
+// padding-bottom: 10px;
+
+}
+.dashboardTitle {
+  position: sticky;
+vertical-align: middle;
+line-height: 49px;
+
+
+}
+.example-title{
+  
+  padding-right: 30px;
+}
+.example-card{
+padding-bottom: 5px;
+height: 10px;
+width: 500px;
+}
+// .searchToolBar {
+
+// display: flex;
+// height: 2px;
+// width: 500px;
+// padding-bottom: 50px;
+
+// }
+.position-header{
+  position: fixed;
+  
+}
+.field{
+  width: 550px;
+  
+  padding-top: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+ 
  
 }
-.endToolBar{
-  padding-right: 50px;
+.mat-form-field-appearance-outline {
+  
+      border-top-color: transparent;
+    }
+  
+
+.searchInputBar {
+
+font-size: 20px;
 }
-.accountButton {
-  width: 30px;
-  height: 30px;
-  border: 1px solid;
-  border-radius: 30px;
-  font-size: x-large;
+.endToolBar{
+padding-right: 40px;
+
 
 }
+.accountButton {
+width: 30px;
+height: 30px;
+border: 1px solid;
+border-radius: 30px;
+font-size: x-large;
+padding-right: 20px;
+}
 .sideNavList {
-  width: 300px;
-  height: 98.6%;
-  background-color: #ffffff;
+width: 300px;
+height: 98.6%;
+background-color: #ffffff;
 }
 
 .sideNavListItems,
 .sideNavlistItemsColored {
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-  width: 300px;
-  font-size: 15px;
-  padding: 8px;
-  background-color: #ffffff;
-  color: #5f6368;
-  align-items: baseline;
-  text-align: left;
+border-top-right-radius: 100px;
+border-bottom-right-radius: 100px;
+width: 300px;
+font-size: 15px;
+padding: 8px;
+background-color: #ffffff;
+color: #5f6368;
+align-items: baseline;
+text-align: left;
 }
 
 .sideNavlistItemsColored {
-  background-color: #ffd561 !important;
-  color: rgba(0, 0, 0, 0.8);
+background-color: #feefc3 !important;
+color: rgba(0, 0, 0, 0.8);
 }
 
 .sideNavListItems .mat-icon,
 .sideNavlistItemsColored .mat-icon {
-  padding-left: 10px;
-  padding-right: 30px;
+padding-left: 10px;
+padding-right: 30px;
 }
 
 .sideNavListItems:hover {
-  background-color: #e6e6e6;
+background-color: #e6e6e6;
 }
 
 .sidenavContent {
-  background-color: rgb(255, 255, 255); // max-width: 600px;
-  max-width: -webkit-fill-available;
-  margin-left: 200px;
+background-color: rgb(255, 255, 255); // max-width: 600px;
+max-width: -webkit-fill-available;
+margin-left: 200px;
 }

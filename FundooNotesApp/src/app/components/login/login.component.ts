@@ -23,7 +23,7 @@ constructor(private snackBar: MatSnackBar,private svc : UserServiceService,priva
 }
 loginForm = this.formBuilder.group({
   //confirm password validation
-email : [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]],
+email : [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]],
 password : [this.user.password, [Validators.required, // password validation
   Validators.minLength(6)]],
 

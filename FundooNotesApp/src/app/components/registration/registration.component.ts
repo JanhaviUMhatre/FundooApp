@@ -57,7 +57,7 @@ service : [this.user.service, Validators.required]
       return this.phoneNumber.hasError('required') ? 'Please enter your 10 digit number' : 
       this.phoneNumber.hasError('phoneNumber') ? 'Please enter 10 digit number' :'';
      }
-    email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
+    email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]);
 getErrorMessageEmail() {
   return this.email.hasError('required') ? 'Not a valid email' : this.email.hasError('email') ? 'Not a valid email' :'';
 }

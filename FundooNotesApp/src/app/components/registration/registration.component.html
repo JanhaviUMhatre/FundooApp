@@ -1,7 +1,8 @@
 <html>
+ 
  <div class="forMedia">
     <!-- registration form -->
-    <div fxLayout="column" fxLayoutAlign="space-around center" >
+    <div fxLayout.xs="row wrap" fxLayoutAlign="space-around center" >
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       
        <!-- material card  -->
@@ -20,6 +21,7 @@
         
           <div class="example-align">
 <!-- firstname -->
+
 <mat-form-field appearance="outline">
   <mat-label>Firstname</mat-label>
   <input formControlName="firstName" matInput placeholder="Firstname" required>
@@ -33,6 +35,7 @@
           <mat-error *ngIf="lastName.invalid">{{getErrorMessageLast()}}</mat-error>
         </mat-form-field>
       </div>
+    
 <!-- phonenumber -->
       <mat-form-field appearance="outline">
           <mat-label>Phonenumber</mat-label>
@@ -65,10 +68,14 @@
         </div>
 
 <!-- service type -->
-         <mat-radio-group formControlName="service" class = "example-radio"> <a>Service Type : </a>
+         <!-- <mat-radio-group formControlName="service" class = "example-radio"> <a>Service Type : </a>
           <mat-radio-button value="basic">Basic</mat-radio-button> 
           <mat-radio-button value="advance">Advance</mat-radio-button>
-        </mat-radio-group>
+        </mat-radio-group> -->
+        <mat-button-toggle-group formControlName="service" class="example-mat-toggle" name="serviceType" aria-label="Service Type">
+          <mat-button-toggle value="basic"><b>Basic</b></mat-button-toggle>
+          <mat-button-toggle value="advance"><b>Advance</b></mat-button-toggle>
+        </mat-button-toggle-group>
         <mat-card-actions class="example-button">
             <button mat-button routerLink="/login" class="name-link">sign in instead</button>
             <button [disabled]="!registrationForm.valid" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN UP</a></button>

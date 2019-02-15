@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { ResetComponent } from './components/reset/reset.component';
+import { AddnoteComponent } from './components/addnote/addnote.component';
 
 
 
@@ -36,9 +37,7 @@ import { ResetComponent } from './components/reset/reset.component';
    
     ResetComponent,
    
-   
-   
-    
+    AddnoteComponent,
   ],
   imports: [AppRoutingModule,
     BrowserModule,
@@ -64,7 +63,16 @@ import { ResetComponent } from './components/reset/reset.component';
       },
       {
         path : 'dashboard',
-        component : DashboardComponent
+        component : DashboardComponent,
+        children:[
+          {
+            path: '',
+            component:AddnoteComponent
+          },
+          {
+            path:'addNote',
+            component:AddnoteComponent
+          }]
       },
       {
         path : 'resetpassword',
