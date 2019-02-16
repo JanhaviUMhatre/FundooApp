@@ -13,6 +13,7 @@ import { ResetModel } from 'src/app/models/reset.model';
 })
 export class ResetComponent implements OnInit {
   user: ResetModel = new ResetModel(); //object of registration model
+  responseMsg:any;
 
   constructor(private snackBar: MatSnackBar,private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient) { }
   resetForm = this.formBuilder.group({
@@ -25,7 +26,7 @@ export class ResetComponent implements OnInit {
     console.log(this.resetForm.value);
     this.svc.reset(this.resetForm.value).subscribe(
       (response) => {console.log("succsess",response);
-      this.router.navigate(['/resetpassword']);},
+      this.responseMsg="Set password link sent to you registered email, please check.";},
       (error) =>{ console.log("error",error);
       }
       

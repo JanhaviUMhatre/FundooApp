@@ -13,6 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { from } from 'rxjs';
 import { MatCardModule } from '@angular/material';
+import { MatIconModule } from "@angular/material/icon";
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
@@ -21,6 +22,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { ResetComponent } from './components/reset/reset.component';
 import { AddnoteComponent } from './components/addnote/addnote.component';
+import { LabelsComponent } from './components/labels/labels.component';
 
 
 
@@ -38,11 +40,14 @@ import { AddnoteComponent } from './components/addnote/addnote.component';
     ResetComponent,
    
     AddnoteComponent,
+   
+    LabelsComponent,
   ],
   imports: [AppRoutingModule,
     BrowserModule,
     MatSnackBarModule,
     HttpClientModule,
+    MatIconModule,
     MatFormFieldModule,
     FormsModule, ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -75,7 +80,7 @@ import { AddnoteComponent } from './components/addnote/addnote.component';
           }]
       },
       {
-        path : 'resetpassword',
+        path : 'resetpassword/:token',
         component : ResetPasswordComponent
       },
       {
