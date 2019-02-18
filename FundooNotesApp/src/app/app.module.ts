@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { AppRoutingModule } from './app-routing.module';
 import { from } from 'rxjs';
 import { MatCardModule } from '@angular/material';
@@ -23,6 +23,7 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 import { ResetComponent } from './components/reset/reset.component';
 import { AddnoteComponent } from './components/addnote/addnote.component';
 import { LabelsComponent } from './components/labels/labels.component';
+import { FootermenuComponent } from './components/footermenu/footermenu.component';
 
 
 
@@ -42,6 +43,8 @@ import { LabelsComponent } from './components/labels/labels.component';
     AddnoteComponent,
    
     LabelsComponent,
+   
+    FootermenuComponent,
   ],
   imports: [AppRoutingModule,
     BrowserModule,
@@ -53,41 +56,7 @@ import { LabelsComponent } from './components/labels/labels.component';
     BrowserAnimationsModule,
     MatCardModule,
     MaterialModule,
-    RouterModule.forRoot([
-      {
-        path : 'registration',
-        component : RegistrationComponent
-      },
-      {
-        path : '',
-        component : LoginComponent
-      },
-      {
-        path : 'login',
-        component : LoginComponent
-      },
-      {
-        path : 'dashboard',
-        component : DashboardComponent,
-        children:[
-          {
-            path: '',
-            component:AddnoteComponent
-          },
-          {
-            path:'addNote',
-            component:AddnoteComponent
-          }]
-      },
-      {
-        path : 'resetpassword/:token',
-        component : ResetPasswordComponent
-      },
-      {
-        path : 'reset',
-        component : ResetComponent
-      }
-    ])
+    RouterModule
   ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]
