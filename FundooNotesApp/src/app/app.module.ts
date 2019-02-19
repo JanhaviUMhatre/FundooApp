@@ -24,7 +24,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { AddnoteComponent } from './components/addnote/addnote.component';
 import { LabelsComponent } from './components/labels/labels.component';
 import { FootermenuComponent } from './components/footermenu/footermenu.component';
-
+//import { AuthGuard } from './auth.guard'
 
 
 

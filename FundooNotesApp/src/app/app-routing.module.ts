@@ -7,6 +7,7 @@ import { AddnoteComponent } from './components/addnote/addnote.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { FootermenuComponent } from './components/footermenu/footermenu.component';
+import { AuthGuard } from './auth.guard'
 
 const routes: Routes = [
     {
@@ -24,13 +25,14 @@ const routes: Routes = [
       {
         path : 'dashboard',
         component : DashboardComponent,
+        //canActivate : [AuthGuard],
         children:[
           {
             path: '',
             component:AddnoteComponent
           },
           {
-            path:'addNote',
+            path:'addNote/:token',
             component:AddnoteComponent
           }
           ]

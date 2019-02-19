@@ -31,5 +31,18 @@ export class HttpService {
       ForgotPassword
     );
   }
+
+  // public postMethod(url:any,data:any){
+  //   return this.http.post<any>(url,data)
+  // }
+
+  // public PostForm(url:any,data:any){
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Authorization':localStorage.getItem('token')
+  //     })
+  //   }
+  //   return this.http.post(url,data,httpOptions)
+  // }
 }
 

@@ -22,4 +22,7 @@ reset(userData){
 resetpassword(userData){
   return this.http.post<any>('http://34.213.106.173/api/user/reset-password',userData)
 }
+// createnote(userData){
+//   return this.user.PostForm('http://34.213.106.173/api/notes/addNotes',userData)
+// }
 }
