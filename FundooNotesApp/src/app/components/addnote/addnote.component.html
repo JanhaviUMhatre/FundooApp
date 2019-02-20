@@ -1,9 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="space-around center" >
+<div fxLayout="row" fxLayoutAlign="space-around" >
 
       
-        <mat-card class="card-width"  (click)="showDiv()" *ngIf="flag===false" style="margin:2em;"  [class.mat-elevation-z8]="!isActive">
+        <mat-card class="card-width"  (click)="showDiv()" *ngIf="flag===false" style="margin:2em;"  [class.mat-elevation-z8]="isActive">
             <div fxLayout="row" fxLayoutAlign="space-around center" >
-            <input matInput placeholder="Take a note.." [style.fontSize.px]=17>
+            <input matInput placeholder="Take a note.." [style.fontSize.px]=15>
             <button mat-icon-button matTooltip="New note with drawing">
                 <mat-icon style="font-size: 20px" class="mat-18 changeColor">
                    check_box
@@ -23,7 +23,7 @@
           <mat-card class="new-card" *ngIf="flag===true" style="margin:2em;"  [class.mat-elevation-z8]="!isActive" [ngStyle]="{'backgroundColor': color}">
               <div fxLayout="column" fxLayoutAlign="space-around">
             <div fxLayout="row" fxLayoutAlign="space-around center" >
-              <input matInput placeholder="Title.." [formControl]="title" [style.fontSize.px]=17>
+              <input matInput placeholder="Title.." [formControl]="title" [style.fontSize.px]=15>
               <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin()">
                 <ng-container *ngIf="pinValue===false">
                     <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
@@ -34,7 +34,7 @@
               </button>
             </div>
               
-                    <input matInput placeholder="Take a note..." [formControl]="description" [style.fontSize.px]=14 style="margin:0em; padding-top: 10px">
+                    <input matInput placeholder="Take a note..." [formControl]="description" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px">
                     <!-- <app-footermenu></app-footermenu> -->
                     <div class="alignment">
                         <button mat-icon-button matTooltip="Remind me">
@@ -99,3 +99,5 @@
         
       
 </div>
+
+<app-notes></app-notes>

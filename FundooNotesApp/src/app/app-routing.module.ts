@@ -8,6 +8,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ResetComponent } from './components/reset/reset.component';
 import { FootermenuComponent } from './components/footermenu/footermenu.component';
 import { AuthGuard } from './auth.guard'
+import { NotesComponent } from './components/notes/notes.component';
 
 const routes: Routes = [
     {
@@ -32,8 +33,12 @@ const routes: Routes = [
             component:AddnoteComponent
           },
           {
-            path:'addNote/:token',
+            path:'addNote',
             component:AddnoteComponent
+          },
+          {
+            path:'notes',
+            component:NotesComponent
           }
           ]
       },
