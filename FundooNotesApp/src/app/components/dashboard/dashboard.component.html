@@ -1,11 +1,11 @@
 
 <!--  dashboard header -->
 <mat-toolbar class="toolbar">
-  
+    
     <div class="iconAndTitle">
   <!-- navigation toggle button -->
   <button mat-icon-button class="material-icons" (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
+    <mat-icon>menu</mat-icon> 
   </button>
   <!-- end of navigation toggle button -->
   <!-- fundoo icon -->
@@ -24,9 +24,9 @@
     
    
       <div class="field-position">
-        <mat-form-field class="field" appearance="fill" [style.fontSize.px]=12>
+        <mat-form-field class="field" appearance="fill" [style.fontSize.px]=12 > 
           
-          <input matInput class="searchInputBar" placeholder="search" [style.fontSize.px]=18>
+          <input matInput class="searchInputBar" placeholder="search" [style.fontSize.px]=18 >
           <button mat-icon-button matSuffix>
        <mat-icon  class="mat-18">search</mat-icon>
       </button>
@@ -80,6 +80,7 @@
       </mat-toolbar><mat-divider></mat-divider>
   <!-- end of dashboard header -->
       <!-- sidenav bar -->
+      
       <mat-sidenav-container class="sidenavBar">
           <mat-sidenav #sidenav mode="side" opened="true" style="min-width:50px;" class="sideNav">
             <!-- side nav menu -->

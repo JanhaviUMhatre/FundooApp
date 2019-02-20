@@ -54,7 +54,7 @@ export class HttpService {
         'Authorization':localStorage.getItem('token')
       })
     }
-    return this.http.post<any>(url,this.getEncodData(data),httpOptions)
+    return this.http.post(url,this.getEncodData(data),httpOptions)
   }
 
   public getForm(url:any){

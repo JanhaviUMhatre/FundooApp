@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="space-around" >
 
       
-        <mat-card class="card-width"  (click)="showDiv()" *ngIf="flag===false" style="margin:2em;"  [class.mat-elevation-z8]="isActive">
+        <mat-card class="card-width"  (click)="showDiv()" *ngIf="flag===false" style="margin:2em;"  [class.mat-elevation-z8]="!isActive">
             <div fxLayout="row" fxLayoutAlign="space-around center" >
             <input matInput placeholder="Take a note.." [style.fontSize.px]=15>
             <button mat-icon-button matTooltip="New note with drawing">

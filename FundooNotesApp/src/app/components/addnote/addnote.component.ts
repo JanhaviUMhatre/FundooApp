@@ -5,6 +5,7 @@ import { CreateNote } from 'src/app/models/createnote.model';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
+import { NoteService } from 'src/app/services/notes/note.service';
 
 @Component({
   selector: 'app-addnote',
@@ -32,16 +33,15 @@ export class AddnoteComponent implements OnInit {
     { name: "brown", colorCode: "#e9c7a9" },
     { name: "gray", colorCode: "#e7e9ec" }
   ]
-  color: any = "white";
+  color: any = "#ffffff";
   notificationIcon = "../../assets/Icons/notification.svg";
   noteData : any;
   note : CreateNote =new CreateNote;
-// title = new FormControl(this.note.title)
-// description = new FormControl(this.note.description)
+
 title = new FormControl('')
 description = new FormControl('')
   constructor(private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,private snackBar: MatSnackBar,private svc : UserServiceService
+    private domSanitizer: DomSanitizer,private snackBar: MatSnackBar,private svc : NoteService
     ) {
       this.matIconRegistry.addSvgIcon(
         "unpinIcon",
@@ -66,21 +66,9 @@ description = new FormControl('')
     this.pinValue=!this.pinValue;
   }
   archive(){
-    console.log("called pin");
+    console.log("called archive");
     this.archiveValue=!this.archiveValue;
-    this.noteData = {
-      "title": this.title.value,
-      "description": this.description.value,
-      "isPined": this.pinValue,
-      "isArchived": this.archiveValue,     
-      "color": this.color,    
-  }
-  console.log(this.noteData);
-     this.svc.archivednote(this.noteData.value).subscribe(
-       (response)=>{console.log("success",response);
-      },
-      (error)=>{console.log("error",error);}
-     ); 
+    
     this.openSnackBar();
   }
   openSnackBar() {
@@ -107,7 +95,7 @@ description = new FormControl('')
     }
     if(this.noteData.title != null || this.noteData.description!=null){
     console.log(this.noteData);
-     this.svc.createnote(this.noteData.value).subscribe(
+     this.svc.createnote(this.noteData).subscribe(
        (response)=>{console.log("success",response);
       },
       (error)=>{console.log("error",error);}

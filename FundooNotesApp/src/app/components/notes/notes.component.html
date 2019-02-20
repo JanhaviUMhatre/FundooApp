@@ -1,10 +1,16 @@
-<div fxLayout="row" fxLayoutAlign="space-around center" >
-<mat-card class="card-width" [ngStyle]="{'backgroundColor': color}" [class.mat-elevation-z3]="!isActive">
 
-<input matInput placeholder="Title.." [style.fontSize.px]=17>
-<input matInput placeholder="Title.." [style.fontSize.px]=14 style="margin:0em; padding-top: 10px">
-<app-footermenu></app-footermenu>
-<button mat-button class="button-align" (click)="getNoteData()">Close</button>
-</mat-card>
+<div fxLayout="row wrap" fxLayoutAlign="space-between center" >
+        <div *ngFor="let note of data">
+                <div fxLayout="column" fxLayoutAlign="space-between start" >
+                        <mat-card class="card-width" [ngStyle]="{'backgroundColor': color}" [class.mat-elevation-z3]="!isActive">
+                <div fxLayout="column" >
 
-</div>  
+           <div class="title"> {{note.title}}</div>
+        
+        
+           <div class="description">{{note.description}}</div> 
+     
+    <app-footermenu></app-footermenu></div>
+    </mat-card>
+</div>
+    </div></div>
