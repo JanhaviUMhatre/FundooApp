@@ -14,6 +14,7 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 })
 
 export class ResetPasswordComponent implements OnInit {
+  isActive = false;
 
   user: ForgotPassword = new ForgotPassword();  //object of registration model
   //password validation

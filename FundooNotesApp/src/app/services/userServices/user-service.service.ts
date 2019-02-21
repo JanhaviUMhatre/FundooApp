@@ -24,16 +24,16 @@ reset(userData){
 resetpassword(userData){
   return this.http.post<any>(this.baseUrl+'user/reset-password',userData)
 }
-createnote(userData){
-  console.log(userData);
-  return this.user.PostForm('http://34.213.106.173/api/notes/addNotes',userData)
-}
+// createnote(userData){
+//   console.log(userData);
+//   return this.user.PostForm('http://34.213.106.173/api/notes/addNotes',userData)
+// }
 
-archivednote(userData){
-  return this.user.PostForm('http://34.213.106.173/api/notes/archiveNotes',userData)
-}
+// archivednote(userData){
+//   return this.user.PostForm('http://34.213.106.173/api/notes/archiveNotes',userData)
+// }
 
-getNotes(){
-  return this.user.getForm('http://34.213.106.173/api/notes/getNotesList')
-  }
+// getNotes(){
+//   return this.user.getForm('http://34.213.106.173/api/notes/getNotesList')
+//   }
 }

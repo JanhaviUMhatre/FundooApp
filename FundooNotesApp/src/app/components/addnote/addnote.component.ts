@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+// ***********************************************************************************
+// * Purpose: Add note component.
+// *
+// * @author : Janhavi Mhatre
+// * @python version 3.7
+// * @platform : VS Code
+// * @since 18-2-2019
+// *
+// ***********************************************************************************
+
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
 import { CreateNote } from 'src/app/models/createnote.model';
@@ -13,12 +23,14 @@ import { NoteService } from 'src/app/services/notes/note.service';
   styleUrls: ['./addnote.component.scss']
 })
 export class AddnoteComponent implements OnInit {
+  @Output() noteEvent = new EventEmitter<string>();
  flag = false;
   isActive = false;
   pinValue= false;
   archiveValue=false;
   pinnedIconSrc = "../../assets/Icons/pinIcon.svg";
   unpinnedIconSrc = "../../assets/Icons/unpinIcon.svg";
+  //color code array
   colorCode: Array<Object> = [
     { name: "white", colorCode: "#fff" },
     { name: "red", colorCode: "#fc8981" },
@@ -36,7 +48,7 @@ export class AddnoteComponent implements OnInit {
   color: any = "#ffffff";
   notificationIcon = "../../assets/Icons/notification.svg";
   noteData : any;
-  note : CreateNote =new CreateNote;
+  //note : CreateNote =new CreateNote;
 
 title = new FormControl('')
 description = new FormControl('')
@@ -57,20 +69,25 @@ description = new FormControl('')
 
   ngOnInit() {
   }
+  //change div
   showDiv(){
     console.log("called div");
     this.flag=!this.flag;
   }
+  //pin/unpin
   pin(){
     console.log("called pin");
     this.pinValue=!this.pinValue;
   }
+  //archive note
   archive(){
     console.log("called archive");
     this.archiveValue=!this.archiveValue;
     
     this.openSnackBar();
   }
+
+
   openSnackBar() {
     this.snackBar.open("archived!!", 'OK', {
       duration: 3000
@@ -81,6 +98,8 @@ description = new FormControl('')
       duration: 3000
     });
   }
+
+  //main function to create note
   createNote(){
     let token = localStorage.getItem('token');
     let userId = localStorage.getItem('token');
@@ -106,6 +125,7 @@ description = new FormControl('')
     this.flag=!this.flag;
 
   }
+  //color
   changeColor(color) {
 
     this.color = color;

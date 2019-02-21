@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+// ***********************************************************************************
+// * Purpose: notes component.
+// *
+// * @author : Janhavi Mhatre
+// * @python version 3.7
+// * @platform : VS Code
+// * @since 20-2-2019
+// *
+// ***********************************************************************************
+
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { NoteService } from 'src/app/services/notes/note.service';
 
@@ -8,9 +18,10 @@ import { NoteService } from 'src/app/services/notes/note.service';
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-  isActive = false;
+ 
   data: any[];
   color : any;
+  
   constructor(private svc :NoteService) { }
 
   ngOnInit() {

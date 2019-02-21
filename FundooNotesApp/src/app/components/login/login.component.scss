@@ -74,6 +74,9 @@ color:#1a73e8;
 .button-name{
   color: white;
 }
+$mat-card-border-radius: 13px !default;
+.mat-card {
+  border-radius: $mat-card-border-radius;}
 .button-colour{
   background-color: #1a73e8;
 }

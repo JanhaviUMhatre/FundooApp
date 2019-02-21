@@ -1,3 +1,13 @@
+
+// ***********************************************************************************
+// * Purpose: registration component.
+// *
+// * @author : Janhavi Mhatre
+// * @python version 3.7
+// * @platform : VS Code
+// * @since 9-2-2019
+// *
+// ***********************************************************************************
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl  } from '@angular/forms';
 import { Router, Route } from '@angular/router'
@@ -5,7 +15,6 @@ import { Router, Route } from '@angular/router'
 
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { RegisterModel } from 'src/app/models/register.model';
-import { a } from '@angular/core/src/render3';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -13,6 +22,8 @@ import { a } from '@angular/core/src/render3';
 })
 export class RegistrationComponent implements OnInit {
   user: RegisterModel = new RegisterModel();
+  isActive = false;
+
   constructor( private uservice : UserServiceService,private router: Router,private formBuilder:FormBuilder) { }
   
   registrationForm = this.formBuilder.group({

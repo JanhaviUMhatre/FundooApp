@@ -14,6 +14,7 @@ import { ResetModel } from 'src/app/models/reset.model';
 export class ResetComponent implements OnInit {
   user: ResetModel = new ResetModel(); //object of registration model
   responseMsg:any;
+  isActive = false;
 
   constructor(private snackBar: MatSnackBar,private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient) { }
   resetForm = this.formBuilder.group({

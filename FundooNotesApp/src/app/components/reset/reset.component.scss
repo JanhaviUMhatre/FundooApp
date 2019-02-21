@@ -1,6 +1,6 @@
 //css for registration page
 .forMedia{
-    padding-top: 60px;
+    padding-top: 100px;
   }
   
   
@@ -13,6 +13,9 @@
       flex-direction: column;
       
     }
+    $mat-card-border-radius: 13px !default;
+    .mat-card {
+      border-radius: $mat-card-border-radius;}
     .example-card{
         width: 500px;
       background-color: rgb(255, 255, 255);

@@ -1,3 +1,13 @@
+// ***********************************************************************************
+// * Purpose: login component.
+// *
+// * @author : Janhavi Mhatre
+// * @python version 3.7
+// * @platform : VS Code
+// * @since 7-2-2019
+// *
+// ***********************************************************************************
+
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +27,7 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 
 @Injectable()
 export class LoginComponent implements OnInit {
-
+isActive = false;
 user: LoginModel = new LoginModel(); //object of login model
 
 constructor(private snackBar: MatSnackBar,

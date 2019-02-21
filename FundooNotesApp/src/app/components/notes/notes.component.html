@@ -1,14 +1,14 @@
 
-<div fxLayout="row wrap" fxLayoutAlign="space-between center" >
+<div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center" >
         <div *ngFor="let note of data">
                 <div fxLayout="column" fxLayoutAlign="space-between start" >
-                        <mat-card class="card-width" [ngStyle]="{'backgroundColor': color}" [class.mat-elevation-z3]="!isActive">
+                        <mat-card class="card-width" [ngStyle]="{'backgroundColor': color}" >
                 <div fxLayout="column" >
 
-           <div class="title"> {{note.title}}</div>
-        
-        
+           <div class="title" [style.fontSize.px]=21> {{note.title}}</div>
            <div class="description">{{note.description}}</div> 
+           
+
      
     <app-footermenu></app-footermenu></div>
     </mat-card>

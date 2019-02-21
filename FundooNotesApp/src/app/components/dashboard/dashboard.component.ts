@@ -1,3 +1,13 @@
+// ***********************************************************************************
+// * Purpose:Dashboard component.
+// *
+// * @author : Janhavi Mhatre
+// * @python version 3.7
+// * @platform : VS Code
+// * @since 6-2-2019
+// *
+// ***********************************************************************************
+
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { LabelsComponent } from '../labels/labels.component';

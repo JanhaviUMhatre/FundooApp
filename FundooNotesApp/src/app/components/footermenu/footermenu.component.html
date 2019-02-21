@@ -2,10 +2,10 @@
 <div fxLayout="row" fxLayoutAlign="space-around" >
     
   <div class="alignment">
-      <button mat-icon-button matTooltip="Delete">
+      <button mat-icon-button matTooltip="Remind me">
           <mat-icon style="font-size: 15px" class="mat-18 changeColor">add_alert</mat-icon></button>
-          <button mat-icon-button matTooltip="Collaborator">
-              <mat-icon style="font-size: 15px" class="mat-18 changeColor">person_add
+          <button mat-icon-button matTooltip="Delete" (click)="delete()">
+              <mat-icon style="font-size: 15px" class="mat-18 changeColor">delete
                 </mat-icon></button>
     <!-- <button mat-icon-button matTooltip="more">
     <mat-icon style="font-size: 20px" class="mat-18 changeColor">more_vert
@@ -16,9 +16,9 @@
     <mat-icon style="font-size: 15px" class="mat-18 changeColor">archive</mat-icon></button>
     
        
-            <button mat-icon-button matTooltip="New List">
+            <!-- <button mat-icon-button matTooltip="add image">
                 <mat-icon style="font-size: 15px" class="mat-18 changeColor">crop_original</mat-icon>
-               </button> 
+               </button>  -->
                <button mat-icon-button matTooltip="more" [matMenuTriggerFor]="moreMenu">
                   <mat-icon style="font-size: 15px" class="mat-18 changeColor">more_vert
               </mat-icon></button>

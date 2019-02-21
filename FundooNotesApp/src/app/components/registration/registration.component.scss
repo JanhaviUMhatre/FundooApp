@@ -1,8 +1,7 @@
 //css for registration page
 .forMedia{
-  padding-top: 60px;
+  padding-top: 35px;
 }
-
 
 .basic-container {
   padding: 150px;
@@ -87,6 +86,9 @@
   .name-link{
     color: #1a73e8;
   }
+  $mat-card-border-radius: 13px !default;
+.mat-card {
+  border-radius: $mat-card-border-radius;}
   //media query for mobile view
   @media(max-width:540px){
   
