@@ -28,7 +28,7 @@ export class NoteService {
     return this.user.PostForm(this.baseUrl+'notes/archiveNotes',userData)
   }
   trashnote(userData){
-    return this.user.PostForm(this.baseUrl+'notes/trashNotes',userData)
+    return this.user.postMethod(this.baseUrl+'notes/trashNotes',userData)
   }
   getNotes(){
     return this.user.getForm(this.baseUrl+'notes/getNotesList')

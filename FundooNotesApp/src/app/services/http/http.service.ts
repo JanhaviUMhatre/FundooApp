@@ -34,7 +34,13 @@ export class HttpService {
   }
 
   public postMethod(url:any,data:any){
-    return this.http.post<any>(url,data)
+    const httpOptions = {
+      headers: new HttpHeaders({
+       
+        'Authorization':localStorage.getItem('token')
+      })
+    }
+    return this.http.post(url,data,httpOptions)
   }
 
   getEncodData(toConvert) {

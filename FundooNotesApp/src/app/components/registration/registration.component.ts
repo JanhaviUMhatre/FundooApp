@@ -36,7 +36,7 @@ confirmPassword : [null, Validators.required],
 phoneNumber : [this.user.phoneNumber, [Validators.required, //phone number validation
 Validators.maxLength(10), Validators.minLength(10)]],
 //email validation
-email : [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]],
+email : [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]],
 service : [this.user.service, Validators.required]
  
 });

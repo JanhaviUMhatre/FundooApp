@@ -8,12 +8,10 @@
 // *
 // ***********************************************************************************
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CreateNote } from 'src/app/models/createnote.model';
-import { MatSnackBar } from '@angular/material';
-import { UserServiceService } from 'src/app/services/userServices/user-service.service';
-import { FormBuilder } from '@angular/forms';
 import { NoteService } from 'src/app/services/notes/note.service';
+
 
 @Component({
   selector: 'app-footermenu',
@@ -39,45 +37,41 @@ export class FootermenuComponent implements OnInit {
   notificationIcon = "../../assets/Icons/notification.svg";
   deleteData : any;
   deletevalue=false;
-data:any[];
+
 DataValue :any;
-  constructor(private snackBar: MatSnackBar,private svc :NoteService) { }
+
+@Input() data:any;
+//@Output() footerData = new EventEmitter();
+  constructor(private svc :NoteService) { }
 
   
   ngOnInit() {
-    this.getNoteData();
-  }
-  getNoteData(){
-    this.svc.getNotes().subscribe(
-      (response) => {
-    this.data = response['data']['data']; 
+    //this.footerData.emit(this.footerData)
     
-    },
-      (error) => {console.log("error",error);}
-      )
-      
   }
-  
-  delete(){
-console.log("deleted")
-//console.log(this.data.length);
-this.deletevalue =! this.deletevalue
-//console.log(this.deletevalue);
-for(let i = 0;i<=this.data.length-1;i++){
 
- console.log( this.data[i].id)
-this.DataValue = this.data[i].id;
- 
-}
+  delete(){
+  
+    console.log("deleted")
+    
+    this.deletevalue =! this.deletevalue
+    
 this.deleteData={
   "isDeleted":this.deletevalue,
-  "noteIdList":[this.DataValue]
+  "noteIdList":[this.data['id']]
 }
-// this.svc.trashnote("");
 console.log(this.deleteData);
 this.svc.trashnote(this.deleteData).subscribe(
-  (response) => {console.log("success",response);},
+  (response) => {console.log("success",response);
+console.log(this.data)
+},
   (error) => {console.log("error",error);}
 )
-  }
-}
+  
+    // )
+      }
+
+      updateNote(){
+
+      }
+    }

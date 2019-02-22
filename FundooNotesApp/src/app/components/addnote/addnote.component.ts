@@ -68,6 +68,7 @@ description = new FormControl('')
    }
 
   ngOnInit() {
+    // this. createNote();
   }
   //change div
   showDiv(){
@@ -101,8 +102,7 @@ description = new FormControl('')
 
   //main function to create note
   createNote(){
-    let token = localStorage.getItem('token');
-    let userId = localStorage.getItem('token');
+    
     // console.log(token,userId);
 
     this.noteData = {
@@ -112,6 +112,7 @@ description = new FormControl('')
         "isArchived": this.archiveValue,     
         "color": this.color,    
     }
+    
     if(this.noteData.title != null || this.noteData.description!=null){
     console.log(this.noteData);
      this.svc.createnote(this.noteData).subscribe(
