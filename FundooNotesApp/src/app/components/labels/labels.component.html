@@ -1,21 +1,40 @@
-<div class="editLableDiv">
+<div  [ngStyle]="{'backgroundColor': data.color}" class="width-dialog">
+<div fxLayout="column" fxLayoutAlign="space-between start" >
+                
+                        <div class="dialog" [style.fontSize.px]=25> {{data.title}}</div>
+                         <div class="dialog" [style.fontSize.px]=19>{{data.description}}
+                        </div>
+                        <div class="alignment">
+                        <div fxLayout="row" fxLayoutAlign="space-around center" >
 
-    <span>Edit Label</span>
-  <div>
-    <button mat-button >
-  
-      <mat-icon class="mat-18">add</mat-icon>
-  
-    </button>
-  
-    <textarea class="editLadelTextArea" cols="20" rows="1" placeholder="Create new label" autocomplete="off" ></textarea>
-  
-    <button mat-button >
-  
-      <mat-icon class="mat-18">done</mat-icon>
-  
-    </button>
-  </div>
-  
-  
-  </div>
+                        <button mat-icon-button matTooltip="Remind me">
+                            <mat-icon style="font-size: 20px" class="mat-18 changeColor">add_alert</mat-icon></button>
+                            <button mat-icon-button matTooltip="Collaborator">
+                                <mat-icon style="font-size: 20px" class="mat-18 changeColor">person_add
+                                  </mat-icon></button>
+                                  <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+                                      <mat-icon style="font-size: 20px" class="mat-18 changeColor">color_lens</mat-icon></button>
+                                  
+                                      <button mat-icon-button matTooltip="Archive" (click)="archive()">
+                                          
+                                        <mat-icon style="font-size: 20px" class="mat-18 changeColor">archive</mat-icon>
+                                </button>
+                                  
+                                     
+                                          <button mat-icon-button matTooltip="New List">
+                                              <mat-icon style="font-size: 20px" class="mat-18 changeColor">crop_original</mat-icon>
+                                             </button> 
+                                             <button mat-icon-button matTooltip="more" [matMenuTriggerFor]="moreMenu">
+                                                <mat-icon style="font-size: 20px" class="mat-18 changeColor">more_vert
+                                            </mat-icon></button>
+                                            <button mat-icon-button matTooltip="Undo" [matMenuTriggerFor]="moreMenu">
+                                                <mat-icon style="font-size: 20px" class="mat-18 changeColor">undo
+                                            </mat-icon></button>
+                                            <button mat-icon-button matTooltip="Redo" [matMenuTriggerFor]="moreMenu">
+                                                <mat-icon style="font-size: 20px" class="mat-18 changeColor">redo
+                                            </mat-icon></button>
+                                            <div class="button-padding" >
+                                            <button mat-button class="button-align" (click)="createNote()">Close</button></div>
+                                </div></div></div>
+                      
+                    </div>

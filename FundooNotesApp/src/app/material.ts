@@ -42,6 +42,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { LabelsComponent } from './components/labels/labels.component';
 
 
 
@@ -88,6 +89,9 @@ import {
       MatToolbarModule,
       MatTooltipModule,
       MatTreeModule,
+      ],
+      entryComponents: [
+        LabelsComponent,
       ]
  
     

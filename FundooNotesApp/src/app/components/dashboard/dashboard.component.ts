@@ -9,8 +9,9 @@
 // ***********************************************************************************
 
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 import { LabelsComponent } from '../labels/labels.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,17 +25,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
-  openDialog(){
-    const dialogRef = this.dialog.open(LabelsComponent, {
-      width:"200px"
-      
+ 
+  openModal(templateRef) {
+    let dialogRef = this.dialog.open(templateRef, {
+        width: '250px',
+        // data: { name: this.name, animal: this.animal }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-   
-
+        console.log('The dialog was closed');
+        // this.animal = result;
     });
-
-  }
+}
 }

@@ -39,7 +39,6 @@ export class FootermenuComponent implements OnInit {
   deletevalue=false;
 
 DataValue :any;
-
 @Input() data:any;
 //@Output() footerData = new EventEmitter();
   constructor(private svc :NoteService) { }
@@ -55,18 +54,18 @@ DataValue :any;
     console.log("deleted")
     
     this.deletevalue =! this.deletevalue
-    
-this.deleteData={
-  "isDeleted":this.deletevalue,
-  "noteIdList":[this.data['id']]
-}
-console.log(this.deleteData);
-this.svc.trashnote(this.deleteData).subscribe(
-  (response) => {console.log("success",response);
-console.log(this.data)
-},
-  (error) => {console.log("error",error);}
-)
+    console.log(this.data)
+// this.deleteData={
+//   "isDeleted":this.deletevalue,
+//   "noteIdList":[this.data['id']]
+// }
+// console.log(this.deleteData);
+// this.svc.trashnote(this.deleteData).subscribe(
+//   (response) => {console.log("success",response);
+// console.log(this.data)
+// },
+//   (error) => {console.log("error",error);}
+// )
   
     // )
       }
@@ -74,4 +73,9 @@ console.log(this.data)
       updateNote(){
 
       }
+      gettingId(id){
+        console.log("got the id",id)
+        
+      }
+      
     }

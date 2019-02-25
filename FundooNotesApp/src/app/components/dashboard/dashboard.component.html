@@ -99,9 +99,30 @@
               <mat-divider></mat-divider>
               <div>
                 <mat-label class="label-example" [style.fontSize.px]=16>Labels</mat-label>
-                <button class="sideNavListItems" mat-button (click)="openDialog()">
+                <!-- <button class="sideNavListItems" mat-button (click)="openDialog()">
                   <mat-icon>edit</mat-icon>Edit Labels
-                </button>
+                </button> -->
+                <button class="sideNavListItems" mat-button (click)="openModal(mytemplate)"> <mat-icon>edit</mat-icon>Edit Labels</button>
+
+    <ng-template #mytemplate>
+        <div>
+
+            <h3>Edit Label</h3>
+          <div>
+            
+              <div fxLayout="row" fxLayoutAlign="space-between center" >
+              <input matInput type="text" placeholder="add label" [(ngModel)]="value">
+              <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon [style.fontSize.px]=15> close</mat-icon>
+              </button>
+          </div>
+          <div fxLayoutAlign="end" >
+          <button mat-button>close</button></div>
+          </div>
+          
+          
+          </div>
+    </ng-template>
               </div>
               <mat-divider></mat-divider>
               <div>
@@ -119,7 +140,9 @@
             <!-- end of side nav menu -->
           </mat-sidenav> 
           <mat-sidenav-content class="sideNavContent">
+          
             <router-outlet></router-outlet>
+            
         </mat-sidenav-content> 
         </mat-sidenav-container>
 <!-- end of sidenav bar -->

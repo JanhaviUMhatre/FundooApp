@@ -25,13 +25,22 @@ export class NoteService {
   }
   
   archivednote(userData){
-    return this.user.PostForm(this.baseUrl+'notes/archiveNotes',userData)
+    return this.user.postMethod(this.baseUrl+'notes/archiveNotes',userData)
   }
   trashnote(userData){
     return this.user.postMethod(this.baseUrl+'notes/trashNotes',userData)
   }
+  pinnote(userData){
+    return this.user.postMethod(this.baseUrl+'notes/pinUnpinNotes',userData)
+  }
+  colornote(userData){
+    return this.user.postMethod(this.baseUrl+'notes/changesColorNotes',userData)
+  }
   getNotes(){
     return this.user.getForm(this.baseUrl+'notes/getNotesList')
     }
-  
+    updatednote(userData){
+      return this.user.postMethod(this.baseUrl+'notes/updateNotes',userData)
+
+    }
 }

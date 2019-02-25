@@ -4,7 +4,7 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
-$mat-card-border-radius: 0px !default;
+$mat-card-border-radius: 11px !default;
 
 .mat-card {
 
@@ -14,4 +14,12 @@ $mat-card-border-radius: 0px !default;
     margin-top: 6px;
     margin-bottom: 6px;
    
+}
+.changeColor{
+    color: rgb(54, 54, 54);
+}
+.alignment{
+    padding-top: 5px;
+    padding-left: 1px;
+    
 }
