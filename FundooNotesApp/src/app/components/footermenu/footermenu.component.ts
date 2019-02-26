@@ -39,7 +39,7 @@ export class FootermenuComponent implements OnInit {
   deletevalue=false;
 
 DataValue :any;
-@Input() data:any;
+
 //@Output() footerData = new EventEmitter();
   constructor(private svc :NoteService) { }
 
@@ -54,7 +54,7 @@ DataValue :any;
     console.log("deleted")
     
     this.deletevalue =! this.deletevalue
-    console.log(this.data)
+    //console.log(this.data)
 // this.deleteData={
 //   "isDeleted":this.deletevalue,
 //   "noteIdList":[this.data['id']]

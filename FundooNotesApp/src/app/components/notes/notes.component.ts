@@ -14,7 +14,6 @@ import { NoteService } from 'src/app/services/notes/note.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { removeDebugNodeFromIndex } from '@angular/core/src/debug/debug_node';
 import { LabelsComponent } from '../labels/labels.component';
 
 @Component({
@@ -51,7 +50,7 @@ export class NotesComponent implements OnInit {
     { name: "gray", colorCode: "#e7e9ec" }
   ]
   ColorData: { "color": boolean; "noteIdList": any[]; };
- 
+ carddata=this.data;
   constructor(public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -69,6 +68,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.getNoteData()
+    console.log("carddata",this.carddata)
     
   }
   getNoteData(){

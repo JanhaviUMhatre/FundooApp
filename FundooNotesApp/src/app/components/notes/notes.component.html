@@ -1,6 +1,5 @@
-
 <div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center" >
-               
+        <app-searchbar [data]="data"></app-searchbar>       
         <div *ngFor="let note of data">
             <div *ngIf="note.isArchived===false">
                 <div fxLayout="column" fxLayoutAlign="space-between start">
@@ -56,4 +55,4 @@
                 </ng-template>
               
               </mat-menu>
-              
+             

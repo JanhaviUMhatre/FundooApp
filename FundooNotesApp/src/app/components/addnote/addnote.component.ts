@@ -11,10 +11,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
-import { CreateNote } from 'src/app/models/createnote.model';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { NoteService } from 'src/app/services/notes/note.service';
 
 @Component({
@@ -24,6 +22,9 @@ import { NoteService } from 'src/app/services/notes/note.service';
 })
 export class AddnoteComponent implements OnInit {
   @Output() noteEvent = new EventEmitter<string>();
+
+
+
  flag = false;
   isActive = false;
   pinValue= false;
@@ -132,5 +133,6 @@ description = new FormControl('')
     this.color = color;
 
   }
+  
   
 }

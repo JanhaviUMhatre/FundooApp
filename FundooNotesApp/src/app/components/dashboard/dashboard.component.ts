@@ -20,7 +20,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class DashboardComponent implements OnInit {
   showFiller = false;
-  
+ 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -37,4 +37,5 @@ export class DashboardComponent implements OnInit {
         // this.animal = result;
     });
 }
+
 }

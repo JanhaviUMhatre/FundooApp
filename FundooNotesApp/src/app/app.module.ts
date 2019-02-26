@@ -25,6 +25,8 @@ import { AddnoteComponent } from './components/addnote/addnote.component';
 import { LabelsComponent } from './components/labels/labels.component';
 import { FootermenuComponent } from './components/footermenu/footermenu.component';
 import { NotesComponent } from './components/notes/notes.component';
+import { SearchPipe } from './pipe/search.pipe';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 //import { AuthGuard } from './auth.guard'
 
 
@@ -48,6 +50,10 @@ import { NotesComponent } from './components/notes/notes.component';
     FootermenuComponent,
    
     NotesComponent,
+   
+    SearchPipe,
+   
+    SearchbarComponent,
   ],
   imports: [AppRoutingModule,
     BrowserModule,
