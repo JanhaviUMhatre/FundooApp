@@ -27,8 +27,8 @@
       <div class="field-position">
         <mat-form-field class="field" appearance="outline" [style.fontSize.px]=12 > 
           
-          <input matInput class="searchInputBar" [(ngModel)]="Search" 
-          placeholder="search" [style.fontSize.px]=18 >
+          <input matInput type="text" class="searchInputBar" [(ngModel)]="Search" 
+          placeholder="search" [style.fontSize.px]=18 (keyup)="lookFor()" (click)="openSearch()">
           <button mat-icon-button matSuffix>
        <mat-icon  class="mat-18">search</mat-icon>
       </button>
@@ -142,7 +142,7 @@
             <!-- end of side nav menu -->
           </mat-sidenav> 
           <mat-sidenav-content class="sideNavContent">
-         
+              
             <router-outlet></router-outlet>
             
         </mat-sidenav-content> 

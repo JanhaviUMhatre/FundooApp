@@ -11,13 +11,15 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
+import { Subject, BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
   baseUrl = environment.baseUrl;
-
+  url:any;
   constructor(private user : HttpService) { }
   createnote(userData){
     console.log(userData);
@@ -43,4 +45,9 @@ export class NoteService {
       return this.user.postMethod(this.baseUrl+'notes/updateNotes',userData)
 
     }
+addlabel(userData){
+  return this.user.postMethod(this.baseUrl+this.url,userData)
+}
+ 
+
 }

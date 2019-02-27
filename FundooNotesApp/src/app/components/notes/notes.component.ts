@@ -8,7 +8,7 @@
 // *
 // ***********************************************************************************
 
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { MatIconRegistry } from "@angular/material/icon";
@@ -51,6 +51,10 @@ export class NotesComponent implements OnInit {
   ]
   ColorData: { "color": boolean; "noteIdList": any[]; };
  carddata=this.data;
+ @Input() arrayCards;
+ @Input() Search;
+ menuid:any;
+ labelsData:any;
   constructor(public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -181,7 +185,9 @@ this.updateNotes(card)
        id:card.id,
        title:card.title,
        description:card.description,
-       color:card.color
+       color:card.color,
+       isDeleted:card.isDeleted,
+       userId:card.userId
      }
     });
 
@@ -189,6 +195,17 @@ this.updateNotes(card)
       console.log('The dialog was closed');
       
     });
+  }
+ 
+  addlabels(card){
+    console.log("form addlabels",card.id);
+    // this.labelsData={
+      
+    //     "label": String,
+    //     "isDeleted": false,
+    //     "userId": "5c6fc4b7ea53620040e85d06"
+      
+    // }
   }
 
 }

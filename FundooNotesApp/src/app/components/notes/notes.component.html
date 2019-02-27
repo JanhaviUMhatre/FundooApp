@@ -1,6 +1,10 @@
 <div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center" >
-        <app-searchbar [data]="data"></app-searchbar>       
-        <div *ngFor="let note of data">
+    <!-- <div>
+        <input type="text" [(ngModel)]="Search">
+    </div>     -->
+    <!-- <app-searchbar [data]="data"></app-searchbar>  -->
+        <div *ngFor="let note of data | search:Search; let i = index">
+            <div [ngClass]="{'grid':toggle,'list':!toggle}">
             <div *ngIf="note.isArchived===false">
                 <div fxLayout="column" fxLayoutAlign="space-between start">
                         <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
@@ -30,12 +34,14 @@
                         
                         <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu" (click)="getcolorid(note)">
                                         <mat-icon style="font-size: 17px" class="mat-18 changeColor">color_lens</mat-icon></button>
-   
+          <button mat-icon-button matTooltip="add label" (click)="addlabels(note)">
+                  <mat-icon style="font-size: 15px" class="mat-18 changeColor">add
+                         </mat-icon></button>
     </div></div>
 </div>
     </mat-card>
 </div>
-    </div></div>
+    </div></div></div>
 </div>
     <mat-menu #colorMenu="matMenu"  class="colorMenu" [overlapTrigger]="false">
 
@@ -55,4 +61,15 @@
                 </ng-template>
               
               </mat-menu>
-             
+              <!-- <mat-menu #moreMenu="matMenu"  class="moreMenu" [overlapTrigger]="false">
+
+                    <button mat-menu-item [style.fontSize.px]=14 class="changeColor" (click)="addlabels()" [matMenuTriggerFor]="moreMenus">Add label</button> -->
+                    <!-- <button mat-menu-item [style.fontSize.px]=14 class="changeColor">Add drawing</button>
+                    <button mat-menu-item [style.fontSize.px]=14 class="changeColor">show checkboxes</button> -->
+                  
+                  <!-- </mat-menu>
+                  <mat-menu #moreMenus  class="moreMenu" >
+                        <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Favorite food" >
+                              </mat-form-field>
+                      </mat-menu> -->

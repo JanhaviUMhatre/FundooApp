@@ -4,6 +4,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'app-labels',
@@ -19,14 +20,16 @@ deletevalue=false;
 archivevalue=false;
 title = new FormControl(this.data.title)
 description = new FormControl(this.data.description)
+labels = new FormControl('')
+
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
   id: any;
   color: any;
   ColorData: { "color": any; "noteIdList": any[]; };
   pinValue= false;
   pinData: { "isPined": boolean; "noteIdList": any[]; };
-
-  constructor(public dialogRef: MatDialogRef<DashboardComponent>,
+  addlabeldata:any;
+  constructor(private http: HttpClient,public dialogRef: MatDialogRef<DashboardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private svc :NoteService,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
@@ -131,6 +134,32 @@ console.log(this.data)
    this.id = data
 console.log(data)
   }
+addLabel(data){
+  this.addlabeldata={
+      
+    "label": this.labels.value,
+    "userId": data.userId,
+    "isDeleted": data.isDeleted
+  
+}
+
+console.log(this.addlabeldata)
+const httpOptions = {
+  headers: new HttpHeaders({
+   
+    'Authorization':localStorage.getItem('token')
+  })
+}
+this.http.post('http://34.213.106.173/api/notes/'+data.id+'/noteLabels',
+{"label":this.labels.value,"userId": data.userId,
+"isDeleted": data.isDeleted},httpOptions).subscribe(
+  (response) => {console.log("success",response);
+console.log(this.data)
+},
+  (error) => {console.log("error",error);}
+)
+}
+
   updateNotes(data){
     
     this.updateData={

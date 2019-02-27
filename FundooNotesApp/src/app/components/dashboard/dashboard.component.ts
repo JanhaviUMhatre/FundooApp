@@ -12,6 +12,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { LabelsComponent } from '../labels/labels.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Router } from '@angular/router';
+import { NoteService } from 'src/app/services/notes/note.service';
+import { SearchService } from 'src/app/services/search/search.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,8 +23,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class DashboardComponent implements OnInit {
   showFiller = false;
- 
-  constructor(public dialog: MatDialog) { }
+  Search:any;
+  constructor(public dialog: MatDialog,private router: Router,private ser : SearchService) { }
 
   ngOnInit() {
   }
@@ -34,8 +37,13 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        // this.animal = result;
+        
     });
 }
-
+openSearch(){
+    this.router.navigate(['/dashboard/search']);
+}
+lookFor(){
+        this.ser.changeMessage(this.Search);
+}
 }

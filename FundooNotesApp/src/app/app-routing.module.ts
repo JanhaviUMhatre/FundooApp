@@ -9,6 +9,8 @@ import { ResetComponent } from './components/reset/reset.component';
 import { FootermenuComponent } from './components/footermenu/footermenu.component';
 import { AuthGuard } from './auth.guard'
 import { NotesComponent } from './components/notes/notes.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { AddlabelComponent } from './components/addlabel/addlabel.component';
 
 const routes: Routes = [
     {
@@ -39,6 +41,10 @@ const routes: Routes = [
           {
             path:'notes',
             component:NotesComponent
+          },
+          {
+            path:'search',
+            component:SearchbarComponent
           }
           ]
       },
@@ -53,6 +59,10 @@ const routes: Routes = [
       {
         path:'footer',
         component:FootermenuComponent
+      },
+      {
+        path:'addlabel',
+        component:AddlabelComponent
       }
 ];
 @NgModule({

@@ -1,15 +1,22 @@
 <div  [ngStyle]="{'backgroundColor': data.color}" class="width-dialog">
 <div fxLayout="column" fxLayoutAlign="space-between start" >
+   
         <div fxLayout="row" fxLayoutAlign="end" >
-    <input matInput value={{data.title}} [formControl]="title" [style.fontSize.px]=25 class="dialog">
+    <input matInput value={{data.title}} [formControl]="title" [style.fontSize.px]=20 class="dialog">
     
     <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(data.id)">
         
             <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon></button>
   </div>
-            <input matInput value= {{data.description}} [formControl]="description" [style.fontSize.px]=25 class="dialog">
-
-                        <div class="alignment">
+            <input matInput value= {{data.description}} [formControl]="description" [style.fontSize.px]=20 class="dialog">
+            <div fxLayout="row" fxLayoutAlign="start" >
+   
+            <input matInput class="dialog"  [formControl]="labels">   
+                    <button mat-icon-button matTooltip="add label" (click)="addLabel(data)">
+                        <mat-icon style="font-size: 15px" class="mat-18 changeColor">add
+                               </mat-icon></button></div>
+            <div class="alignment">
+                          
                         <div fxLayout="row" fxLayoutAlign="space-around center" >
 
                         <button mat-icon-button matTooltip="Remind me">
