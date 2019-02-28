@@ -6,14 +6,15 @@
         <div *ngFor="let note of data | search:Search; let i = index">
             <div [ngClass]="{'grid':toggle,'list':!toggle}">
             <div *ngIf="note.isArchived===false">
+                    <div *ngIf="note.isDeleted===false">
                 <div fxLayout="column" fxLayoutAlign="space-between start">
+                        
                         <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
-                                 
-                            
                             <div fxLayout="column" >
                         <div class="description" (click)="openDialog(note)">{{note.id}}</div> 
                         <div fxLayout="row" fxLayoutAlign="space-between center" >
            <div class="title" [style.fontSize.px]=21> {{note.title}}</div>
+         
            <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(note)">
                 <ng-container *ngIf="pinValue===false">
                     <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
@@ -23,6 +24,8 @@
                 </ng-container>
               </button></div>
            <div class="description">{{note.description}}</div> 
+           
+           <!-- <div class="title" [style.fontSize.px]=11> {{note.noteLabels.label}}</div> -->
            <div fxLayout="row" fxLayoutAlign="space-around" >
      
                 <div class="alignment">
@@ -41,7 +44,7 @@
 </div>
     </mat-card>
 </div>
-    </div></div></div>
+    </div></div></div></div>
 </div>
     <mat-menu #colorMenu="matMenu"  class="colorMenu" [overlapTrigger]="false">
 

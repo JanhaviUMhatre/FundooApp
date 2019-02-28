@@ -134,7 +134,7 @@
               </div>
         
               <div>
-                <button mat-button  (click)="headerName='Trash'" [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName=='Trash'}">
+                <button mat-button [routerLink]="['trash']" (click)="headerName='Trash'" [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName=='Trash'}">
                   <mat-icon>delete</mat-icon> Trash
                 </button>
               </div>     

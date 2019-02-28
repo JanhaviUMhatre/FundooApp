@@ -11,7 +11,7 @@ import { AuthGuard } from './auth.guard'
 import { NotesComponent } from './components/notes/notes.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AddlabelComponent } from './components/addlabel/addlabel.component';
-
+import { TrashComponent } from './components/trash/trash.component';
 const routes: Routes = [
     {
         path : 'registration',
@@ -45,6 +45,10 @@ const routes: Routes = [
           {
             path:'search',
             component:SearchbarComponent
+          },
+          {
+            path:'trash',
+            component:TrashComponent
           }
           ]
       },

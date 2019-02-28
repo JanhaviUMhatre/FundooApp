@@ -39,6 +39,8 @@ labels = new FormControl('')
         this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/Icons/unpinIcon.svg"),
       
       ); }
+
+      //color code array
     colorCode: Array<Object> = [
       { name: "white", colorCode: "#ffffff" },
       { name: "red", colorCode: "#fc8981" },
@@ -55,10 +57,12 @@ labels = new FormControl('')
     ]
   ngOnInit() {
   }
-
+//close dialog box
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  //delete note
   delete(data){
     console.log(data);
     console.log("deleted")
@@ -77,6 +81,8 @@ labels = new FormControl('')
    (error) => {console.log("error",error);}
  )
    }
+
+   //pin/unpin note
    pin(data){
     console.log("called pin");
     this.pinValue=!this.pinValue;
@@ -93,6 +99,7 @@ labels = new FormControl('')
       (error) => {console.log("error",error);}
     )
   }
+  //archive note
    archive(data){
     console.log(data);
    console.log("archived")
@@ -112,6 +119,8 @@ console.log(this.data)
 )
 
   }
+
+  //change color
   changeColor(color) {
 
     this.color = color;
@@ -130,10 +139,13 @@ console.log(this.data)
     )
 
   }
+
   getcolorid(data){
    this.id = data
 console.log(data)
   }
+
+  //add labels
 addLabel(data){
   this.addlabeldata={
       
@@ -160,6 +172,7 @@ console.log(this.data)
 )
 }
 
+//update notes
   updateNotes(data){
     
     this.updateData={

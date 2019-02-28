@@ -1,3 +1,12 @@
+// ***********************************************************************************
+// * Purpose: search component.
+// *
+// * @author : Janhavi Mhatre
+// * @python version 3.7
+// * @platform : VS Code
+// * @since 27-2-2019
+// *
+// ***********************************************************************************
 import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { SearchService } from 'src/app/services/search/search.service';

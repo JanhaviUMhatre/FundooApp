@@ -48,6 +48,8 @@ export class NoteService {
 addlabel(userData){
   return this.user.postMethod(this.baseUrl+this.url,userData)
 }
- 
+ getTrashNotes(){
+   return this.user.getFormData(this.baseUrl+'notes/getTrashNotesList')
+ }
 
 }

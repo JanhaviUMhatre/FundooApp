@@ -9,9 +9,10 @@
             <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon></button>
   </div>
             <input matInput value= {{data.description}} [formControl]="description" [style.fontSize.px]=20 class="dialog">
+            
             <div fxLayout="row" fxLayoutAlign="start" >
    
-            <input matInput class="dialog"  [formControl]="labels">   
+            <input matInput class="dialog"  [formControl]="labels" placeholder="add label">   
                     <button mat-icon-button matTooltip="add label" (click)="addLabel(data)">
                         <mat-icon style="font-size: 15px" class="mat-18 changeColor">add
                                </mat-icon></button></div>

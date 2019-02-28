@@ -28,6 +28,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AddlabelComponent } from './components/addlabel/addlabel.component';
+import { TrashComponent } from './components/trash/trash.component';
 //import { AuthGuard } from './auth.guard'
 
 
@@ -57,6 +58,8 @@ import { AddlabelComponent } from './components/addlabel/addlabel.component';
     SearchbarComponent,
    
     AddlabelComponent,
+   
+    TrashComponent,
   ],
   imports: [AppRoutingModule,
     BrowserModule,

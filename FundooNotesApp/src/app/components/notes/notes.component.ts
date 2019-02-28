@@ -9,7 +9,6 @@
 // ***********************************************************************************
 
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
@@ -33,6 +32,7 @@ export class NotesComponent implements OnInit {
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
   pinValue= false;
   id:any;
+
   updateData:any;
   pinData: { "isPined": boolean; "noteIdList": any[]; };
   colorCode: Array<Object> = [
@@ -54,7 +54,7 @@ export class NotesComponent implements OnInit {
  @Input() arrayCards;
  @Input() Search;
  menuid:any;
- labelsData:any;
+newArray:any[];
   constructor(public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -72,20 +72,24 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.getNoteData()
-    console.log("carddata",this.carddata)
+   
     
   }
+  //get notes data
   getNoteData(){
     this.svc.getNotes().subscribe(
       (response) => {console.log("success get notes",response)
     this.data = response['data']['data']; 
     console.log(this.data)
-
     },
       (error) => {console.log("error",error);}
       )
       
   }
+
+
+
+  //pin/unpin notes
   pin(card){
     console.log("called pin");
     this.pinValue=!this.pinValue;
@@ -103,6 +107,7 @@ export class NotesComponent implements OnInit {
     )
   }
 
+  //change color of notes
   changeColor(color) {
 
     this.color = color;
@@ -126,6 +131,7 @@ export class NotesComponent implements OnInit {
 console.log(this.id)
   }
 
+  //trash notes
   delete(card){
    console.log(card.id);
    console.log("deleted")
@@ -144,6 +150,8 @@ console.log(this.data)
   (error) => {console.log("error",error);}
 )
   }
+
+  //archive notes
   archive(card){
     console.log(card.id);
    console.log("archived")
@@ -178,6 +186,7 @@ this.updateNotes(card)
       (error) => {console.log("error",error);}
     )
   }
+  //dialog box
   openDialog(card): void {
     const dialogRef = this.dialog.open(LabelsComponent,
      {
@@ -187,7 +196,8 @@ this.updateNotes(card)
        description:card.description,
        color:card.color,
        isDeleted:card.isDeleted,
-       userId:card.userId
+       userId:card.userId,
+      
      }
     });
 
@@ -196,7 +206,7 @@ this.updateNotes(card)
       
     });
   }
- 
+ //add labels
   addlabels(card){
     console.log("form addlabels",card.id);
     // this.labelsData={

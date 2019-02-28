@@ -71,5 +71,13 @@ export class HttpService {
     }
     return this.http.get<any>(url,httpOptions)
   }
+  public getFormData(url:any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization':localStorage.getItem('token')
+      })
+    }
+    return this.http.get(url,httpOptions)
+  }
 }
 

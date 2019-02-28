@@ -1,0 +1,27 @@
+    
+<div fxLayout="column" fxLayoutAlign="center center" >
+    <h3>Notes in Trash</h3> 
+<div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center" >
+    
+       
+<div *ngFor="let note of data">
+    <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
+        <div fxLayout="column" >
+    <div class="description">{{note.id}}</div> 
+    <div fxLayout="row" fxLayoutAlign="space-between center" >
+<div class="title" [style.fontSize.px]=21> {{note.title}}</div>
+</div>
+<div class="description">{{note.description}}</div> 
+<!-- <div class="title" [style.fontSize.px]=11> {{note.noteLabels.label}}</div> -->
+<div fxLayout="row" fxLayoutAlign="space-around" >
+
+<div class="alignment">
+<button mat-icon-button matTooltip="Delete" (click)="delete(note)">
+<mat-icon style="font-size: 17px" class="mat-18 changeColor">delete
+  </mat-icon></button>
+  
+</div></div>
+</div>
+</mat-card>
+</div>
+</div></div>
