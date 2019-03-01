@@ -1,0 +1,27 @@
+    
+<div fxLayout="column" fxLayoutAlign="center center" >
+  <h3>Archived notes</h3> 
+<div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center" >
+  
+     
+<div *ngFor="let note of data">
+    <div *ngIf="note.isDeleted===false">
+        <!-- <div *ngIf="note.isPined===true">
+            <div *ngIf="note.isPined===false"> -->
+  <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
+      <div fxLayout="column" >
+
+      
+          <div class="title" [style.fontSize.px]=16 (click)="openDialog(note)"> {{note.title}}</div>
+        
+         
+
+<div class="description">{{note.description}}</div> 
+<!-- <div class="title" [style.fontSize.px]=11> {{note.noteLabels.label}}</div> -->
+<button mat-icon-button matTooltip="Archive" (mouseover)="archive(note)">
+    <mat-icon style="font-size: 17px" class="mat-18 changeColor">archive</mat-icon></button>
+</div>
+</mat-card>
+</div></div></div>
+</div>
+

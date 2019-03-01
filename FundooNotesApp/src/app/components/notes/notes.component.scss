@@ -1,10 +1,13 @@
+@import "../../styles/material.scss";
+
+
 .card-width{
-    width:225px;
+    width:200px;
     margin-left: 15px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
-$mat-card-border-radius: 11px !default;
+//$mat-card-border-radius: 11px !default;
 
 .mat-card {
 
@@ -23,3 +26,11 @@ $mat-card-border-radius: 11px !default;
     padding-left: 1px;
     
 }
+.trash-align{
+    padding-top: 200px;
+   }
+   .cards{
+       padding-left: 70px;
+      
+       
+   }

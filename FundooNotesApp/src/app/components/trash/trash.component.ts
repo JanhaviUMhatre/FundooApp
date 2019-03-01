@@ -1,5 +1,5 @@
 // ***********************************************************************************
-// * Purpose: notes component.
+// * Purpose: trash component.
 // *
 // * @author : Janhavi Mhatre
 // * @python version 3.7
@@ -16,12 +16,15 @@ import { NoteService } from 'src/app/services/notes/note.service';
   styleUrls: ['./trash.component.scss']
 })
 export class TrashComponent implements OnInit {
+  deleteData: { "isDeleted": any; "noteIdList": any[]; };
 
   constructor(private svc :NoteService) { }
 data:any;
   ngOnInit() {
    this.getTrashNoteData()
   }
+
+  //get list of trash notes
   getTrashNoteData(){
     this.svc.getTrashNotes().subscribe(
       (response) => {console.log("success get trash notes",response)
@@ -32,5 +35,22 @@ data:any;
       (error) => {console.log("error",error);}
       )
       
+  }
+  //delete forever 
+  delete(card){
+    console.log("deleted ");
+    card.isDeleted =! card.isDeleted
+    this.deleteData={
+      "isDeleted":card.isDeleted,
+      "noteIdList":[card.id]
+    }
+     console.log(this.deleteData);
+     this.svc.deleteforevernote(this.deleteData).subscribe(
+      (response) => {console.log("deleted",response);
+      console.log(this.data)
+
+    },
+      (error) => {console.log("error",error);}
+      )
   }
 }

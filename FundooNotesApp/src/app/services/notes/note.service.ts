@@ -51,5 +51,11 @@ addlabel(userData){
  getTrashNotes(){
    return this.user.getFormData(this.baseUrl+'notes/getTrashNotesList')
  }
+ getArchiveNotes(){
+  return this.user.getFormData(this.baseUrl+'notes/getArchiveNotesList')
+}
+deleteforevernote(userData){
+  return this.user.postMethod(this.baseUrl+'notes/deleteForeverNotes',userData)
+}
 
 }

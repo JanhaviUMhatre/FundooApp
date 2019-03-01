@@ -12,6 +12,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AddlabelComponent } from './components/addlabel/addlabel.component';
 import { TrashComponent } from './components/trash/trash.component';
+import { ArchiveComponent } from './components/archive/archive.component';
 const routes: Routes = [
     {
         path : 'registration',
@@ -49,6 +50,10 @@ const routes: Routes = [
           {
             path:'trash',
             component:TrashComponent
+          },
+          {
+            path:'archive',
+            component:ArchiveComponent
           }
           ]
       },

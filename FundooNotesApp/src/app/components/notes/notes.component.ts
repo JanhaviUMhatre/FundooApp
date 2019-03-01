@@ -218,6 +218,12 @@ this.updateNotes(card)
     // }
   }
 
+  stopPropagation(event){
+    event.stopPropagation();
+    // console.log("Clicked!");
+  }
+  
+
 }
 
 

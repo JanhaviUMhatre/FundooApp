@@ -38,42 +38,27 @@
    
       <!-- end of search bar -->
       <!-- other options -->
-      
-      <div class="endToolBar">
+      <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <div class="endtoolbar">
         <!-- refresh button -->
         
           <button mat-icon-button>
             <mat-icon class="mat-18">refresh</mat-icon>
           </button>
-        
+        </div>
        <!-- end of refresh button -->
+       <div class="align-logout">
        <!-- list view button-->
           <button mat-icon-button>
               <mat-icon class="mat-18">list view</mat-icon>
             </button>
             <!-- end of list view button -->
-             <!-- settings button -->
-          <button mat-icon-button>
-            <mat-icon class="mat-18">settings</mat-icon>
-          </button>
-          <!-- end of settings button -->
+            
         </div>
-     
-        <div class="endToolBar">
-          <!-- apps button -->
-          <button mat-icon-button>
-            <mat-icon class="mat-18">apps</mat-icon>
-          </button>
-          <!-- end of app button -->
-          <!-- notification button -->
-          <button mat-icon-button>
-            <mat-icon class="mat-18">notifications_none</mat-icon>
-          </button>
-      <!-- end of notification button -->
-        </div>
+     <div class="align-logout">
         <!-- account button -->
         <button [matMenuTriggerFor]="menu" class="accountButton" >{{nameFirstLetter}}</button>
-        
+      </div></div>
         <mat-menu #menu="matMenu">
           <!-- logout button -->
             <button mat-menu-item routerLink="/login">Logout</button>
@@ -128,16 +113,16 @@
               </div>
               <mat-divider></mat-divider>
               <div>
-                <button mat-button  (click)="headerName='Archive'" [ngClass]="{'sideNavListItems': headerName!='Archive', 'sideNavlistItemsColored': headerName=='Archive'}">
+                <button mat-button [routerLink]="['archive']" (click)="headerName='Archive'" [ngClass]="{'sideNavListItems': headerName!='Archive', 'sideNavlistItemsColored': headerName=='Archive'}">
                   <mat-icon>archive</mat-icon> Archive
                 </button>
-              </div>
-        
+              </div> 
               <div>
                 <button mat-button [routerLink]="['trash']" (click)="headerName='Trash'" [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName=='Trash'}">
                   <mat-icon>delete</mat-icon> Trash
                 </button>
-              </div>     
+              </div>  
+               
             </mat-nav-list>  
             <!-- end of side nav menu -->
           </mat-sidenav> 
