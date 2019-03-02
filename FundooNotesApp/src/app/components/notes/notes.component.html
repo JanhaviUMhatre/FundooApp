@@ -1,5 +1,5 @@
 <div fxLayout="row wrap"  fxLayoutAlign=" space-between center" >
-        <div *ngFor="let note of data | search:Search; let i = index">
+        <div *ngFor="let note of cardArray | search:Search; let i = index">
             <div *ngIf="note.isArchived===false">
                     <div *ngIf="note.isDeleted===false">
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
@@ -17,16 +17,19 @@
                 </ng-container>
               </button></div>
            <div class="description">{{note.description}}</div>   
+           <!-- <div class="reminder">{{note.reminder}}</div>    -->
            <div fxLayout="row" fxLayoutAlign="space-around" >
                 <div class="alignment">
-                        <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu">
+                        <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu" (click)="getcolorid(note)">
                                 <mat-icon style="font-size: 15px" class="mat-18 changeColor">add_alert</mat-icon></button>
                                 <mat-menu #menu="matMenu" [overlapTrigger]="false">
-                                        <mat-form-field>
-                                            <mat-label>date:</mat-label>
-                                                <input matInput  (click)="stopPropagation($event)">
+                                       
+                                        <mat-label class="label-align">Date:</mat-label>
+                                        <mat-form-field class="field-size"  [style.fontSize.px]=10>
+                                           
+                                                <input matInput [formControl]="date" (click)="stopPropagation($event)" >
                                               </mat-form-field>
-                                              <button mat-menu-item>Remindme</button>
+                                              <button mat-menu-item  (click)="reminder()">Remindme</button>
                                       </mat-menu>  
                 <button mat-icon-button matTooltip="Delete" (click)="delete(note)">
                     <mat-icon style="font-size: 17px" class="mat-18 changeColor">delete

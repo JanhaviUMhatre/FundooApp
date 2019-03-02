@@ -49,10 +49,13 @@ export class AddnoteComponent implements OnInit {
   color: any = "#ffffff";
   notificationIcon = "../../assets/Icons/notification.svg";
   noteData : any;
+ 
   //note : CreateNote =new CreateNote;
+  date=new FormControl('');
 
 title = new FormControl('')
 description = new FormControl('')
+  remindData: { "reminder": any[];};
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,private snackBar: MatSnackBar,private svc : NoteService
     ) {
@@ -81,6 +84,10 @@ description = new FormControl('')
     console.log("called pin");
     this.pinValue=!this.pinValue;
   }
+  stopPropagation(event){
+    event.stopPropagation();
+    // console.log("Clicked!");
+  }
   //archive note
   archive(){
     console.log("called archive");
@@ -100,6 +107,20 @@ description = new FormControl('')
       duration: 3000
     });
   }
+  reminder(){
+    this.remindData={
+      "reminder": [this.date.value]
+      
+    }
+    console.log(this.remindData)
+    this.svc.remindMe(this.remindData).subscribe(
+      (response) => {console.log("success",response);
+  
+    },
+      (error) => {console.log("error",error);}
+    
+    )
+  }
 
   //main function to create note
   createNote(){
@@ -116,6 +137,7 @@ description = new FormControl('')
     
     if(this.noteData.title != null || this.noteData.description!=null){
     console.log(this.noteData);
+    
      this.svc.createnote(this.noteData).subscribe(
        (response)=>{console.log("success",response);
       },

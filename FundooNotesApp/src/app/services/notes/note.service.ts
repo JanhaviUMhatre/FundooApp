@@ -57,5 +57,9 @@ addlabel(userData){
 deleteforevernote(userData){
   return this.user.postMethod(this.baseUrl+'notes/deleteForeverNotes',userData)
 }
+remindMe(userData:any){
+return this.user.postMethod(this.baseUrl+'notes/addUpdateReminderNotes',userData)
+}
+
 
 }

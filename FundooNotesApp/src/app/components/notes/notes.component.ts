@@ -14,6 +14,8 @@ import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { LabelsComponent } from '../labels/labels.component';
+import { FormControl } from '@angular/forms';
+import { SearchService } from 'src/app/services/search/search.service';
 
 @Component({
   selector: 'app-notes',
@@ -22,7 +24,7 @@ import { LabelsComponent } from '../labels/labels.component';
 })
 export class NotesComponent implements OnInit {
   deletevalue=false;
-
+  cardArray:any;
   data: any;
   color : any;
   footerData : any;
@@ -32,7 +34,8 @@ export class NotesComponent implements OnInit {
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
   pinValue= false;
   id:any;
-
+  date=new FormControl('');
+  remindData:any;
   updateData:any;
   pinData: { "isPined": boolean; "noteIdList": any[]; };
   colorCode: Array<Object> = [
@@ -51,11 +54,12 @@ export class NotesComponent implements OnInit {
   ]
   ColorData: { "color": boolean; "noteIdList": any[]; };
  carddata=this.data;
+ dataRefresher: any;
  @Input() arrayCards;
  @Input() Search;
  menuid:any;
 newArray:any[];
-  constructor(public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
+  constructor(private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
       this.matIconRegistry.addSvgIcon(
@@ -72,21 +76,29 @@ newArray:any[];
 
   ngOnInit() {
     this.getNoteData()
-   
-    
+       
+
+   //console.log(this.childMessage)
   }
   //get notes data
   getNoteData(){
     this.svc.getNotes().subscribe(
       (response) => {console.log("success get notes",response)
     this.data = response['data']['data']; 
-    console.log(this.data)
+   
+    this.data.reverse();
+    console.log("in response",this.data)
+    
+    this.cardArray =  this.data.filter(function(e) {
+      return (e.isDeleted===false && e.isArchived===false)
+    });
+    console.log("cardsArray",this.cardArray)
     },
       (error) => {console.log("error",error);}
       )
       
   }
-
+  
 
 
   //pin/unpin notes
@@ -222,7 +234,20 @@ this.updateNotes(card)
     event.stopPropagation();
     // console.log("Clicked!");
   }
+  reminder(){
+    this.remindData={
+      "reminder": [this.date.value], "noteIdList":[this.id]
+      
+    }
+    console.log(this.remindData)
+    this.svc.remindMe(this.remindData).subscribe(
+      (response) => {console.log("success",response);
   
+    },
+      (error) => {console.log("error",error);}
+    
+    )
+  }
 
 }
 
