@@ -36,4 +36,8 @@ resetpassword(userData){
 // getNotes(){
 //   return this.user.getForm('http://34.213.106.173/api/notes/getNotesList')
 //   }
+
+uploadProfile(userData,data:any){
+  return this.user.PostForm(this.baseUrl+'user/uploadProfileImage',userData)
+}
 }

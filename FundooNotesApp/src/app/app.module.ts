@@ -30,6 +30,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AddlabelComponent } from './components/addlabel/addlabel.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import { ProfileComponent } from './components/profile/profile.component';
 //import { AuthGuard } from './auth.guard'
 
 
@@ -63,6 +64,8 @@ import { ArchiveComponent } from './components/archive/archive.component';
     TrashComponent,
    
     ArchiveComponent,
+   
+    ProfileComponent,
   ],
   imports: [AppRoutingModule,
     BrowserModule,

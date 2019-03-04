@@ -1,8 +1,11 @@
-<div fxLayout="row wrap"  fxLayoutAlign=" space-between center" >
+<!-- <button (click)="showDiv()" >click</button> -->
+<!-- <div *ngIf="flagnote===false"> -->
+        <div *ngIf="!flagnote">
+<div fxLayout="row wrap" fxFlex="100" fxLayoutAlign=" center center" >
         <div *ngFor="let note of cardArray | search:Search; let i = index">
             <div *ngIf="note.isArchived===false">
                     <div *ngIf="note.isDeleted===false">
-                <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                <div fxLayout="row wrap" fxLayoutAlign="center center">
                         <div class="cards">
                         <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
                             <div fxLayout="column" >                       
@@ -16,20 +19,41 @@
                     <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="pinIcon"></mat-icon>
                 </ng-container>
               </button></div>
-           <div class="description">{{note.description}}</div>   
-           <!-- <div class="reminder">{{note.reminder}}</div>    -->
+           <div class="description">{{note.description}}</div> 
+          
+        
            <div fxLayout="row" fxLayoutAlign="space-around" >
                 <div class="alignment">
                         <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu" (click)="getcolorid(note)">
                                 <mat-icon style="font-size: 15px" class="mat-18 changeColor">add_alert</mat-icon></button>
                                 <mat-menu #menu="matMenu" [overlapTrigger]="false">
                                        
-                                        <mat-label class="label-align">Date:</mat-label>
-                                        <mat-form-field class="field-size"  [style.fontSize.px]=10>
-                                           
-                                                <input matInput [formControl]="date" (click)="stopPropagation($event)" >
-                                              </mat-form-field>
-                                              <button mat-menu-item  (click)="reminder()">Remindme</button>
+                                        
+                                              <mat-label class="label-align">Reminder:</mat-label>
+                                          <button mat-menu-item> Later Today : 8 PM
+                                            </button>
+                                            <button mat-menu-item> Tomorrow : 8 AM
+                                                </button>
+                                                <button mat-menu-item> Next Week :Monday, 8 AM
+                                                    </button>
+                                                    <button mat-menu-item [matMenuTriggerFor]="peekDate"> Peek date and time
+                                                        </button>
+                                                    <mat-menu #peekDate="matMenu">
+                                                            <div fxLayout="column" fxFlex="auto" fxLayoutAlign="space-around center" >
+                                                            <mat-form-field class="field-size">
+                                                                    <input matInput [matDatepicker]="picker" [formControl]="date" [style.fontSize.px]=12>
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                                  </mat-form-field>
+                                                                  <mat-form-field class="field-size">
+                                                                        <input matInput  [formControl]="time" [style.fontSize.px]=12 (click)="stopPropagation($event)">
+                                                        <mat-icon matSuffix style="font-size: 17px;color: gray;">access_time</mat-icon>
+                                                      
+                                                                      </mat-form-field>
+                                                                
+                                                                  <button mat-button (click)="reminder()">done</button></div>
+                                                          </mat-menu>
+                                                          
                                       </mat-menu>  
                 <button mat-icon-button matTooltip="Delete" (click)="delete(note)">
                     <mat-icon style="font-size: 17px" class="mat-18 changeColor">delete
@@ -39,9 +63,7 @@
                         
                         <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu" (click)="getcolorid(note)">
                                         <mat-icon style="font-size: 17px" class="mat-18 changeColor">color_lens</mat-icon></button>
-          <!-- <button mat-icon-button matTooltip="add label" (click)="addlabels(note)">
-                  <mat-icon style="font-size: 15px" class="mat-18 changeColor">add
-                         </mat-icon></button> -->
+         
     </div></div>
 </div>
     </mat-card></div>
@@ -64,3 +86,25 @@
                 </ng-template>
               </mat-menu>
               
+<!-- </div > -->
+
+<div *ngIf="flagnote">
+               <!-- <div *ngIf="flagnote===true"> -->
+               <mat-grid-list cols="1" rowHeight="2:1">
+                   
+                            <div *ngFor="let note of cardArray">
+                                    <div fxLayoutAlign="center center">
+
+                                    <mat-card class="cardWidth" [ngStyle]="{'backgroundColor': note.color}" >
+                                            <div fxLayout="column" >                       
+                                                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+                                            <div class="description">{{note.title}}</div>
+                                            <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
+                                        </div></div>
+                                    </mat-card>
+                                    </div>
+                            </div>
+                    
+               </mat-grid-list>
+            </div>

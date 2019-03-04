@@ -30,16 +30,29 @@
     padding-top: 200px;
    }
    .cards{
-       padding-left: 70px;
+       padding-left: 35px;
+       padding-right: 35px;
 
    }
    .field-size{
-       margin-left: 10px;
-       margin-right: 10px;
-       width:100px;
+       margin-left: 20px;
+       margin-right: 20px;
+       width:200px;
    }
    .label-align{
     margin-left: 10px;
     
    }
-  
+   .mat-menu-item {
+    width:500px;
+   
+    position: relative;}
+    .menu-list{
+        padding-left: 1px;
+    }
+    .cardWidth{
+        width:400px;
+        margin-left: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }

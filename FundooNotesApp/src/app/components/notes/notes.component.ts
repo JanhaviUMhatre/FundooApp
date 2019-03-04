@@ -27,6 +27,7 @@ export class NotesComponent implements OnInit {
   cardArray:any;
   data: any;
   color : any;
+  // flagnote :any;
   footerData : any;
   @Output() getId = new EventEmitter();
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
@@ -35,6 +36,7 @@ export class NotesComponent implements OnInit {
   pinValue= false;
   id:any;
   date=new FormControl('');
+  time=new FormControl('');
   remindData:any;
   updateData:any;
   pinData: { "isPined": boolean; "noteIdList": any[]; };
@@ -57,8 +59,11 @@ export class NotesComponent implements OnInit {
  dataRefresher: any;
  @Input() arrayCards;
  @Input() Search;
+ @Input() flagnote;
  menuid:any;
 newArray:any[];
+today: number = Date.now();
+
   constructor(private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -76,11 +81,19 @@ newArray:any[];
 
   ngOnInit() {
     this.getNoteData()
-       
-
+    this.svc.currentFlag.subscribe(flagnote => this.flagnote = flagnote)
+    console.log("in notes",this.flagnote)
    //console.log(this.childMessage)
   }
+  // showDiv(){
+  //   console.log("called div");
+  //   this.flagnote=!this.flagnote;
+  // }
+  submit(){
+console.log(this.date.value,this.time.value)
+  }
   //get notes data
+  
   getNoteData(){
     this.svc.getNotes().subscribe(
       (response) => {console.log("success get notes",response)

@@ -49,3 +49,15 @@
           </mat-menu>
     </div> -->
   
+  
+
+    <mat-grid-list cols="3" rowHeight="100px">
+            <div fxLayout="row wrap"  fxLayoutAlign="  center" >
+                    <div *ngFor="let note of cardArray">
+                           <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
+                                 {{note.title}}                
+                   </mat-card>   
+        </div>
+                    </div>
+       
+        </mat-grid-list>

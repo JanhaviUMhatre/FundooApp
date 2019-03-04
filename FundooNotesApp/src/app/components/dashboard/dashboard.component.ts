@@ -24,11 +24,18 @@ import { SearchService } from 'src/app/services/search/search.service';
 export class DashboardComponent implements OnInit {
   showFiller = false;
   Search:any;
-  constructor(public dialog: MatDialog,private router: Router,private ser : SearchService) { }
+  flagnote:any;
+  constructor(private svc :NoteService,public dialog: MatDialog,private router: Router,private ser : SearchService) { }
 
   ngOnInit() {
+    
   }
- 
+  showDiv(){
+    this.svc.currentFlag.subscribe(flagnote => this.flagnote = flagnote)
+    // console.log("called div");
+    // this.flagnote=!this.flagnote;
+    console.log(this.flagnote)
+  }
   openModal(templateRef) {
     let dialogRef = this.dialog.open(templateRef, {
         width: '250px',

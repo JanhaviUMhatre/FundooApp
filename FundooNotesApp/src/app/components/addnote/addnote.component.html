@@ -42,12 +42,15 @@
                             <mat-icon style="font-size: 20px" class="mat-18 changeColor">add_alert</mat-icon></button>
                             <mat-menu #menu="matMenu" [overlapTrigger]="false">
                                        
-                                    <mat-label class="label-align">Date:</mat-label>
+                                    <!-- <mat-label class="label-align">Date:</mat-label>
                                     <mat-form-field class="field-size"  [style.fontSize.px]=10>
                                        
                                             <input matInput [formControl]="date" (click)="stopPropagation($event)" >
                                           </mat-form-field>
-                                          <button mat-menu-item  (click)="reminder()">Remindme</button>
+                                          <button mat-menu-item  (click)="reminder()">Remindme</button> -->
+                                          <mat-label class="label-align">Reminder:</mat-label>
+                                          <button mat-menu-item>Item 1</button>
+                                         <button mat-menu-item>Item 2</button>
                                   </mat-menu>  
                             <button mat-icon-button matTooltip="Collaborator">
                                 <mat-icon style="font-size: 20px" class="mat-18 changeColor">person_add

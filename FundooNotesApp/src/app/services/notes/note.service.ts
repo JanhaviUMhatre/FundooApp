@@ -20,7 +20,14 @@ import { Subject, BehaviorSubject } from 'rxjs';
 export class NoteService {
   baseUrl = environment.baseUrl;
   url:any;
+  private flagSource = new BehaviorSubject(false);
+  currentFlag = this.flagSource.asObservable();
   constructor(private user : HttpService) { }
+  
+  changeMessage(flagnote:boolean){
+    this.flagSource.next(!flagnote)
+    
+ }
   createnote(userData){
     console.log(userData);
     return this.user.PostForm(this.baseUrl+'notes/addNotes',userData)

@@ -13,6 +13,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { AddlabelComponent } from './components/addlabel/addlabel.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import { ProfileComponent } from './components/profile/profile.component';
 const routes: Routes = [
     {
         path : 'registration',
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path : 'login',
         component : LoginComponent
+      },
+      {
+        path : 'profile',
+        component : ProfileComponent
       },
       {
         path : 'dashboard',
