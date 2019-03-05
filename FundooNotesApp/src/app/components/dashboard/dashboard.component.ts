@@ -15,6 +15,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { SearchService } from 'src/app/services/search/search.service';
+import { ViewService } from 'src/app/services/viewservice/view.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,16 +26,21 @@ export class DashboardComponent implements OnInit {
   showFiller = false;
   Search:any;
   flagnote:any;
-  constructor(private svc :NoteService,public dialog: MatDialog,private router: Router,private ser : SearchService) { }
+  icon:any = "view_stream";
+  constructor(private view: ViewService ,private svc :NoteService,public dialog: MatDialog,private router: Router,private ser : SearchService) { }
 
   ngOnInit() {
     
   }
-  showDiv(){
-    this.svc.currentFlag.subscribe(flagnote => this.flagnote = flagnote)
-    // console.log("called div");
-    // this.flagnote=!this.flagnote;
-    console.log(this.flagnote)
+  changeView(){
+if(this.icon === 'view_stream'){
+    this.icon = 'dashboard';
+ this.view.changeMessage('column wrap');
+}
+else{
+    this.icon='view_stream';
+    this.view.changeMessage('row wrap')
+}
   }
   openModal(templateRef) {
     let dialogRef = this.dialog.open(templateRef, {

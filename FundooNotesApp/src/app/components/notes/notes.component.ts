@@ -8,7 +8,7 @@
 // *
 // ***********************************************************************************
 
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,6 +16,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { LabelsComponent } from '../labels/labels.component';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/services/search/search.service';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { ViewService } from 'src/app/services/viewservice/view.service';
 
 @Component({
   selector: 'app-notes',
@@ -27,8 +29,9 @@ export class NotesComponent implements OnInit {
   cardArray:any;
   data: any;
   color : any;
-  // flagnote :any;
+  flagnote :any;
   footerData : any;
+
   @Output() getId = new EventEmitter();
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   archivevalue=false;
@@ -59,12 +62,13 @@ export class NotesComponent implements OnInit {
  dataRefresher: any;
  @Input() arrayCards;
  @Input() Search;
- @Input() flagnote;
+
  menuid:any;
 newArray:any[];
 today: number = Date.now();
+  message: string="row wrap";
 
-  constructor(private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
+  constructor(private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
       this.matIconRegistry.addSvgIcon(
@@ -81,10 +85,11 @@ today: number = Date.now();
 
   ngOnInit() {
     this.getNoteData()
-    this.svc.currentFlag.subscribe(flagnote => this.flagnote = flagnote)
-    console.log("in notes",this.flagnote)
+    this.view.currentMessage.subscribe(message => this.message = message)
+
    //console.log(this.childMessage)
   }
+ 
   // showDiv(){
   //   console.log("called div");
   //   this.flagnote=!this.flagnote;

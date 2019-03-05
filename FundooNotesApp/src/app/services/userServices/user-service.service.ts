@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -39,5 +40,31 @@ resetpassword(userData){
 
 uploadProfile(userData,data:any){
   return this.user.PostForm(this.baseUrl+'user/uploadProfileImage',userData)
+}
+// postFile(mImage){
+//   const HttpUploadOptions = {
+//     headers: new HttpHeaders(
+//       //{ "Content-Type": "multipart/form-data",
+//    { 'Authorization':localStorage.getItem('token')}
+//   //}
+//   )
+//   }
+//   const formData = new FormData();
+//   //formData.append('data', mFormData);
+//   formData.append('image', mImage);
+//   return this.http.post(this.baseUrl+'user/uploadProfileImage', formData, HttpUploadOptions)
+// }
+
+NEWupload(encodedString) {
+  const formData = new FormData();
+  formData.append('imageUrl', encodedString);
+  const HttpUploadOptions = {
+    headers: new HttpHeaders(
+      //{ "Content-Type": "multipart/form-data",
+   { 'Authorization':localStorage.getItem('token')}
+  //}
+  )
+  }
+  return this.http.post(this.baseUrl+'user/uploadProfileImage', formData,HttpUploadOptions)
 }
 }
