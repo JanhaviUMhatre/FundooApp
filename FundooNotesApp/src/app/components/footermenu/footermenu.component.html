@@ -1,5 +1,5 @@
-<!-- 
-<div fxLayout="row" fxLayoutAlign="space-around" >
+
+<div fxLayout="row" fxLayoutAlign="start start" >
      
   <div class="alignment">
       <button mat-icon-button matTooltip="Remind me">
@@ -47,17 +47,7 @@
             <button mat-menu-item [style.fontSize.px]=14 class="changeColor">show checkboxes</button>
           
           </mat-menu>
-    </div> -->
+    </div> 
   
   
 
-    <mat-grid-list cols="3" rowHeight="100px">
-            <div fxLayout="row wrap"  fxLayoutAlign="  center" >
-                    <div *ngFor="let note of cardArray">
-                           <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
-                                 {{note.title}}                
-                   </mat-card>   
-        </div>
-                    </div>
-       
-        </mat-grid-list>

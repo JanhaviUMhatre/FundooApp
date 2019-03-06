@@ -116,8 +116,35 @@ height: 30px;
 border: 1px solid;
 border-radius: 30px;
 font-size: x-large;
-padding-right: 20px;
+padding-right: 2px;
+
 }
+.account{
+  padding-top: 8px;
+  padding-left: 100px;
+}
+.mat-menu-item {
+  width:230px;}
+.profileButton {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 100px;
+  height: 100px;
+  //border: 1px solid;
+  border-radius: 150px;
+  //font-size: x-large;
+  padding-right: 10px;
+  }
+.emailid{
+  padding-top: 5px;
+}
+
+ .username{
+   padding-top: 20px;
+   padding-left: 10px;
+   padding-right: 10px;
+ }
 .sideNavList {
 width: 270px;
 height: 98.6%;
@@ -156,6 +183,7 @@ background-color: #e6e6e6;
 background-color: rgb(255, 255, 255); // max-width: 600px;
 max-width: -webkit-fill-available;
 margin-left: 200px;
+overflow: hidden !important;
 }
 .align-logout{
   padding-left: 110px;

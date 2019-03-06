@@ -14,6 +14,8 @@ import { AddlabelComponent } from './components/addlabel/addlabel.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RemindersComponent } from './components/reminders/reminders.component';
+
 const routes: Routes = [
     {
         path : 'registration',
@@ -59,6 +61,10 @@ const routes: Routes = [
           {
             path:'archive',
             component:ArchiveComponent
+          },
+          {
+            path:'reminder',
+            component:RemindersComponent
           }
           ]
       },
@@ -81,7 +87,21 @@ const routes: Routes = [
 ];
 @NgModule({
     imports:[RouterModule.forRoot(routes)],
-    exports:[RouterModule]
+    //exports:[RouterModule]
 })
 
 export class AppRoutingModule { }
+export const routingComponents = [RegistrationComponent, 
+  LoginComponent, 
+  ResetPasswordComponent, 
+  ResetComponent, 
+  DashboardComponent,
+  ProfileComponent,
+FootermenuComponent,
+ArchiveComponent,
+TrashComponent,
+NotesComponent,
+RemindersComponent,
+AddlabelComponent,
+SearchbarComponent,
+AddnoteComponent]

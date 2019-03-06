@@ -107,20 +107,22 @@ description = new FormControl('')
       duration: 3000
     });
   }
+  
   reminder(){
     this.remindData={
       "reminder": [this.date.value]
       
     }
     console.log(this.remindData)
-    this.svc.remindMe(this.remindData).subscribe(
-      (response) => {console.log("success",response);
+    // this.svc.remindMe(this.remindData).subscribe(
+    //   (response) => {console.log("success",response);
   
-    },
-      (error) => {console.log("error",error);}
+    // },
+    //   (error) => {console.log("error",error);}
     
-    )
+    // )
   }
+
 
   //main function to create note
   createNote(){

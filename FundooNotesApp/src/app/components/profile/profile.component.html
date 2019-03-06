@@ -14,13 +14,11 @@
       <div class="form-group">
         <input type="file" name="imageUrl" (change)="onSelectedFile($event)" />
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-success">Upload</button>
-      </div>
+     
     </form>
-    <div *ngIf="fileUpload.status==='success'">
-      <img [src]="fileUpload.filePath" height="200px" />
-    </div>
+    <!-- <div *ngIf="fileUpload.status==='success'"> -->
+      <img src={{selectedFile}} height="200px" />
+    <!-- </div> -->
     <p>{{ error }}</p>
   </div>
 </div>

@@ -59,4 +59,9 @@ openSearch(){
 lookFor(){
         this.ser.changeMessage(this.Search);
 }
+signout(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId')
+    this.router.navigateByUrl('/login');
+}
 }

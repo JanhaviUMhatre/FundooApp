@@ -63,6 +63,8 @@ deleteforevernote(userData){
 remindMe(userData:any){
 return this.user.postMethod(this.baseUrl+'notes/addUpdateReminderNotes',userData)
 }
-
+getReminderNotes(){
+  return this.user.getFormData(this.baseUrl+'notes/getReminderNotesList')
+}
 
 }

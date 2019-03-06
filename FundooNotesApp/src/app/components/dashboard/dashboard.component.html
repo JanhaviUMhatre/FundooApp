@@ -25,7 +25,7 @@
     
    
       <div class="field-position">
-        <mat-form-field class="field" appearance="none" [style.fontSize.px]=12 > 
+        <mat-form-field class="field" appearance="outline" [style.fontSize.px]=12 > 
           
           <input matInput type="text" class="searchInputBar" [(ngModel)]="Search" 
           placeholder="search" [style.fontSize.px]=18 (keyup)="lookFor()" (click)="openSearch()">
@@ -55,15 +55,30 @@
             <!-- end of list view button -->
             
         </div>
-     <div class="align-logout">
-        <!-- account button -->
-        <button [matMenuTriggerFor]="menu" class="accountButton" >{{nameFirstLetter}}</button>
+     <div class="align-logout" class="account">
+       
+        <div [matMenuTriggerFor]="menu"  >
+            <img src="assets/images/blank.png" class="accountButton" >
+        </div>
       </div></div>
-        <mat-menu #menu="matMenu">
-          <!-- logout button -->
-            <button mat-menu-item routerLink="/login">Logout</button>
-            
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <div fxLayout="column"  >
+            <div fxLayout="row wrap"  >
+         <div >
+            <img src="assets/images/blank.png"  class="profileButton">
+          </div>
+          <div  class="username">
+              <div fxLayout="column wrap" fxLayoutAlign="center center" >
+             <mat-label  [style.fontSize.px]=15>Pushkar Ishware</mat-label>
+             <mat-label [style.fontSize.px]=12>pushkar.ishware@gmail.com</mat-label>
+             </div>
+            </div>
+            </div>
+            <mat-divider></mat-divider>
+            <button mat-raised-button (click)="signout()">Sign Out</button>
+            </div>
           </mat-menu>
+
       </mat-toolbar><mat-divider></mat-divider>
   <!-- end of dashboard header -->
       <!-- sidenav bar -->
@@ -79,7 +94,7 @@
               </div>
         
               <div>
-                <button mat-button  (click)="headerName='Reminders'" [ngClass]="{'sideNavListItems': headerName!='Reminders', 'sideNavlistItemsColored': headerName=='Reminders'}">
+                <button mat-button [routerLink]="['reminder']"  (click)="headerName='Reminders'" [ngClass]="{'sideNavListItems': headerName!='Reminders', 'sideNavlistItemsColored': headerName=='Reminders'}">
                   <mat-icon>notifications_none</mat-icon> Reminders
                 </button>
               </div>

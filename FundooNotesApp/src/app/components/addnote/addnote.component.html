@@ -42,15 +42,30 @@
                             <mat-icon style="font-size: 20px" class="mat-18 changeColor">add_alert</mat-icon></button>
                             <mat-menu #menu="matMenu" [overlapTrigger]="false">
                                        
-                                    <!-- <mat-label class="label-align">Date:</mat-label>
-                                    <mat-form-field class="field-size"  [style.fontSize.px]=10>
-                                       
-                                            <input matInput [formControl]="date" (click)="stopPropagation($event)" >
-                                          </mat-form-field>
-                                          <button mat-menu-item  (click)="reminder()">Remindme</button> -->
-                                          <mat-label class="label-align">Reminder:</mat-label>
-                                          <button mat-menu-item>Item 1</button>
-                                         <button mat-menu-item>Item 2</button>
+                                    <!-- <mat-label class="label-align">Reminder:</mat-label>
+                                          <button mat-menu-item> Later Today : 8 PM
+                                            </button>
+                                            <button mat-menu-item> Tomorrow : 8 AM
+                                                </button>
+                                                <button mat-menu-item> Next Week :Monday, 8 AM
+                                                    </button>
+                                                    <button mat-menu-item [matMenuTriggerFor]="peekDate"> Peek date and time
+                                                        </button>
+                                                    <mat-menu #peekDate="matMenu">
+                                                            <div fxLayout="column" fxFlex="auto" fxLayoutAlign="space-around center" >
+                                                            <mat-form-field class="field-size">
+                                                                    <input matInput [matDatepicker]="picker" [formControl]="date" [style.fontSize.px]=12>
+                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                                  </mat-form-field>
+                                                                  <mat-form-field class="field-size">
+                                                                        <input matInput  [formControl]="time" [style.fontSize.px]=12 (click)="stopPropagation($event)">
+                                                        <mat-icon matSuffix style="font-size: 17px;color: gray;">access_time</mat-icon>
+                                                      
+                                                                      </mat-form-field>
+                                                                
+                                                                  <button mat-button (click)="reminder()">done</button></div>
+                                                          </mat-menu> -->
                                   </mat-menu>  
                             <button mat-icon-button matTooltip="Collaborator">
                                 <mat-icon style="font-size: 20px" class="mat-18 changeColor">person_add

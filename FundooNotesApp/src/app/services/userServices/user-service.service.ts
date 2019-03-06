@@ -55,9 +55,9 @@ uploadProfile(userData,data:any){
 //   return this.http.post(this.baseUrl+'user/uploadProfileImage', formData, HttpUploadOptions)
 // }
 
-NEWupload(encodedString) {
+NEWupload(file) {
   const formData = new FormData();
-  formData.append('imageUrl', encodedString);
+  formData.append('file', file);
   const HttpUploadOptions = {
     headers: new HttpHeaders(
       //{ "Content-Type": "multipart/form-data",
