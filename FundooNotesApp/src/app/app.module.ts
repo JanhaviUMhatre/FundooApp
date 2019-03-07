@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AmazingTimePickerModule } from 'amazing-time-picker'; 
 
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { from } from 'rxjs';
@@ -32,6 +33,7 @@ import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
+import { PinedComponent } from './components/pined/pined.component';
 //import { AuthGuard } from './auth.guard'
 
 
@@ -70,8 +72,11 @@ import { RemindersComponent } from './components/reminders/reminders.component';
     ProfileComponent,
    
     RemindersComponent,
+   
+    PinedComponent,
   ],
   imports: [AppRoutingModule,
+    AmazingTimePickerModule,
     BrowserModule,
     MatSnackBarModule,
     HttpClientModule,

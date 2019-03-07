@@ -7,7 +7,6 @@
 // * @since 20-2-2019
 // *
 // ***********************************************************************************
-import { AmazingTimePickerService } from 'amazing-time-picker';
 
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { NoteService } from 'src/app/services/notes/note.service';
@@ -21,13 +20,13 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ViewService } from 'src/app/services/viewservice/view.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
 @Component({
-  selector: 'app-notes',
-  templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss']
+  selector: 'app-pined',
+  templateUrl: './pined.component.html',
+  styleUrls: ['./pined.component.scss']
 })
-export class NotesComponent implements OnInit {
+export class PinedComponent implements OnInit {
+
   deletevalue=false;
   cardArray:any;
   data: any;
@@ -39,7 +38,7 @@ export class NotesComponent implements OnInit {
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   archivevalue=false;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
-  pinValue= false;
+  pinValue=true;
   id:any;
   //
 
@@ -71,14 +70,13 @@ export class NotesComponent implements OnInit {
  selectable = true;
   removable = true;
  menuid:any;
- 
 newArray:any[];
 today: number = Date.now();
   message: string="row wrap";
   addlabeldata: { "label": any; "userId": any; "isDeleted": any; };
   labels = new FormControl('')
 label:string;
-  constructor(private atp: AmazingTimePickerService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
+  constructor(private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
       this.matIconRegistry.addSvgIcon(
@@ -104,12 +102,6 @@ label:string;
   //   console.log("called div");
   //   this.flagnote=!this.flagnote;
   // }
-  open() {
-    const amazingTimePicker = this.atp.open();
-    amazingTimePicker.afterClose().subscribe(time => {
-      console.log(time);
-    });
-  }
   submit(){
 console.log(this.date.value,this.time.value)
   }
@@ -272,7 +264,7 @@ this.updateNotes(card)
     )
   }
   //dialog box
-  openDialog(card,labels): void {
+  openDialog(card): void {
     const dialogRef = this.dialog.open(LabelsComponent,
      {
      data : {
@@ -282,7 +274,6 @@ this.updateNotes(card)
        color:card.color,
        isDeleted:card.isDeleted,
        userId:card.userId,
-       label:labels.label
       
      }
     });

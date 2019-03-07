@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA, MatIconRegistry } from '@angular/material';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +22,9 @@ export class ProfileComponent implements OnInit {
   error: string;
   fileUpload = {status: '', message: '', filePath: ''};
 
-  constructor(private router: Router,private fb: FormBuilder,private svc : UserServiceService,private http : HttpClient) { }
+  constructor(private router: Router,private fb: FormBuilder,private svc : UserServiceService,private http : HttpClient,
+    public dialogRef: MatDialogRef<DashboardComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
   baseUrl = environment.baseUrl;
 
   ngOnInit() {
@@ -37,6 +41,7 @@ onSelectedFile(event) {
     this.svc.NEWupload(file).subscribe(
       (response) => {console.log("success",response)
       this.selectedFile=response['status'].imageUrl;
+      localStorage.setItem('imageUrl',this.selectedFile)
       console.log("file",this.selectedFile)
       //this.router.navigate(['/dashboard']);
     },

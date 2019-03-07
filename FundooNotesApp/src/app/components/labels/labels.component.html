@@ -3,7 +3,7 @@
 <div  [ngStyle]="{'backgroundColor': data.color}" class="width-dialog">
 <div fxLayout="column" fxLayoutAlign="space-between start" >
    
-        <div fxLayout="row" fxLayoutAlign="end" >
+        <div fxLayout="row" fxLayoutAlign="space-between end" >
     <input matInput value={{data.title}} [formControl]="title" [style.fontSize.px]=20 class="dialog">
     
     <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(data.id)">
@@ -12,12 +12,21 @@
   </div>
             <input matInput value= {{data.description}} [formControl]="description" [style.fontSize.px]=20 class="dialog">
             
-            <div fxLayout="row" fxLayoutAlign="start" >
+            <!-- <div fxLayout="row" fxLayoutAlign="start" >
    
             <input matInput class="dialog"  [formControl]="labels" placeholder="add label">   
                     <button mat-icon-button matTooltip="add label" (click)="addLabel(data)">
                         <mat-icon style="font-size: 15px" class="mat-18 changeColor">add
-                               </mat-icon></button></div>
+                               </mat-icon></button></div> -->
+                              
+                               <!-- <mat-chip-list > -->
+
+                                  <!-- <div *ngFor="let labels of note.noteLabels"> -->
+                                          <!-- <mat-chip [removable]="removable">{{data.label}} -->
+                                                  <!-- <mat-icon matChipRemove>cancel</mat-icon> -->
+                                          <!-- </mat-chip> -->
+                          <!-- </div> -->
+                                        <!-- </mat-chip-list> -->
             <div class="alignment">
                           
                         <div fxLayout="row" fxLayoutAlign="space-around center" >

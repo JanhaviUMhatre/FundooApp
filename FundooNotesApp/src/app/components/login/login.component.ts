@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/login.model';
 
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
+import { ViewService } from 'src/app/services/viewservice/view.service';
 //import { AuthService } from 'src/app/services/AuthGuard/auth.service';
 @Component({
   selector: 'app-login',
@@ -29,8 +30,8 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 export class LoginComponent implements OnInit {
 isActive = false;
 user: LoginModel = new LoginModel(); //object of login model
-
-constructor(private snackBar: MatSnackBar,
+data:any;
+constructor(private view: ViewService,private snackBar: MatSnackBar,
  // private Auth : AuthService,
   private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient){
 }
@@ -44,6 +45,7 @@ password : [this.user.password, [Validators.required, // password validation
   ngOnInit() {
     
   }
+  
   openSnackBar() {
     this.snackBar.open("you are logged in!!!!!", 'OK', {
       duration: 3000
@@ -63,6 +65,7 @@ password : [this.user.password, [Validators.required, // password validation
     console.log(this.loginForm.value);
     this.svc.login(this.loginForm.value).subscribe(
       (response) => {console.log("succsess",response);
+     localStorage.setItem('imageUrl', response['imageUrl'])
       localStorage.setItem('token',response['id'])
       localStorage.setItem('userId',response['userId'])
       this.openSnackBar();
@@ -79,7 +82,10 @@ password : [this.user.password, [Validators.required, // password validation
     
   }
 
-
+  sendMessage(): void {
+    // send message to subscribers via observable subject
+    this.view.sendMessage(this.data);
+}
 email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
 getErrorMessageEmail() {
   return this.email.hasError('required') ? 'Not a valid email' : this.email.hasError('email') ? 'Not a valid email' :'';

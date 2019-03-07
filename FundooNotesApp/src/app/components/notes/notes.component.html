@@ -1,25 +1,39 @@
+<div fxLayout="column" fxFlex="100"  fxLayoutAlign="start center" >
+
+    <app-pined></app-pined>
+
+<mat-label>others</mat-label>
 <div fxLayout={{message}} fxFlex="100"  fxLayoutAlign="start center" >
 
 <!-- <div fxLayout={{message}} fxFlex="100" fxLayoutAlign=" center center" > -->
         <div *ngFor="let note of cardArray | search:Search; let i = index">
             <div *ngIf="note.isArchived===false">
                     <div *ngIf="note.isDeleted===false">
+                            <div *ngIf="note.isPined===false">
                 <div fxLayout="row wrap" fxLayoutAlign="center center" >
                         <div class="cards" >
-                        <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
+                        <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" [ngClass]="{'cardWidth': message=='column wrap'}" >
                             <div fxLayout="column" >                       
                         <div fxLayout="row" fxLayoutAlign="space-between center" >
-           <div class="title" [style.fontSize.px]=19 (click)="openDialog(note)"> {{note.title}}</div>        
+           <div class="title" [style.fontSize.px]=19 (click)="openDialog(note,note.noteLabels)"> {{note.title}}</div>        
            <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(note)">
-                <ng-container *ngIf="pinValue===false">
-                    <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
-                </ng-container>
-                <ng-container *ngIf="pinValue===true">
+                <div *ngIf="note.isPined===false">
+                    <mat-icon  style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
+                </div>
+                <!-- <div *ngIf="note.isPined === true">
                     <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="pinIcon"></mat-icon>
-                </ng-container>
+                </div> -->
               </button></div>
            <div class="description">{{note.description}}</div> 
-          
+           <mat-chip-list >
+
+        <div *ngFor="let labels of note.noteLabels">
+                <mat-chip [removable]="removable">{{labels.label}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+</div>
+              </mat-chip-list>
+              
         
            <div fxLayout="row" fxLayoutAlign="space-around start" >
                 <div class="alignment">
@@ -44,12 +58,13 @@
                                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                                     <mat-datepicker #picker></mat-datepicker>
                                                                   </mat-form-field>
-                                                                  <mat-form-field class="field-size">
-                                                                        <input matInput  [formControl]="time" [style.fontSize.px]=12 (click)="stopPropagation($event)">
-                                                        <mat-icon matSuffix style="font-size: 17px;color: gray;">access_time</mat-icon>
+                                                                  <!-- <mat-form-field class="field-size"> -->
+                                                                        <!-- <input matInput  [formControl]="time" [style.fontSize.px]=12 (click)="stopPropagation($event)"> -->
+                                                        <!-- <mat-icon matSuffix style="font-size: 17px;color: gray;">access_time</mat-icon> -->
                                                       
-                                                                      </mat-form-field>
-                                                                
+                                                                      <!-- </mat-form-field> -->
+                                                                      <mat-form-field class="field-size">
+                                                                      <input matInput atp-time-picker [formControl]="time" [style.fontSize.px]=12 value="19:00:00"/></mat-form-field>
                                                                   <button mat-button (click)="reminder()">done</button></div>
                                                           </mat-menu>
                                                           
@@ -70,17 +85,21 @@
                                                           </button>    
                                             </mat-menu>
                                             <mat-menu #labelMenu="matMenu" [overlapTrigger]="false">
-                                                    <!-- <mat-form-field matSuffix>
-                                                            <input matInput placeholder="add label">
-                                                            <mat-icon style="font-size: 12px" class="mat-18 changeColor">check</mat-icon>
+                                                    <mat-label class="field-size">add label : </mat-label>
+                                                    <mat-form-field   class="field-size">
+                                                       
+                                                            <input matInput [formControl]="labels" (click)="stopPropagation($event)">
+                                                            <button matSuffix mat-icon-button matTooltip="add label" (click)="addlabels(note)" (click)="newLabel()">
+
+                                                            <mat-icon  style="font-size: 12px" class="mat-18 changeColor">check</mat-icon></button>
                                                           </mat-form-field>
-                                                         -->
+                                                        
                                             </mat-menu>
     </div></div>
 </div>
     </mat-card></div>
 </div>
-    </div></div></div>
+    </div></div></div></div>
 
     <mat-menu #colorMenu="matMenu"  class="colorMenu" [overlapTrigger]="false">
 
@@ -97,3 +116,4 @@
               </div>
                 </ng-template>
               </mat-menu>
+</div>

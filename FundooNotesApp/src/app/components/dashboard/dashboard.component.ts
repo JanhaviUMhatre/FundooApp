@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { SearchService } from 'src/app/services/search/search.service';
 import { ViewService } from 'src/app/services/viewservice/view.service';
+import { ProfileComponent } from '../profile/profile.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,10 +29,26 @@ export class DashboardComponent implements OnInit {
   Search:any;
   flagnote:any;
   icon:any = "view_stream";
+  data:any;
+  responsedata:Subscription;
   constructor(private view: ViewService ,private svc :NoteService,public dialog: MatDialog,private router: Router,private ser : SearchService) { }
 
   ngOnInit() {
-    
+    this.getImage()
+   // this.responsedata = this.view.loginResponse().subscribe(message =>  this.data = message);
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ProfileComponent,
+     {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
+  getImage(){
+      this.data=localStorage.getItem("imageUrl");
   }
   changeView(){
 if(this.icon === 'view_stream'){
@@ -59,9 +77,13 @@ openSearch(){
 lookFor(){
         this.ser.changeMessage(this.Search);
 }
+changeprofile(){
+    this.router.navigateByUrl('/profile');
+}
 signout(){
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
     this.router.navigateByUrl('/login');
 }
+
 }

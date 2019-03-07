@@ -58,14 +58,14 @@
      <div class="align-logout" class="account">
        
         <div [matMenuTriggerFor]="menu"  >
-            <img src="assets/images/blank.png" class="accountButton" >
+            <img src="http://34.213.106.173/{{data}}" class="accountButton" >
         </div>
       </div></div>
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
             <div fxLayout="column"  >
             <div fxLayout="row wrap"  >
          <div >
-            <img src="assets/images/blank.png"  class="profileButton">
+            <img src="http://34.213.106.173/{{data}}"  class="profileButton" (click)="openDialog()">
           </div>
           <div  class="username">
               <div fxLayout="column wrap" fxLayoutAlign="center center" >
