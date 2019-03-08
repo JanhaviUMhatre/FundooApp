@@ -27,6 +27,15 @@
 //     padding-right: 10px;
     
 // }
+.alignment{
+    display:none;}
+    mat-card:hover{
+    
+          .alignment{
+             display:block;
+            
+          }
+    }
 .trash-align{
     padding-top: 200px;
    }
@@ -39,6 +48,7 @@
        margin-left: 20px;
        margin-right: 20px;
        width:200px;
+       font-size: 11px;
    }
    .label-align{
     margin-left: 10px;
@@ -46,8 +56,8 @@
    }
    .mat-menu-item {
     width:500px;
-    
    
+        font-size: 11px;
     position: relative;}
     .menu-list{
         padding-left: 1px;

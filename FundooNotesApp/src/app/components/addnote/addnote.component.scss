@@ -21,7 +21,12 @@ $mat-card-padding: 16px !default;
 $mat-card-border-radius: 7px !default;
 $mat-card-header-size: 40px !default;
 
-
+.field-size{
+    margin-left: 20px;
+    margin-right: 20px;
+    width:200px;
+    font-size: 11px;
+}
 .mat-card {
 
   display: block;
@@ -44,4 +49,7 @@ $mat-card-header-size: 40px !default;
   .alignment{
     padding-top: 5px;
     padding-left: 1px;
+}
+.mat-menu-item{
+    font-size: 11px;
 }

@@ -71,13 +71,14 @@ export class NotesComponent implements OnInit {
  selectable = true;
   removable = true;
  menuid:any;
- 
+
 newArray:any[];
 today: number = Date.now();
   message: string="row wrap";
   addlabeldata: { "label": any; "userId": any; "isDeleted": any; };
   labels = new FormControl('')
-label:string;
+  addlabel = new FormControl('')
+label:any;
   constructor(private atp: AmazingTimePickerService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -96,10 +97,22 @@ label:string;
   ngOnInit() {
     this.getNoteData()
     this.view.currentMessage.subscribe(message => this.message = message)
-    this.view.currentlabel.subscribe(label => this.label = label)
-   //console.log(this.childMessage)
+    //this.view.currentlabel.subscribe(label => this.label = label)
+    this.getLabelsDashboard()
+   
   }
- 
+  addinglabel(){
+console.log("selected label",this.addlabel.value)
+  }
+  getLabelsDashboard(){
+    this.svc.getLabels().subscribe(
+        (response) => {console.log("success",response);
+        this.label=response['data']['details'];
+        console.log(this.label)
+    },
+        (error)=>{console.log("error",error)}
+    )
+}
   // showDiv(){
   //   console.log("called div");
   //   this.flagnote=!this.flagnote;
@@ -328,9 +341,9 @@ this.updateNotes(card)
     event.stopPropagation();
     // console.log("Clicked!");
   }
-  reminder(){
+  reminder(card){
     this.remindData={
-      "reminder": [this.date.value], "noteIdList":[this.id]
+      "reminder": [this.date.value,this.time.value], "noteIdList":[this.id]
       
     }
     console.log(this.remindData)

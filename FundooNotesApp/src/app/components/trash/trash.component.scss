@@ -26,10 +26,26 @@
     padding-right: $padding-right
     
 }
+.alignment{
+    display:none;}
+    mat-card:hover{
+    
+          .alignment{
+             display:block;
+            
+          }
+    }
 .trash-align{
  padding-top: 200px;
 }
 .cards{
     padding-left: 60px;
     padding-right: 10px;
+}
+button{ display:none}
+mat-card:hover{
+
+  button{
+     display:block
+  }
 }

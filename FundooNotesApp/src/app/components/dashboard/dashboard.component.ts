@@ -27,14 +27,18 @@ import { Subscription } from 'rxjs';
 export class DashboardComponent implements OnInit {
   showFiller = false;
   Search:any;
+  label:any;
   flagnote:any;
   icon:any = "view_stream";
   data:any;
   responsedata:Subscription;
+    labelId: any;
+    labelName: any;
   constructor(private view: ViewService ,private svc :NoteService,public dialog: MatDialog,private router: Router,private ser : SearchService) { }
 
   ngOnInit() {
     this.getImage()
+    this.getLabelsDashboard()
    // this.responsedata = this.view.loginResponse().subscribe(message =>  this.data = message);
   }
   openDialog(): void {
@@ -84,6 +88,22 @@ signout(){
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
     this.router.navigateByUrl('/login');
+}
+
+getLabelsDashboard(){
+    this.svc.getLabels().subscribe(
+        (response) => {console.log("success",response);
+        this.label=response['data']['details'];
+        console.log(this.label)
+    },
+        (error)=>{console.log("error",error)}
+    )
+}
+getIdlabel(labels){
+    this.labelId = labels.id
+    this.labelName = labels.label
+    console.log(this.labelId)
+
 }
 
 }

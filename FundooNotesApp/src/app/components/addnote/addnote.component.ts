@@ -52,6 +52,7 @@ export class AddnoteComponent implements OnInit {
  
   //note : CreateNote =new CreateNote;
   date=new FormControl('');
+  time=new FormControl('');
 
 title = new FormControl('')
 description = new FormControl('')
@@ -134,7 +135,8 @@ description = new FormControl('')
         "description": this.description.value,
         "isPined": this.pinValue,
         "isArchived": this.archiveValue,     
-        "color": this.color,    
+        "color": this.color, 
+        "reminder":[this.date.value,this.time.value]   
     }
     
     if(this.noteData.title != null || this.noteData.description!=null){
@@ -149,7 +151,7 @@ description = new FormControl('')
       this.openSnackBarError();
     }
     this.flag=!this.flag;
-
+    
   }
   //color
   changeColor(color) {
@@ -157,6 +159,6 @@ description = new FormControl('')
     this.color = color;
 
   }
-  
+
   
 }

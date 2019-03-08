@@ -66,5 +66,7 @@ return this.user.postMethod(this.baseUrl+'notes/addUpdateReminderNotes',userData
 getReminderNotes(){
   return this.user.getFormData(this.baseUrl+'notes/getReminderNotesList')
 }
-
+getLabels(){
+  return this.user.getFormData(this.baseUrl+'noteLabels/getNoteLabelList')
+}
 }

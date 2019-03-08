@@ -27,6 +27,16 @@
 //     padding-right: 10px;
     
 // }
+.alignment{
+display:none;}
+mat-card:hover{
+
+      .alignment{
+         display:block !important;
+        
+      }
+}
+
 .trash-align{
     padding-top: 200px;
    }
@@ -39,16 +49,26 @@
        margin-left: 20px;
        margin-right: 20px;
        width:200px;
+       font-size: 11px;
+       overflow: hidden;
+
    }
+//    button{ display:none}
+// mat-card:hover{
+
+//   button{
+//      display:block;
+    
+//   }
+//}
    .label-align{
     margin-left: 10px;
     
    }
    .mat-menu-item {
     width:500px;
-    
-   
-    position: relative;}
+    font-size: 11px;
+    }
     .menu-list{
         padding-left: 1px;
     }

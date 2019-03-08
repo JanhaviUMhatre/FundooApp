@@ -9,6 +9,15 @@
 }
 //$mat-card-border-radius: 11px !default;
 
+.alignment{
+    display:none;}
+    mat-card:hover{
+    
+          .alignment{
+             display:block;
+            
+          }
+    }
 .mat-card {
 
     display: block;

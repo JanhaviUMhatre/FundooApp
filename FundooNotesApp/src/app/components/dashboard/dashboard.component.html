@@ -104,6 +104,11 @@
                 <!-- <button class="sideNavListItems" mat-button (click)="openDialog()">
                   <mat-icon>edit</mat-icon>Edit Labels
                 </button> -->
+                <div *ngFor="let labels of label; let i = index">
+                <button mat-button (click)="getIdlabel(labels)" (click)="headerName='labels'" [ngClass]="{'sideNavListItems': headerName!='Labels', 'sideNavlistItemsColored': headerName=='Labels'}">
+                  <mat-icon>label_outline</mat-icon> {{labels.label}}
+                </button>
+              </div>
                 <button class="sideNavListItems" mat-button (click)="openModal(mytemplate)"> <mat-icon>edit</mat-icon>Edit Labels</button>
 
     <ng-template #mytemplate>
@@ -111,12 +116,16 @@
 
             <h3>Edit Label</h3>
           <div>
-            
+            <div fxLayout="column" fxLayoutAlign="start start" >
               <div fxLayout="row" fxLayoutAlign="space-between center" >
               <input matInput type="text" placeholder="add label" [(ngModel)]="value">
               <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
                 <mat-icon [style.fontSize.px]=15> close</mat-icon>
               </button>
+</div>
+<div *ngFor="let labels of label; let i = index">
+  <mat-checkbox>{{labels.label}}</mat-checkbox>
+</div>
           </div>
           <div fxLayoutAlign="end" >
           <button mat-button>close</button></div>
@@ -143,7 +152,7 @@
           </mat-sidenav> 
           <mat-sidenav-content class="sideNavContent">
               
-            <router-outlet></router-outlet>
+            <router-outlet ></router-outlet>
             
         </mat-sidenav-content> 
         </mat-sidenav-container>
