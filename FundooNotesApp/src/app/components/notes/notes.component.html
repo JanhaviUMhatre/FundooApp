@@ -3,7 +3,7 @@
     <app-pined></app-pined>
 
 <mat-label>others</mat-label>
-<div fxLayout={{message}} fxFlex="100"  fxLayoutAlign="center center" >
+<div fxLayout={{message}} fxFlex="100"  fxLayoutAlign="start center" >
 
 <!-- <div fxLayout={{message}} fxFlex="100" fxLayoutAlign=" center center" > -->
         <div *ngFor="let note of cardArray | search:Search; let i = index">
@@ -26,6 +26,14 @@
               </button></div>
            <div class="description">{{note.description}}</div> 
            <mat-chip-list >
+            <div *ngFor="let col of note.collaborators">
+                <div class="alignbutton">
+                    <button  mat-fab color="accent" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
+                            <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
+                    </button></div>
+                </div>
+      </mat-chip-list>
+           <mat-chip-list >
 
         <div *ngFor="let labels of note.noteLabels">
                 <mat-chip [removable]="removable">{{labels.label}}
@@ -33,6 +41,7 @@
                 </mat-chip>
 </div>
               </mat-chip-list>
+            
               
         
            <div fxLayout="row" fxLayoutAlign="space-around start" >
@@ -74,9 +83,9 @@
                                                     </mat-menu>
                                                           
                                       </mat-menu>  
-                <button mat-icon-button matTooltip="Delete" (click)="delete(note)">
-                    <mat-icon style="font-size: 20px" class="mat-18 changeColor">delete_outlined
-                      </mat-icon></button>
+        <button mat-icon-button matTooltip="Collaborator" (click)="openDialogCollaborate(note.user,note.id)">
+                <mat-icon style="font-size: 20px" class="mat-18 changeColor">person_add_outlined
+                    </mat-icon></button>
                       <button mat-icon-button matTooltip="Archive" (click)="archive(note)">
                         <mat-icon style="font-size: 17px" class="mat-18 changeColor ">archive_outlined</mat-icon></button>
                         
@@ -87,7 +96,10 @@
                                             <mat-menu #moreMenu="matMenu" [overlapTrigger]="false">
                                                     <button mat-menu-item [style.fontSize.px]=13 [matMenuTriggerFor]="labelMenu"> 
                                                             add label
-                                                          </button>    
+                                                          </button>   
+                                                          <button mat-menu-item [style.fontSize.px]=13 (click)="delete(note)"> 
+                                                            Delete note
+                                                           </button>     
                                             </mat-menu>
                                             <mat-menu #labelMenu="matMenu" [overlapTrigger]="true">
                                                     <mat-label class="field-size">add label : </mat-label>

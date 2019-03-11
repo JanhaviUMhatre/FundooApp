@@ -89,5 +89,12 @@ mat-card:hover{
    
     mat-chip {
        
-        max-width:100px;
+        max-width:200px;
       }
+    .alignbutton{
+        padding-top: 4px;
+       
+    }
+    mat-fab{
+        font-size: 5px;
+    }

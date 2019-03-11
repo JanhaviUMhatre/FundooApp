@@ -62,6 +62,14 @@ export class HttpService {
     }
     return this.http.post(url,this.getEncodData(data),httpOptions)
   }
+  public DeleteForm(url:any){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization':localStorage.getItem('token')
+      })
+    }
+   return this.http.delete(url,httpOptions)
+  }
 
   public getForm(url:any){
     const httpOptions = {

@@ -6,9 +6,11 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
 })
 export class ViewService {
   private messageSource = new BehaviorSubject("row wrap");
+  //private collaboratoremail = new BehaviorSubject("default email");
   private labelSource = new BehaviorSubject(null);
   private loginSource = new Subject<any>();
   currentMessage = this.messageSource.asObservable();
+  //currentEmail = this.collaboratoremail.asObservable();
   currentlabel = this.labelSource.asObservable();
   currentlogin = this.loginSource.asObservable();
   constructor() { }
@@ -16,6 +18,9 @@ export class ViewService {
   changeMessage(message: string) {
     this.messageSource.next(message)
   }
+  // changeEmail(word: string) {
+  //   this.messageSource.next(word)
+  // }
   changelabel(label: string) {
     this.labelSource.next(label)
   }

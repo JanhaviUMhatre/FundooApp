@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { Subject, BehaviorSubject } from 'rxjs';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -68,5 +69,14 @@ getReminderNotes(){
 }
 getLabels(){
   return this.user.getFormData(this.baseUrl+'noteLabels/getNoteLabelList')
+}
+serachuser(userData){
+  return this.user.PostForm(this.baseUrl+'user/searchUserList',userData)
+}
+addCollaborator(url,userData){
+  return this.user.PostForm(url,userData)
+}
+removeCollaborator(url){
+  return this.user.DeleteForm(url)
 }
 }

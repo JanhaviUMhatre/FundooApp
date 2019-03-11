@@ -8,6 +8,7 @@
 // *
 // ***********************************************************************************
 import { AmazingTimePickerService } from 'amazing-time-picker';
+import { environment } from 'src/environments/environment';
 
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { NoteService } from 'src/app/services/notes/note.service';
@@ -21,6 +22,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ViewService } from 'src/app/services/viewservice/view.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 @Component({
   selector: 'app-notes',
@@ -35,6 +37,8 @@ export class NotesComponent implements OnInit {
   flagnote :any;
   footerData : any;
   labelresponse:any;
+  baseUrl = environment.baseUrl;
+
   @Output() getId = new EventEmitter();
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   archivevalue=false;
@@ -71,7 +75,7 @@ export class NotesComponent implements OnInit {
  selectable = true;
   removable = true;
  menuid:any;
-
+word:any;
 newArray:any[];
 today: number = Date.now();
   message: string="row wrap";
@@ -79,6 +83,7 @@ today: number = Date.now();
   labels = new FormControl('')
   addlabel = new FormControl('')
 label:any;
+collaborators:any;
   constructor(private atp: AmazingTimePickerService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -98,6 +103,7 @@ label:any;
     this.getNoteData()
     this.view.currentMessage.subscribe(message => this.message = message)
     //this.view.currentlabel.subscribe(label => this.label = label)
+    //this.view.currentEmail.subscribe(word => this.word = word)
     this.getLabelsDashboard()
    
   }
@@ -113,10 +119,7 @@ console.log("selected label",this.addlabel.value)
         (error)=>{console.log("error",error)}
     )
 }
-  // showDiv(){
-  //   console.log("called div");
-  //   this.flagnote=!this.flagnote;
-  // }
+
   open() {
     const amazingTimePicker = this.atp.open();
     amazingTimePicker.afterClose().subscribe(time => {
@@ -157,11 +160,11 @@ console.log(this.date.value,this.time.value)
     this.svc.getNotes().subscribe(
       (response) => {console.log("success get notes",response)
     this.data = response['data']['data']; 
-    
    
    
     this.data.reverse();
     console.log("in response",this.data)
+
     
     this.cardArray =  this.data.filter(function(e) {
       return (e.isDeleted===false && e.isArchived===false)
@@ -305,6 +308,26 @@ this.updateNotes(card)
       
     });
   }
+  openDialogCollaborate(userInfo,noteId,colemail,colUserid): void {
+    const dialogRef = this.dialog.open(CollaboratorComponent,
+     {
+     data : {
+       noteId:noteId,
+      email:userInfo.email,
+      id:userInfo.id,
+      firstName:userInfo.firstName,
+      lastName:userInfo.lastName,
+      userId:userInfo.userId,
+      collaborator:colemail,
+      colUserid:colUserid
+     }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
  //add labels
   addlabels(card){
     console.log("from addlabels",card.id);
@@ -340,6 +363,15 @@ this.updateNotes(card)
   stopPropagation(event){
     event.stopPropagation();
     // console.log("Clicked!");
+  }
+  removecollaborator(noteId,userId){
+
+console.log(noteId,userId)
+this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNotes/'+userId,
+).subscribe(
+  (Response)=>{(console.log("success",Response))},
+  (error)=>{(console.log("error",error))}
+)
   }
   reminder(card){
     this.remindData={
