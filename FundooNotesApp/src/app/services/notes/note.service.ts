@@ -79,4 +79,10 @@ addCollaborator(url,userData){
 removeCollaborator(url){
   return this.user.DeleteForm(url)
 }
+addingchecklistlabels(url,userData){
+  return this.user.PostForm(this.baseUrl+url,userData)
+}
+deletelabels(url){
+  return this.user.DeleteForm(url)
+}
 }

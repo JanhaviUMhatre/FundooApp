@@ -33,6 +33,7 @@ export class ResetPasswordComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.passwordForm.value);
+    
     this.svc.resetpassword(this.passwordForm.value).subscribe(
       (response) => {console.log("succsess",response);
       this.router.navigate(['/login']);},

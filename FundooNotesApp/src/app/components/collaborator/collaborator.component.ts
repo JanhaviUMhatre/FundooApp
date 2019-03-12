@@ -31,17 +31,9 @@ lastName:any;
     private view:ViewService) { }
 
   ngOnInit() {
-    // this.filteredOptions = this.word.valueChanges
-    // .pipe(
-    //   startWith(''),
-    //   map(value => this._filter(value))
-    // );
-  }
-  // private _filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
 
-  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  // }
+  }
+ 
 serachEmail(str: string): void{
   this.word = str;
 //console.log(this.word)
@@ -74,8 +66,7 @@ this.collaboratordata={
 console.log(this.collaboratordata)
 this.svc.addCollaborator(this.baseUrl+'notes/'+this.data.noteId+'/AddcollaboratorsNotes',this.collaboratordata).subscribe(
   (Response)=>{console.log("success",Response)
- // this.dialogRef.close();
-//this.view.changeEmail(this.word);
+
 
 },
   (error)=>{console.log("error",error)

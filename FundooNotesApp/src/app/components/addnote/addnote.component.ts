@@ -8,12 +8,13 @@
 // *
 // ***********************************************************************************
 
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/services/notes/note.service';
+import { NotesComponent } from '../notes/notes.component';
 
 @Component({
   selector: 'app-addnote',
@@ -22,9 +23,9 @@ import { NoteService } from 'src/app/services/notes/note.service';
 })
 export class AddnoteComponent implements OnInit {
   @Output() noteEvent = new EventEmitter<string>();
-
-
-
+  public word: string = "";
+email:any;
+colab=true;
  flag = false;
   isActive = false;
   pinValue= false;
@@ -57,6 +58,14 @@ export class AddnoteComponent implements OnInit {
 title = new FormControl('')
 description = new FormControl('')
   remindData: { "reminder": any[];};
+  collaboratorData:any;
+  emails: any;
+  firstName: any;
+  lastName: any;
+  userId: any;
+  label: any;
+  addedlabel:any []=[];
+  labeldata: number;
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,private snackBar: MatSnackBar,private svc : NoteService
     ) {
@@ -71,9 +80,31 @@ description = new FormControl('')
       
       );
    }
-
+   @ViewChild(NotesComponent) child;
   ngOnInit() {
     // this. createNote();
+    this.getLabelsDashboard()
+    this.email=localStorage.getItem('email')
+  }
+  
+  serachEmail(str: string): void{
+    this.word = str;
+  //console.log(this.word)
+    this.svc.serachuser({"searchWord":this.word}).subscribe(
+      (Response)=>{console.log("success search",Response['data']['details'])
+      this.emails = Response['data']['details'];
+      console.log("this is response",Response)
+      for(let val of Response['data']['details']){
+        this.firstName=val.firstName;
+        this.lastName=val.lastName;
+        this.userId=val.userId;
+      }
+    },
+      (error)=>{console.log("error",error)}
+    )
+  }
+  opencollaborator(){
+    this.colab =! this.colab
   }
   //change div
   showDiv(){
@@ -123,30 +154,42 @@ description = new FormControl('')
     
     // )
   }
-
+  addinglabel(labels){
+    console.log(labels)
+    this.labeldata=this.addedlabel.push(labels)
+    console.log(this.addedlabel)
+  }
 
   //main function to create note
   createNote(){
     
     // console.log(token,userId);
-
+this.collaboratorData={
+  "firstName":this.firstName,
+  "lastName":this.lastName,
+  "email":this.word,
+  "userId":this.userId}
+console.log("collaboration data",this.collaboratorData)
     this.noteData = {
         "title": this.title.value,
         "description": this.description.value,
         "isPined": this.pinValue,
         "isArchived": this.archiveValue,     
         "color": this.color, 
-        "reminder":[this.date.value,this.time.value]   
+        "reminder":[this.date.value,this.time.value],
+        "collaborators":[this.collaboratorData]
     }
     
     if(this.noteData.title != null || this.noteData.description!=null){
-    console.log(this.noteData);
+    console.log("note data",this.noteData);
     
      this.svc.createnote(this.noteData).subscribe(
        (response)=>{console.log("success",response);
+       this.child.getNoteData();
       },
       (error)=>{console.log("error",error);}
-     ); }
+     ); 
+    }
     else{
       this.openSnackBarError();
     }
@@ -160,5 +203,13 @@ description = new FormControl('')
 
   }
 
-  
+  getLabelsDashboard(){
+    this.svc.getLabels().subscribe(
+        (response) => {console.log("success",response);
+        this.label=response['data']['details'];
+        console.log(this.label)
+    },
+        (error)=>{console.log("error",error)}
+    )
+}
 }

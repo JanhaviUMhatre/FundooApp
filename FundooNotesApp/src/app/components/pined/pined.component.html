@@ -23,6 +23,14 @@
                   </button></div>
                <div class="description">{{note.description}}</div> 
                <mat-chip-list >
+                    <div *ngFor="let col of note.collaborators">
+                        <div class="alignbutton">
+                            <button  mat-mini-fab color="accent" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
+                                    <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
+                            </button></div>
+                        </div>
+              </mat-chip-list>
+               <mat-chip-list >
     
             <div *ngFor="let labels of note.noteLabels">
                     <mat-chip>{{labels.label}}
@@ -72,9 +80,9 @@
                                                               
                                                               
                                           </mat-menu>  
-                    <button mat-icon-button matTooltip="Delete" (click)="delete(note)">
-                        <mat-icon style="font-size: 17px" class="mat-18 changeColor">delete
-                          </mat-icon></button>
+                                          <button mat-icon-button matTooltip="Collaborator" (click)="openDialogCollaborate(note.user,note.id)">
+                                                <mat-icon style="font-size: 20px" class="mat-18 changeColor">person_add_outlined
+                                                    </mat-icon></button>
                           <button mat-icon-button matTooltip="Archive" (click)="archive(note)">
                             <mat-icon style="font-size: 17px" class="mat-18 changeColor">archive</mat-icon></button>
                             
@@ -85,7 +93,10 @@
                                                 <mat-menu #moreMenu="matMenu" [overlapTrigger]="false">
                                                         <button mat-menu-item [style.fontSize.px]=13 [matMenuTriggerFor]="labelMenu"> 
                                                                 add label
-                                                              </button>    
+                                                              </button> 
+                                                              <button mat-menu-item [style.fontSize.px]=13 (click)="delete(note)"> 
+                                                                    Delete note
+                                                                   </button>     
                                                 </mat-menu>
                                                 <mat-menu #labelMenu="matMenu" [overlapTrigger]="false">
                                                         <mat-label class="field-size">add label : </mat-label>
@@ -96,7 +107,9 @@
     
                                                                 <mat-icon  style="font-size: 12px" class="mat-18 changeColor">check</mat-icon></button>
                                                               </mat-form-field>
-                                                            
+                                                              <div *ngFor="let labels of label; let i = index">
+                                                                    <mat-checkbox class="field-size" value={{labels.label}} (click)="addinglabel(labels,note)" (click)=stopPropagation($event)>{{labels.label}}</mat-checkbox>
+                                                                  </div>
                                                 </mat-menu>
         </div></div>
     </div>

@@ -68,6 +68,7 @@ password : [this.user.password, [Validators.required, // password validation
      localStorage.setItem('imageUrl', response['imageUrl'])
       localStorage.setItem('token',response['id'])
       localStorage.setItem('userId',response['userId'])
+      localStorage.setItem('email',response['email'])
       this.openSnackBar();
       this.router.navigate(['/dashboard']);
       

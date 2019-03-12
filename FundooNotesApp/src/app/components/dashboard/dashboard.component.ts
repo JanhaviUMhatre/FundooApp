@@ -108,6 +108,7 @@
 
 // }
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 import { LabelsComponent } from '../labels/labels.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -125,6 +126,8 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   showFiller = false;
+  baseUrl = environment.baseUrl;
+
   Search:any;
   label:any;
   flagnote:any;
@@ -203,6 +206,12 @@ getIdlabel(labels){
     this.labelName = labels.label
     console.log(this.labelId)
 
+}
+deletelabelforever(labels){
+    this.svc.deletelabels(this.baseUrl+'noteLabels/'+labels.id+'/deleteNoteLabel').subscribe(
+        (response)=>{console.log("success",response)},
+        (error)=>{console.log("error",error)}
+    )
 }
 
 }

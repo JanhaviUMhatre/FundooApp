@@ -202,9 +202,10 @@
         
         <mat-nav-list class="sideNavList">       
             <div>
-              <button mat-button  [routerLink]="['addNote']" (click)="headerName='Notes'" [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
-                <mat-icon>lightbulb_outline</mat-icon> Notes
-              </button>
+              
+<button mat-button [routerLink]="['addNote']" (click)="headerName='Fundoo Notes'" [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
+    <mat-icon>lightbulb_outline</mat-icon> Notes
+    </button>
             </div>
       
             <div>
@@ -225,7 +226,7 @@
             </div>
               <button class="sideNavListItems" mat-button (click)="openModal(mytemplate)"> <mat-icon>edit</mat-icon>Edit Labels</button>
 
-  <ng-template #mytemplate>
+  <ng-template #mytemplate >
       <div>
 
           <h3>Edit Label</h3>
@@ -237,8 +238,20 @@
               <mat-icon [style.fontSize.px]=15> close</mat-icon>
             </button>
 </div>
-<div *ngFor="let labels of label; let i = index">
-<mat-checkbox>{{labels.label}}</mat-checkbox>
+<div *ngFor="let labels of label; let i = index" >
+<!-- <mat-checkbox>{{labels.label}}</mat-checkbox> -->
+<div fxLayout="row">
+<button mat-button (click)="deletelabelforever(labels)">
+    <mat-icon [style.fontSize.px]=18>delete_outline</mat-icon>
+  </button>
+<mat-form-field class="example-full-width">
+ 
+  <input type="text" matInput [style.fontSize.px]=11 value={{labels.label}}>
+ 
+</mat-form-field>
+<button mat-button >
+<mat-icon [style.fontSize.px]=11>mode_edit_outline</mat-icon></button>
+</div>
 </div>
         </div>
         <div fxLayoutAlign="end" >

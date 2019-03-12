@@ -23,7 +23,13 @@ reset(userData){
   return this.http.post<any>(this.baseUrl+'user/reset',userData)
 }
 resetpassword(userData){
-  return this.http.post<any>(this.baseUrl+'user/reset-password',userData)
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type' : 'application/x-www-form-urlencoded',
+      'Authorization':localStorage.getItem('token')
+    })
+  }
+  return this.http.post(this.baseUrl+'user/reset-password',userData,httpOptions)
 }
 // createnote(userData){
 //   console.log(userData);

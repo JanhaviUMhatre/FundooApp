@@ -20,12 +20,15 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ViewService } from 'src/app/services/viewservice/view.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-pined',
   templateUrl: './pined.component.html',
   styleUrls: ['./pined.component.scss']
 })
 export class PinedComponent implements OnInit {
+  baseUrl = environment.baseUrl;
 
   deletevalue=false;
   cardArray:any;
@@ -76,6 +79,7 @@ today: number = Date.now();
   addlabeldata: { "label": any; "userId": any; "isDeleted": any; };
   labels = new FormControl('')
 label:string;
+  addlabel: { "label": any; "isDeleted": any; "id": any; "userId": any; };
   constructor(private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -93,6 +97,7 @@ label:string;
 
   ngOnInit() {
     this.getNoteData()
+    this.getLabelsDashboard()
     this.view.currentMessage.subscribe(message => this.message = message)
     this.view.currentlabel.subscribe(label => this.label = label)
    //console.log(this.childMessage)
@@ -132,6 +137,34 @@ console.log(this.date.value,this.time.value)
       duration: 3000
     });
   }
+  addinglabel(labels,note){
+    this.addlabel={
+      
+        "label": labels.label,
+        "isDeleted": labels.isDeleted,
+        "id": labels.id,
+        "userId": labels.userId
+      
+    }
+console.log("selected label",this.addlabel);
+this.svc.addingchecklistlabels('noteLabels/'+note.id+'/updateNoteLabel/',this.addlabel).subscribe(
+  (Response)=>{console.log("success",Response)},
+  (error)=>{console.log("error",error)}
+  )
+
+
+  }
+
+  getLabelsDashboard(){
+    this.svc.getLabels().subscribe(
+        (response) => {console.log("success",response);
+        this.label=response['data']['details'];
+        console.log(this.label)
+    },
+        (error)=>{console.log("error",error)}
+    )
+}
+
   getNoteData(){
     this.svc.getNotes().subscribe(
       (response) => {console.log("success get notes",response)
@@ -334,7 +367,35 @@ this.updateNotes(card)
     
     )
   }
+  openDialogCollaborate(userInfo,noteId,colemail,colUserid): void {
+    const dialogRef = this.dialog.open(CollaboratorComponent,
+     {
+     data : {
+       noteId:noteId,
+      email:userInfo.email,
+      id:userInfo.id,
+      firstName:userInfo.firstName,
+      lastName:userInfo.lastName,
+      userId:userInfo.userId,
+      collaborator:colemail,
+      colUserid:colUserid
+     }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
+  removecollaborator(noteId,userId){
+
+    console.log(noteId,userId)
+    this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNotes/'+userId,
+    ).subscribe(
+      (Response)=>{(console.log("success",Response))},
+      (error)=>{(console.log("error",error))}
+    )
+      }
 }
 
 

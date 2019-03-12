@@ -81,7 +81,7 @@ today: number = Date.now();
   message: string="row wrap";
   addlabeldata: { "label": any; "userId": any; "isDeleted": any; };
   labels = new FormControl('')
-  addlabel = new FormControl('')
+  addlabel:any;
 label:any;
 collaborators:any;
   constructor(private atp: AmazingTimePickerService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
@@ -107,9 +107,25 @@ collaborators:any;
     this.getLabelsDashboard()
    
   }
-  addinglabel(){
-console.log("selected label",this.addlabel.value)
+
+  addinglabel(labels,note){
+    this.addlabel={
+      
+        "label": labels.label,
+        "isDeleted": labels.isDeleted,
+        "id": labels.id,
+        "userId": labels.userId
+      
+    }
+console.log("selected label",this.addlabel);
+this.svc.addingchecklistlabels('noteLabels/'+note.id+'/updateNoteLabel/',this.addlabel).subscribe(
+  (Response)=>{console.log("success",Response)},
+  (error)=>{console.log("error",error)}
+  )
+
+
   }
+
   getLabelsDashboard(){
     this.svc.getLabels().subscribe(
         (response) => {console.log("success",response);
@@ -388,6 +404,14 @@ this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNo
     
     )
   }
+  
+  deletelabelforever(labels){
+    this.svc.deletelabels(this.baseUrl+'noteLabels/'+labels.id+'/deleteNoteLabel').subscribe(
+        (response)=>{console.log("success",response)},
+        (error)=>{console.log("error",error)}
+    )
+}
+
 
 }
 
