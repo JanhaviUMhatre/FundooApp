@@ -158,7 +158,8 @@
   <div class="dashboardTitle">{{headerName}}</div>
    
    <mat-form-field  appearance="outline" [style.fontSize.px]=13  class="searchbar" > 
-    <input matInput >
+    <input matInput type="text" [(ngModel)]="Search" 
+    placeholder="search" [style.fontSize.px]=18 (keyup)="lookFor()" (click)="openSearch()">
     <mat-icon matSuffix [style.fontSize.px]=12 >close</mat-icon>
   </mat-form-field>
   <button mat-icon-button>

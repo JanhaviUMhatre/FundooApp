@@ -66,6 +66,7 @@ description = new FormControl('')
   label: any;
   addedlabel:any []=[];
   labeldata: number;
+  collab: string;
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,private snackBar: MatSnackBar,private svc : NoteService
     ) {
@@ -156,7 +157,7 @@ description = new FormControl('')
   }
   addinglabel(labels){
     console.log(labels)
-    this.labeldata=this.addedlabel.push(labels)
+    this.addedlabel.push(labels)
     console.log(this.addedlabel)
   }
 
@@ -168,7 +169,10 @@ this.collaboratorData={
   "firstName":this.firstName,
   "lastName":this.lastName,
   "email":this.word,
-  "userId":this.userId}
+  "userId":this.userId,
+ 
+  }
+  //this.collab=JSON.stringify(this.collaboratorData)
 console.log("collaboration data",this.collaboratorData)
     this.noteData = {
         "title": this.title.value,
@@ -177,7 +181,8 @@ console.log("collaboration data",this.collaboratorData)
         "isArchived": this.archiveValue,     
         "color": this.color, 
         "reminder":[this.date.value,this.time.value],
-        "collaborators":[this.collaboratorData]
+        "collaberators":JSON.stringify([this.collaboratorData]),
+        "labelIdList":JSON.stringify(this.addedlabel)
     }
     
     if(this.noteData.title != null || this.noteData.description!=null){

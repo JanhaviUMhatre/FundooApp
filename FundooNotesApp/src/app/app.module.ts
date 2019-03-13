@@ -35,6 +35,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { PinedComponent } from './components/pined/pined.component';
 import { CollaboratorComponent } from './components/collaborator/collaborator.component';
+import { DemoComponent } from './components/demo/demo.component';
 //import { AuthGuard } from './auth.guard'
 
 
@@ -77,6 +78,8 @@ import { CollaboratorComponent } from './components/collaborator/collaborator.co
     PinedComponent,
    
     CollaboratorComponent,
+   
+    DemoComponent,
   ],
   imports: [AppRoutingModule,
     AmazingTimePickerModule,

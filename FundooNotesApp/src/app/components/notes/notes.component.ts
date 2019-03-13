@@ -23,6 +23,8 @@ import { ViewService } from 'src/app/services/viewservice/view.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { DemoComponent } from '../demo/demo.component';
+import { PinedComponent } from '../pined/pined.component';
 
 @Component({
   selector: 'app-notes',
@@ -32,7 +34,7 @@ import { CollaboratorComponent } from '../collaborator/collaborator.component';
 export class NotesComponent implements OnInit {
   deletevalue=false;
   cardArray:any;
-  data: any;
+ data: any;
   color : any;
   flagnote :any;
   footerData : any;
@@ -46,7 +48,7 @@ export class NotesComponent implements OnInit {
   pinValue= false;
   id:any;
   //
-
+ 
   date=new FormControl('');
   time=new FormControl('');
   remindData:any;
@@ -68,8 +70,11 @@ export class NotesComponent implements OnInit {
   ]
   ColorData: { "color": boolean; "noteIdList": any[]; };
  carddata=this.data;
+msgPin:any;
+
  //PinIcon:any="unpinIcon"
  dataRefresher: any;
+ @ViewChild(PinedComponent) child;
  @Input() arrayCards;
  @Input() Search;
  selectable = true;
@@ -84,6 +89,7 @@ today: number = Date.now();
   addlabel:any;
 label:any;
 collaborators:any;
+  ispinnedArray: any;
   constructor(private atp: AmazingTimePickerService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -176,7 +182,7 @@ console.log(this.date.value,this.time.value)
     this.svc.getNotes().subscribe(
       (response) => {console.log("success get notes",response)
     this.data = response['data']['data']; 
-   
+this.child.getNoteDatas()
    
     this.data.reverse();
     console.log("in response",this.data)
@@ -184,6 +190,12 @@ console.log(this.date.value,this.time.value)
     
     this.cardArray =  this.data.filter(function(e) {
       return (e.isDeleted===false && e.isArchived===false)
+    });
+    this.cardArray =  this.data.filter(function(e) {
+      return (e.isPined===false )
+    });
+    this.ispinnedArray=this.data.filter(function(e) {
+      return (e.isDeleted===false && e.isArchived===false && e.isPined===true)
     });
     console.log("cardsArray",this.cardArray)
     },
@@ -198,15 +210,8 @@ console.log(this.date.value,this.time.value)
   pin(card){
     console.log("called pin");
     this.pinValue=!this.pinValue;
-
-    // if(this.pinValue===true){
-    //   //this.PinIcon = "pinIcon";
-    //   this.openSnackBarpin();
-    // }
-    // else{
-    //   //this.PinIcon = "unpinIcon";
-    //   this.openSnackBarunpin();
-    // }
+this.msgPin=this.pinValue;
+  
     console.log(card.id)
     this.pinData={
       "isPined":this.pinValue,
@@ -215,7 +220,9 @@ console.log(this.date.value,this.time.value)
     console.log(this.pinData)
     this.svc.pinnote(this.pinData).subscribe(
       (response) => {console.log("success",response);
-     
+     this.view.pinMessage(this.msgPin)
+     this.child.getNoteDatas()
+     this.getNoteData()
     console.log("pin response",response)
     },
       (error) => {console.log("error",error);}
@@ -261,6 +268,7 @@ this.deleteData={
 this.svc.trashnote(this.deleteData).subscribe(
   (response) => {console.log("success",response);
   this.openSnackBarDelete()
+  this.getNoteData()
 console.log(this.data)
 },
   (error) => {console.log("error",error);}
@@ -282,6 +290,7 @@ this.archiveData={
 this.svc.archivednote(this.archiveData).subscribe(
   (response) => {console.log("success",response);
   this.openSnackBar()
+  this.getNoteData()
 console.log(this.data)
 },
   (error) => {console.log("error",error);}
@@ -368,6 +377,7 @@ this.updateNotes(card)
     (response) => {console.log("success",response);
     this.labelresponse=response
   console.log("label response",this.labelresponse)
+  this.getNoteData()
   },
     (error) => {console.log("error",error);}
   )

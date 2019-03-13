@@ -28,11 +28,14 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./pined.component.scss']
 })
 export class PinedComponent implements OnInit {
+  
+
+  data: any;
+  cardArray: any;
   baseUrl = environment.baseUrl;
 
   deletevalue=false;
-  cardArray:any;
-  data: any;
+
   color : any;
   flagnote :any;
   footerData : any;
@@ -80,6 +83,7 @@ today: number = Date.now();
   labels = new FormControl('')
 label:string;
   addlabel: { "label": any; "isDeleted": any; "id": any; "userId": any; };
+  myData: any;
   constructor(private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -96,17 +100,13 @@ label:string;
    } 
 
   ngOnInit() {
-    this.getNoteData()
+   this.getNoteDatas()
     this.getLabelsDashboard()
     this.view.currentMessage.subscribe(message => this.message = message)
     this.view.currentlabel.subscribe(label => this.label = label)
-   //console.log(this.childMessage)
+   
   }
  
-  // showDiv(){
-  //   console.log("called div");
-  //   this.flagnote=!this.flagnote;
-  // }
   submit(){
 console.log(this.date.value,this.time.value)
   }
@@ -165,12 +165,16 @@ this.svc.addingchecklistlabels('noteLabels/'+note.id+'/updateNoteLabel/',this.ad
     )
 }
 
-  getNoteData(){
+  getNoteDatas(){
+ 
     this.svc.getNotes().subscribe(
       (response) => {console.log("success get notes",response)
+      // var date = new Date()
     this.data = response['data']['data']; 
-    
-   
+    // for(let i in this.data){
+    // var date = new Date(i['reminder'].toLocaleDateString());
+    // console.log("dateeee",date)
+    // }
    
     this.data.reverse();
     console.log("in response",this.data)
@@ -192,14 +196,6 @@ this.svc.addingchecklistlabels('noteLabels/'+note.id+'/updateNoteLabel/',this.ad
     console.log("called pin");
     this.pinValue=!this.pinValue;
 
-    // if(this.pinValue===true){
-    //   //this.PinIcon = "pinIcon";
-    //   this.openSnackBarpin();
-    // }
-    // else{
-    //   //this.PinIcon = "unpinIcon";
-    //   this.openSnackBarunpin();
-    // }
     console.log(card.id)
     this.pinData={
       "isPined":this.pinValue,
@@ -208,8 +204,9 @@ this.svc.addingchecklistlabels('noteLabels/'+note.id+'/updateNoteLabel/',this.ad
     console.log(this.pinData)
     this.svc.pinnote(this.pinData).subscribe(
       (response) => {console.log("success",response);
-     
+      
     console.log("pin response",response)
+    this.getNoteDatas()
     },
       (error) => {console.log("error",error);}
     )
@@ -396,6 +393,8 @@ this.updateNotes(card)
       (error)=>{(console.log("error",error))}
     )
       }
+
+
 }
 
 

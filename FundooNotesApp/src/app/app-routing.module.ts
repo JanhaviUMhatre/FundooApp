@@ -15,6 +15,7 @@ import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
+import { DemoComponent } from './components/demo/demo.component';
 
 const routes: Routes = [
     {
@@ -36,7 +37,7 @@ const routes: Routes = [
       {
         path : 'dashboard',
         component : DashboardComponent,
-        //canActivate : [AuthGuard],
+        canActivate : [AuthGuard],
         children:[
           {
             path: '',
@@ -67,6 +68,10 @@ const routes: Routes = [
             component:RemindersComponent
           }
           ]
+      },
+      {
+        path : 'demo',
+        component : DemoComponent
       },
       {
         path : 'resetpassword/:token',

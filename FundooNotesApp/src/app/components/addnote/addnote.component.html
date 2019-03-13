@@ -38,11 +38,11 @@
                     <input matInput placeholder="Take a note..." [formControl]="description" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px">
                     <!-- <app-footermenu></app-footermenu> -->
                    
-                    <mat-chip-list>
+                    <!-- <mat-chip-list> -->
                                 <!-- <div *ngFor="label of labeldata; i = index"> -->
-                            <mat-chip>{{labeldata}}</mat-chip>
+                            <!-- <mat-chip>{{labeldata}}</mat-chip> -->
                         <!-- </div> -->
-                          </mat-chip-list>
+                          <!-- </mat-chip-list> -->
                     <div class="alignment">
                         <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu">
                             <mat-icon style="font-size: 20px" class="mat-18 changeColor">add_alert</mat-icon></button>
@@ -135,7 +135,7 @@
                                     <div fxLayout="column" fxLayoutAlign="start start" >
                                    
                                           <div *ngFor="let labels of label; let i = index">
-                                            <mat-checkbox class="field-size" value={{labels.label}} (click)="addinglabel(labels.label)" (click)=stopPropagation($event)>{{labels.label}}</mat-checkbox>
+                                            <mat-checkbox class="field-size" value={{labels.label}} (click)="addinglabel(labels.id)" (click)=stopPropagation($event)>{{labels.label}}</mat-checkbox>
                                           </div></div>
                                         
                             </mat-menu>

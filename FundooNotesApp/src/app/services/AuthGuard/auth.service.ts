@@ -4,15 +4,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-loggedInStatus = false; 
+//loggedInStatus = false; 
   constructor() { }
 
-  setLoggedIn(value : boolean){
+  // setLoggedIn(value : boolean){
     
-    this.loggedInStatus = value;
-  }
+  //   this.loggedInStatus = value;
+  // }
 
-  get isLoggedIn(){
-    return this.loggedInStatus
+  // get isLoggedIn(){
+  //   return this.loggedInStatus
+  // }
+
+  public loggIn()
+  {
+    return !!localStorage.getItem("token");
   }
 }

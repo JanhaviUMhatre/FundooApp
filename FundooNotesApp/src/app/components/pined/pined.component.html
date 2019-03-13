@@ -1,8 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="center center" >
 <mat-label>pinned</mat-label>
-<div fxLayout={{message}} fxFlex="100"  fxLayoutAlign="start center" >
+<div fxLayout={{message}} fxFlex="100"  fxLayoutAlign="center center" >
 
-    <!-- <div fxLayout={{message}} fxFlex="100" fxLayoutAlign=" center center" > -->
             <div *ngFor="let note of cardArray | search:Search; let i = index">
                 <div *ngIf="note.isArchived===false">
                         <div *ngIf="note.isDeleted===false">
@@ -14,9 +13,7 @@
                             <div fxLayout="row" fxLayoutAlign="space-between center" >
                <div class="title" [style.fontSize.px]=19 (click)="openDialog(note)"> {{note.title}}</div>        
                <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(note)">
-                    <!-- <div *ngIf="note.isPined===false">
-                        <mat-icon  style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
-                    </div> -->
+                  
                     <div *ngIf="note.isPined === true">
                         <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="pinIcon"></mat-icon>
                     </div>
@@ -26,7 +23,6 @@
                     <div *ngFor="let col of note.collaborators">
                         <div class="alignbutton">
                             <button  mat-mini-fab color="accent" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
-                                    <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
                             </button></div>
                         </div>
               </mat-chip-list>
@@ -38,8 +34,7 @@
                     </mat-chip>
     </div>
                   </mat-chip-list>
-                  
-            
+                
                <div fxLayout="row" fxLayoutAlign="space-around start" >
                     <div class="alignment">
                             <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu" (click)="getcolorid(note)">
@@ -136,3 +131,8 @@
                   </mat-menu>
                       
     </div>
+
+   
+    <!-- <div *ngFor="let note of childMessage | search:Search; let i = index">
+            {{note.title}}
+    </div> -->

@@ -1,15 +1,16 @@
-<div fxLayout="column" fxFlex="100"  fxLayoutAlign="start center" >
+<div fxLayout="column" fxFlex="100"  fxLayoutAlign="center center" >
 
-    <app-pined></app-pined>
+    <app-pined ></app-pined>
+    <!-- <app-demo ></app-demo> -->
 
 <mat-label>others</mat-label>
-<div fxLayout={{message}} fxFlex="100"  fxLayoutAlign="start center" >
+<div fxLayout={{message}} fxFlex="100"  fxLayoutAlign="center center" >
 
 <!-- <div fxLayout={{message}} fxFlex="100" fxLayoutAlign=" center center" > -->
         <div *ngFor="let note of cardArray | search:Search; let i = index">
             <div *ngIf="note.isArchived===false">
                     <div *ngIf="note.isDeleted===false">
-                            <div *ngIf="note.isPined===false">
+                            <!-- <div *ngIf="note.isPined===false"> -->
                 <div fxLayout="row wrap" fxLayoutAlign="center center" >
                         <div class="cards" >
                         <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" [ngClass]="{'cardWidth': message=='column wrap'}" >
@@ -123,7 +124,8 @@
 </div>
     </mat-card></div>
 </div>
-    </div></div></div></div>
+    </div></div></div>
+<!-- </div> -->
 
     <mat-menu #colorMenu="matMenu"  class="colorMenu" [overlapTrigger]="false">
 

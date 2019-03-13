@@ -5,6 +5,10 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ViewService {
+//pin
+private pinSource = new BehaviorSubject("false");
+  currentpin = this.pinSource.asObservable();
+
   private messageSource = new BehaviorSubject("row wrap");
   //private collaboratoremail = new BehaviorSubject("default email");
   private labelSource = new BehaviorSubject(null);
@@ -31,5 +35,11 @@ export class ViewService {
   loginResponse(): Observable <any> {
       return this.loginSource.asObservable();
   };
+
+  //pin
+  pinMessage(msgPin: string) {
+    this.pinSource.next(msgPin)
+  }
+
 
 }
