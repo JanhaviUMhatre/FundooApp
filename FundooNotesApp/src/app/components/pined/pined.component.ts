@@ -82,7 +82,7 @@ today: number = Date.now();
   addlabeldata: { "label": any; "userId": any; "isDeleted": any; };
   labels = new FormControl('')
 label:string;
-  addlabel: { "label": any; "isDeleted": any; "id": any; "userId": any; };
+  addlabel: any;
   myData: any;
   constructor(private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
@@ -139,15 +139,13 @@ console.log(this.date.value,this.time.value)
   }
   addinglabel(labels,note){
     this.addlabel={
-      
-        "label": labels.label,
-        "isDeleted": labels.isDeleted,
-        "id": labels.id,
-        "userId": labels.userId
+      "noteId":note.id,
+      "lableId":labels.id
+        
       
     }
 console.log("selected label",this.addlabel);
-this.svc.addingchecklistlabels('noteLabels/'+note.id+'/updateNoteLabel/',this.addlabel).subscribe(
+this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/add',this.addlabel).subscribe(
   (Response)=>{console.log("success",Response)},
   (error)=>{console.log("error",error)}
   )

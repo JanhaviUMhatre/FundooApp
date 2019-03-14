@@ -16,6 +16,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { DemoComponent } from './components/demo/demo.component';
+import { QuestionComponent } from './components/question/question.component';
 
 const routes: Routes = [
     {
@@ -55,6 +56,7 @@ const routes: Routes = [
             path:'search',
             component:SearchbarComponent
           },
+          
           {
             path:'trash',
             component:TrashComponent
@@ -66,6 +68,14 @@ const routes: Routes = [
           {
             path:'reminder',
             component:RemindersComponent
+          },
+          {
+            path: 'questions',
+            component:QuestionComponent
+          },
+          {
+            path: 'addNote/questions',
+            component:QuestionComponent
           }
           ]
       },
@@ -73,6 +83,7 @@ const routes: Routes = [
         path : 'demo',
         component : DemoComponent
       },
+     
       {
         path : 'resetpassword/:token',
         component : ResetPasswordComponent

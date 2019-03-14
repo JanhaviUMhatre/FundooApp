@@ -9,7 +9,7 @@
 // ***********************************************************************************
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { environment } from 'src/environments/environment';
-
+import { Router, Route } from '@angular/router'
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { MatIconRegistry } from "@angular/material/icon";
@@ -25,6 +25,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
 import { DemoComponent } from '../demo/demo.component';
 import { PinedComponent } from '../pined/pined.component';
+import { QuestionService } from 'src/app/services/question/question.service';
 
 @Component({
   selector: 'app-notes',
@@ -90,7 +91,8 @@ today: number = Date.now();
 label:any;
 collaborators:any;
   ispinnedArray: any;
-  constructor(private atp: AmazingTimePickerService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
+
+  constructor(private que : QuestionService, private router: Router,private atp: AmazingTimePickerService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
       this.matIconRegistry.addSvgIcon(
@@ -116,22 +118,19 @@ collaborators:any;
 
   addinglabel(labels,note){
     this.addlabel={
-      
-        "label": labels.label,
-        "isDeleted": labels.isDeleted,
-        "id": labels.id,
-        "userId": labels.userId
+      "noteId":note.id,
+      "lableId":labels.id
+        
       
     }
 console.log("selected label",this.addlabel);
-this.svc.addingchecklistlabels('noteLabels/'+note.id+'/updateNoteLabel/',this.addlabel).subscribe(
+this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/add',this.addlabel).subscribe(
   (Response)=>{console.log("success",Response)},
   (error)=>{console.log("error",error)}
   )
 
 
   }
-
   getLabelsDashboard(){
     this.svc.getLabels().subscribe(
         (response) => {console.log("success",response);
@@ -194,6 +193,7 @@ this.child.getNoteDatas()
     this.cardArray =  this.data.filter(function(e) {
       return (e.isPined===false )
     });
+   
     this.ispinnedArray=this.data.filter(function(e) {
       return (e.isDeleted===false && e.isArchived===false && e.isPined===true)
     });
@@ -312,6 +312,10 @@ this.updateNotes(card)
       (error) => {console.log("error",error);}
     )
   }
+  questionAnswer(card){
+this.que.changeMessage(card.title)
+this.que.changeMessageD(card.description)
+  }
   //dialog box
   openDialog(card,labels): void {
     const dialogRef = this.dialog.open(LabelsComponent,
@@ -421,7 +425,9 @@ this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNo
         (error)=>{console.log("error",error)}
     )
 }
-
+questions(){
+  this.router.navigate['questions'];
+}
 
 }
 

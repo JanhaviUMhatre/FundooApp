@@ -49,9 +49,9 @@
                                               </button>
                                               <button mat-menu-item> Next Week :Monday, 8 AM
                                                   </button>
-                                                  <button mat-menu-item [matMenuTriggerFor]="peekDate"> Peek date and time
+                                                  <button mat-menu-item [matMenuTriggerFor]="pickDate"> Pick date and time
                                                       </button>
-                                                  <mat-menu #peekDate="matMenu">
+                                                  <mat-menu #pickDate="matMenu">
                                                           <div fxLayout="column" fxFlex="auto" fxLayoutAlign="space-around center" >
                                                           <mat-form-field class="field-size">
                                                                   <input matInput [matDatepicker]="picker" [formControl]="date" [style.fontSize.px]=12>

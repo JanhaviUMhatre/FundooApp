@@ -11,19 +11,14 @@
   <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
       <div fxLayout="column" >
 
-      
-          <div class="title" [style.fontSize.px]=16 (click)="openDialog(note)"> {{note.title}}</div>
-        
-         
+       <div class="title" [style.fontSize.px]=16 (click)="openDialog(note)"> {{note.title}}</div>
 
 <div class="description">{{note.description}}</div> 
-<!-- <div class="title" [style.fontSize.px]=11> {{note.noteLabels.label}}</div> -->
+
+</div>
 <div class="alignment">
-<button mat-icon-button matTooltip="Archive" (mouseover)="archive(note)">
-    <mat-icon style="font-size: 17px" class="changeColor">archive</mat-icon>
-     
-</button>
-</div></div>
+<app-footermenu [data]="note"></app-footermenu>
+</div>
 </mat-card>
 </div></div></div>
 </div>
