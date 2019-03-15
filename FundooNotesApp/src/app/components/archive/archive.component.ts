@@ -13,6 +13,7 @@ import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
 import { LabelsComponent } from '../labels/labels.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-archive',
@@ -20,10 +21,13 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./archive.component.scss']
 })
 export class ArchiveComponent implements OnInit {
+  baseUrl = environment.baseUrl;
+
   data:any;
 pinvalue:any;
 pinData:any;
   archiveData: { "isArchived": any; "noteIdList": any[]; };
+  label: any;
   constructor(public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -89,5 +93,23 @@ openDialog(card): void {
     console.log('The dialog was closed');
     
   });
+}
+
+getLabelsDashboard(){
+  this.svc.getLabels().subscribe(
+      (response) => {console.log("success",response);
+      this.label=response['data']['details'];
+      console.log(this.label)
+  },
+      (error)=>{console.log("error",error)}
+  )
+}
+deletelabelforever(labels,note){
+  this.svc.deletenoteLabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/remove',{
+    "noteId":note.id,"lableId":labels.id
+  }).subscribe(
+      (response)=>{console.log("success",response)},
+      (error)=>{console.log("error",error)}
+  )
 }
 }

@@ -17,6 +17,9 @@ getReminder(){
   this.svc.getReminderNotes().subscribe(
     (response)=>{console.log("success",response)
   this.data=response['data']['data']
+  for(let note of this.data){
+    console.log(note.reminder.toLocaleDateString())
+  }
 console.log(this.data)},
   (error)=>{console.log("error",error)}
   )

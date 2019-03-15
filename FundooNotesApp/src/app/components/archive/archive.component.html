@@ -14,7 +14,17 @@
        <div class="title" [style.fontSize.px]=16 (click)="openDialog(note)"> {{note.title}}</div>
 
 <div class="description">{{note.description}}</div> 
+<mat-chip-list >
 
+        <div *ngFor="let labels of note.noteLabels">
+          
+                <mat-chip >{{labels.label}}
+                       
+                            <mat-icon matChipRemove (click)="deletelabelforever(labels,note)">cancel</mat-icon>
+                      
+                </mat-chip>
+</div>
+              </mat-chip-list>
 </div>
 <div class="alignment">
 <app-footermenu [data]="note"></app-footermenu>

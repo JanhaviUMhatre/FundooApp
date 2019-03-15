@@ -47,6 +47,7 @@ data:any;
      console.log(this.deleteData);
      this.svc.deleteforevernote(this.deleteData).subscribe(
       (response) => {console.log("deleted",response);
+      this.getTrashNoteData();
       console.log(this.data)
 
     },

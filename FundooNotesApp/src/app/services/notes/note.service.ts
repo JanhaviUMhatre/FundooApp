@@ -11,7 +11,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
-import { Subject, BehaviorSubject } from 'rxjs';
+
 
 
 
@@ -84,5 +84,8 @@ addingchecklistlabels(url,userData){
 }
 deletelabels(url){
   return this.user.DeleteForm(url)
+}
+deletenoteLabels(url,userData){
+  return this.user.PostForm(this.baseUrl+url,userData)
 }
 }

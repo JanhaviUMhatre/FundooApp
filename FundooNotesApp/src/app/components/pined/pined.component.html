@@ -26,6 +26,14 @@
                             </button></div>
                         </div>
               </mat-chip-list>
+              <mat-chip-list >
+                    <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
+                           
+                                <mat-icon matChipRemove (click)="deletelabelforever(labels,note)">cancel</mat-icon>
+                          
+                    </mat-chip>
+
+                  </mat-chip-list>
                <mat-chip-list >
     
             <div *ngFor="let labels of note.noteLabels">
@@ -61,11 +69,11 @@
                                                               
                                                                 <mat-form-field class="field-size">
                                                                     <mat-label>Time</mat-label>
-                                                                    <mat-select matInput [formControl]="time"  value="1:00 PM" (click)="stopPropagation($event)">
-                                                                      <mat-option value="8 AM">MORNING 8 AM</mat-option>
-                                                                      <mat-option value="1 PM">AFTERNOON 1 PM</mat-option>
-                                                                      <mat-option value="6 PM">EVENING 6 PM</mat-option>
-                                                                      <mat-option value="8 PM">NIGHT 8 PM</mat-option>
+                                                                    <mat-select matInput [formControl]="time"  value="1:00:00" (click)="stopPropagation($event)">
+                                                                      <mat-option value="8:00:00">MORNING 8 AM</mat-option>
+                                                                      <mat-option value="1:00:00">AFTERNOON 1 PM</mat-option>
+                                                                      <mat-option value="6:00:00">EVENING 6 PM</mat-option>
+                                                                      <mat-option value="8:00:00">NIGHT 8 PM</mat-option>
                                                                       
                                                                     </mat-select>
                                                                   </mat-form-field>

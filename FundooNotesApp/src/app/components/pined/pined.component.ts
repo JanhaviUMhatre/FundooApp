@@ -349,7 +349,7 @@ this.updateNotes(card)
   }
   reminder(){
     this.remindData={
-      "reminder": [this.date.value,this.time.value], "noteIdList":[this.id]
+      "reminder": [this.date.value+this.time.value], "noteIdList":[this.id]
       
     }
     console.log(this.remindData)

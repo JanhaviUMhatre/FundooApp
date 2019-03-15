@@ -13,6 +13,7 @@ import { CreateNote } from 'src/app/models/createnote.model';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { FormControl } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class FootermenuComponent implements OnInit {
   labels = new FormControl('')
+  baseUrl = environment.baseUrl;
 
 
 @Input() data: any;
@@ -44,6 +46,10 @@ export class FootermenuComponent implements OnInit {
   label: any;
   addlabeldata: { "label": any; "userId": any; "isDeleted": any; };
   labelresponse: any;
+  deletevalue: boolean;
+  deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
+  addlabel: { "noteId": any; "lableId": any; };
+
   constructor(private svc :NoteService,private http: HttpClient) { }
 
   
@@ -83,6 +89,11 @@ changeColor(color) {
 
 }
  
+stopPropagation(event){
+  event.stopPropagation();
+  // console.log("Clicked!");
+}
+
 getLabelsDashboard(){
   this.svc.getLabels().subscribe(
       (response) => {console.log("success",response);
@@ -121,4 +132,48 @@ console.log("label response",this.labelresponse)
   (error) => {console.log("error",error);}
 )
 }
+
+addinglabel(labels){
+  this.addlabel={
+    "noteId":this.data.id,
+    "lableId":labels.id
+      
+    
+  }
+console.log("selected label",this.addlabel);
+this.svc.addingchecklistlabels('notes/'+this.data.id+'/addLabelToNotes/'+labels.id+'/add',this.addlabel).subscribe(
+(Response)=>{console.log("success",Response)},
+(error)=>{console.log("error",error)}
+)
+
+
+}
+
+
+delete(){
+  console.log(this.data.id);
+  console.log("deleted")
+   
+  this.deletevalue =! this.deletevalue
+ 
+this.deleteData={
+ "isDeleted":this.deletevalue,
+ "noteIdList":[this.data.id]
+}
+console.log(this.deleteData);
+this.svc.trashnote(this.deleteData).subscribe(
+ (response) => {console.log("success",response);
+
+console.log(this.data)
+},
+ (error) => {console.log("error",error);}
+)
+ }
+
+reminder(){
+
+let now = new Date();
+console.log(now)
+}
+
 }

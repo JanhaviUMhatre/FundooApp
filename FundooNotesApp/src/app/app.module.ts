@@ -37,6 +37,7 @@ import { PinedComponent } from './components/pined/pined.component';
 import { CollaboratorComponent } from './components/collaborator/collaborator.component';
 import { DemoComponent } from './components/demo/demo.component';
 import { QuestionComponent } from './components/question/question.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 //import { AuthGuard } from './auth.guard'
 
 
@@ -85,6 +86,8 @@ import { QuestionComponent } from './components/question/question.component';
     QuestionComponent,
   ],
   imports: [AppRoutingModule,
+    FroalaEditorModule.forRoot(),
+     FroalaViewModule.forRoot(),
     AmazingTimePickerModule,
     BrowserModule,
     MatSnackBarModule,

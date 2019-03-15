@@ -54,7 +54,7 @@ colab=true;
   //note : CreateNote =new CreateNote;
   date=new FormControl('');
   time=new FormControl('');
-
+item=new FormControl('')
 title = new FormControl('')
 description = new FormControl('')
   remindData: { "reminder": any[];};
@@ -67,6 +67,7 @@ description = new FormControl('')
   addedlabel:any []=[];
   labeldata: number;
   collab: string;
+  listItem=true;
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,private snackBar: MatSnackBar,private svc : NoteService
     ) {
@@ -87,7 +88,9 @@ description = new FormControl('')
     this.getLabelsDashboard()
     this.email=localStorage.getItem('email')
   }
-  
+  addItem(){
+    this.listItem =! this.listItem
+  }
   serachEmail(str: string): void{
     this.word = str;
   //console.log(this.word)
@@ -172,6 +175,9 @@ this.collaboratorData={
   "userId":this.userId,
  
   }
+  let itemData={
+    "itemName":this.item.value,"status":open
+  }
   //this.collab=JSON.stringify(this.collaboratorData)
 console.log("collaboration data",this.collaboratorData)
     this.noteData = {
@@ -182,7 +188,8 @@ console.log("collaboration data",this.collaboratorData)
         "color": this.color, 
         "reminder":[this.date.value,this.time.value],
         "collaberators":JSON.stringify([this.collaboratorData]),
-        "labelIdList":JSON.stringify(this.addedlabel)
+        "labelIdList":JSON.stringify(this.addedlabel),
+        "noteCheckLists":[{"itemName":this.item.value,"status":open}]
     }
     
     if(this.noteData.title != null || this.noteData.description!=null){

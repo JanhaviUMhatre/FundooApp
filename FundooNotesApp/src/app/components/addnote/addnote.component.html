@@ -35,7 +35,12 @@
               </button>
             </div>
               
-                    <input matInput placeholder="Take a note..." [formControl]="description" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px">
+                    <input matInput placeholder="Take a note..." [formControl]="description" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px" *ngIf="listItem===true">
+                  
+                        <div *ngIf="listItem===false">
+                                <mat-checkbox>{{item}}</mat-checkbox>
+                        <input matInput placeholder="List item" [formControl]="item" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px" >
+                    </div>
                     <!-- <app-footermenu></app-footermenu> -->
                    
                     <!-- <mat-chip-list> -->
@@ -128,7 +133,7 @@
                           
                           </mat-menu>
                           <mat-menu #moreMenu="matMenu"  class="moreMenu" [overlapTrigger]="false">
-                  
+                            <button mat-menu-item [style.fontSize.px]=14 class="changeColor" (click)="addItem()">Add label</button>
                               <button mat-menu-item [style.fontSize.px]=14 class="changeColor" [matMenuTriggerFor]="labelMenu">Add label</button>
                               <mat-menu #labelMenu="matMenu" [overlapTrigger]="true">
                                     <mat-label class="field-size">add label : </mat-label>

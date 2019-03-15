@@ -404,8 +404,10 @@ this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNo
 )
   }
   reminder(card){
+    var newdate = this.date.value.toLocaleDateString() + " "+this.time.value
+    console.log(newdate)
     this.remindData={
-      "reminder": [this.date.value,this.time.value], "noteIdList":[this.id]
+      "reminder": [this.date.value], "noteIdList":[this.id]
       
     }
     console.log(this.remindData)
@@ -417,14 +419,18 @@ this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNo
       (error) => {console.log("error",error);}
     
     )
+    
   }
   
-  deletelabelforever(labels){
-    this.svc.deletelabels(this.baseUrl+'noteLabels/'+labels.id+'/deleteNoteLabel').subscribe(
-        (response)=>{console.log("success",response)},
+  deletelabelforever(labels,note){
+    this.svc.deletenoteLabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/remove',{
+      "noteId":note.id,"lableId":labels.id
+    }).subscribe(
+        (response)=>{console.log("success",response);
+      this.getNoteData()},
         (error)=>{console.log("error",error)}
     )
-}
+  }
 questions(){
   this.router.navigate['questions'];
 }

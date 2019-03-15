@@ -26,6 +26,7 @@
                 </div> -->
               </button></div>
            <div class="description">{{note.description}}</div> 
+           <!-- <div class="description">{{note.description}}</div>  -->
            <mat-chip-list >
             <div *ngFor="let col of note.collaborators">
                 <div class="alignbutton">
@@ -40,11 +41,19 @@
           
                 <mat-chip [removable]="removable">{{labels.label}}
                        
-                            <mat-icon matChipRemove>cancel</mat-icon>
+                            <mat-icon matChipRemove (click)="deletelabelforever(labels,note)">cancel</mat-icon>
                       
                 </mat-chip>
 </div>
               </mat-chip-list>
+              <mat-chip-list >
+                            <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
+                                   
+                                        <mat-icon matChipRemove (click)="deletelabelforever(labels,note)">cancel</mat-icon>
+                                  
+                            </mat-chip>
+        
+                          </mat-chip-list>
             
               
         
@@ -103,6 +112,9 @@
                                                           </button>   
                                                           <button mat-menu-item [style.fontSize.px]=13 (click)="delete(note)"> 
                                                             Delete note
+                                                           </button> 
+                                                           <button mat-menu-item [style.fontSize.px]=13> 
+                                                            Show Checkbox
                                                            </button> 
                                                            <button mat-menu-item [style.fontSize.px]=13 [routerLink]="['questions']" (click)="questionAnswer(note)"> 
                                                             Ask a question
