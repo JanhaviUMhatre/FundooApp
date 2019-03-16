@@ -315,6 +315,7 @@ this.updateNotes(card)
   questionAnswer(card){
 this.que.changeMessage(card.title)
 this.que.changeMessageD(card.description)
+this.que.changeMessageArray(card.id)
   }
   //dialog box
   openDialog(card,labels): void {

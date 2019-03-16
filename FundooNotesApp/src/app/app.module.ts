@@ -39,6 +39,7 @@ import { DemoComponent } from './components/demo/demo.component';
 import { QuestionComponent } from './components/question/question.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 //import { AuthGuard } from './auth.guard'
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -98,7 +99,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     BrowserAnimationsModule,
     MatCardModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    ImageCropperModule
   ],
   entryComponents:[
     CollaboratorComponent

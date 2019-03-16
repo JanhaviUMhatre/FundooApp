@@ -1,5 +1,5 @@
-
-<mat-card >
+<div  fxLayoutAlign="center center" >
+<mat-card>
     <div fxLayout="row wrap" fxLayoutAlign="space-between center" >
   <mat-card-title>{{title}}</mat-card-title> 
   <div  fxLayoutAlign="end" >
@@ -7,11 +7,40 @@
 </div> 
   <mat-card-subtitle>{{description}}</mat-card-subtitle>
   <mat-divider></mat-divider>
-  <p>question asked</p>
+  <mat-label class="labelsizee">Question Asked</mat-label>
+ <div *ngFor="let i of queans">
+    <div class="questionstyle" innerHtml="{{i.message}}"></div>
+   
+ </div>
 </mat-card>
-<div fxLayout="row" fxLayoutAlign="space-around center" class="editor" >
-<div [froalaEditor] >Hello, Froala!</div>
+
 </div>
+<div *ngFor="let i of queans">
+  
+    <div fxLayout="row wrap">
+        <div  class="account">
+         
+          
+                <img src="http://34.213.106.173/{{profile}}" class="accountButton" >
+            
+          </div>
+          <div fxLayout="row ">   
+    <div class="labelsizee" innerHtml="{{i.message}}"></div>
+ 
+  </div>
+  <mat-label class="details">{{firstname}},
+        {{i.createdDate |  date:'medium'}}</mat-label>
+        </div>
+ </div>
+<div fxLayout="column" fxLayoutAlign="space-between center" class="editor" >
+<!-- <div [froalaEditor]> -->
+  <textarea [froalaEditor] [(froalaModel)]="question"></textarea>
+  <div  fxLayoutAlign="end" >
+
+  <button mat-icon-button  (click)="getquestion()"><mat-icon>send</mat-icon></button>
+</div>
+</div>
+<!-- </div> -->
     
    
  
