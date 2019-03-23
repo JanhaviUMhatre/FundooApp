@@ -1,0 +1,49 @@
+
+   
+  <div  fxLayoutAlign="center center" >
+    <mat-card>
+      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-subtitle>{{description}}</mat-card-subtitle>
+      <mat-divider>
+      </mat-divider>
+      <mat-card-title>question asked</mat-card-title>
+      <mat-card-subtitle innerHtml="{{questionasked}}">
+        </mat-card-subtitle>
+    </mat-card>
+    </div>
+   <div *ngFor="let i of queans">
+          <div fxLayout="column" fxLayoutAlign="center center" [ngClass]="{'editorclasss': queans===null}">
+        <div fxLayout="row" fxLayoutAlign="center center" >
+            <div  class="account">
+               
+                
+                <img src="http://34.213.106.173/{{profile}}" class="accountButton" >
+            
+          </div>
+        
+      <mat-label innerHtml="{{i.message}}" class="labelsizee" ></mat-label>
+      <div class="details">{{firstname}},
+          {{i.createdDate |  date:'medium'}}</div>    
+      <mat-icon (click)="showDiv()">reply</mat-icon>
+      <mat-icon>thumb_up_alt</mat-icon>
+      <!-- <star-rating [starType]="'icon'"></star-rating> -->
+      </div>
+    <p>answer</p>
+    
+    </div>
+  </div>
+  
+    <div fxLayout="column" fxLayoutAlign="space-between center" class="editor" *ngIf="flag===false" >
+      <textarea [froalaEditor] [(froalaModel)]="message" value="Reply"></textarea>
+      <div  fxLayoutAlign="end" >
+    
+      <button mat-button (click)="replyMessage()">reply</button>
+</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-between center" class="editor" >
+        <textarea [froalaEditor] [(froalaModel)]="question" value="asked" [ngClass]="{'editorclass': queans===null}"></textarea>
+        <div  fxLayoutAlign="end" >
+      
+        <button mat-button (click)="getquestion()">ask</button>
+  </div>
+      </div>
